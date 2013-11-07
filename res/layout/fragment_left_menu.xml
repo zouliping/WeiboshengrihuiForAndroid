@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/menu_fragment_bg_normal"
+    android:orientation="vertical" >
+
+    <cn.pdc.mobile.view.RoundedImageView
+        android:id="@+id/avatar_menu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/avatar_default" />
+
+    <TextView
+        android:id="@+id/username_menu"
+        style="@style/username_below_avatar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="15dp"
+        android:textIsSelectable="true" />
+
+    <RadioGroup
+        android:id="@+id/main_menu"
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginTop="20dp"
+        android:orientation="vertical" >
+
+        <include layout="@layout/divider" />
+
+        <RadioButton
+            android:id="@+id/homepage_menu"
+            style="@style/menu_radio_style"
+            android:checked="true"
+            android:text="@string/Homepage" />
+
+        <include layout="@layout/divider" />
+
+        <RadioButton
+            android:id="@+id/friends_menu"
+            style="@style/menu_radio_style"
+            android:text="@string/Friends" />
+
+        <include layout="@layout/divider" />
+
+        <RadioButton
+            android:id="@+id/settings_menu"
+            style="@style/menu_radio_style"
+            android:text="@string/Settings" />
+
+        <include layout="@layout/divider" />
+    </RadioGroup>
+
+</LinearLayout>

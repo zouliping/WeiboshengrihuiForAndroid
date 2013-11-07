@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Weiboshegnrihui</string>
+    
+    <string name="Homepage">Homepage</string>
+    <string name="Friends">Friends</string>
+    <string name="Settings">Settings</string>
+    
+    <string name="default_name">default</string>
+    
+</resources>
