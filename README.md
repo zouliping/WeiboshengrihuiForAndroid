@@ -1,4 +1,4 @@
 WeiboshengrihuiForAndroid
 =========================
 
-Weiboshengrihui ForAndroid.Use PDC API.
+Weiboshengrihui ForAndroid. Use PDC API.
