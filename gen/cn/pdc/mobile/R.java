@@ -586,17 +586,20 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
     }
     public static final class drawable {
         public static final int avatar_default=0x7f020000;
-        public static final int ic_launcher=0x7f020001;
-        public static final int list_divider_line=0x7f020002;
-        public static final int loading=0x7f020003;
-        public static final int menu_fragment_bg_normal=0x7f020004;
-        public static final int menu_fragment_bg_pressed=0x7f020005;
-        public static final int menu_fragment_bg_selected=0x7f020006;
-        public static final int menu_radio_divider=0x7f020007;
-        public static final int menu_radio_selector=0x7f020008;
-        public static final int progress_bar=0x7f020009;
-        public static final int rounded_rect=0x7f02000a;
-        public static final int shadow=0x7f02000b;
+        public static final int friends=0x7f020001;
+        public static final int homepage=0x7f020002;
+        public static final int ic_launcher=0x7f020003;
+        public static final int list_divider_line=0x7f020004;
+        public static final int loading=0x7f020005;
+        public static final int menu_fragment_bg_normal=0x7f020006;
+        public static final int menu_fragment_bg_pressed=0x7f020007;
+        public static final int menu_fragment_bg_selected=0x7f020008;
+        public static final int menu_radio_divider=0x7f020009;
+        public static final int menu_radio_selector=0x7f02000a;
+        public static final int progress_bar=0x7f02000b;
+        public static final int rounded_rect=0x7f02000c;
+        public static final int settings=0x7f02000d;
+        public static final int shadow=0x7f02000e;
     }
     public static final class id {
         public static final int accounts=0x7f04000e;
@@ -729,7 +732,7 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name android:behindOffset
+          @attr name cn.pdc.mobile:behindOffset
         */
         public static final int SlidingMenu_behindOffset = 3;
         /**
@@ -743,7 +746,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name android:behindScrollScale
+          @attr name cn.pdc.mobile:behindScrollScale
         */
         public static final int SlidingMenu_behindScrollScale = 5;
         /**
@@ -759,7 +762,7 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name android:behindWidth
+          @attr name cn.pdc.mobile:behindWidth
         */
         public static final int SlidingMenu_behindWidth = 4;
         /**
@@ -773,7 +776,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name android:fadeDegree
+          @attr name cn.pdc.mobile:fadeDegree
         */
         public static final int SlidingMenu_fadeDegree = 11;
         /**
@@ -787,7 +790,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name android:fadeEnabled
+          @attr name cn.pdc.mobile:fadeEnabled
         */
         public static final int SlidingMenu_fadeEnabled = 10;
         /**
@@ -804,7 +807,7 @@ containing a value of this type.
 <tr><td><code>left</code></td><td>0</td><td></td></tr>
 <tr><td><code>right</code></td><td>1</td><td></td></tr>
 </table>
-          @attr name android:mode
+          @attr name cn.pdc.mobile:mode
         */
         public static final int SlidingMenu_mode = 0;
         /**
@@ -814,7 +817,7 @@ containing a value of this type.
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name android:selectorDrawable
+          @attr name cn.pdc.mobile:selectorDrawable
         */
         public static final int SlidingMenu_selectorDrawable = 13;
         /**
@@ -828,7 +831,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name android:selectorEnabled
+          @attr name cn.pdc.mobile:selectorEnabled
         */
         public static final int SlidingMenu_selectorEnabled = 12;
         /**
@@ -838,7 +841,7 @@ containing a value of this type.
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name android:shadowDrawable
+          @attr name cn.pdc.mobile:shadowDrawable
         */
         public static final int SlidingMenu_shadowDrawable = 8;
         /**
@@ -854,7 +857,7 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name android:shadowWidth
+          @attr name cn.pdc.mobile:shadowWidth
         */
         public static final int SlidingMenu_shadowWidth = 9;
         /**
@@ -871,7 +874,7 @@ containing a value of this type.
 <tr><td><code>margin</code></td><td>0</td><td></td></tr>
 <tr><td><code>fullscreen</code></td><td>1</td><td></td></tr>
 </table>
-          @attr name android:touchModeAbove
+          @attr name cn.pdc.mobile:touchModeAbove
         */
         public static final int SlidingMenu_touchModeAbove = 6;
         /**
@@ -888,7 +891,7 @@ containing a value of this type.
 <tr><td><code>margin</code></td><td>0</td><td></td></tr>
 <tr><td><code>fullscreen</code></td><td>1</td><td></td></tr>
 </table>
-          @attr name android:touchModeBehind
+          @attr name cn.pdc.mobile:touchModeBehind
         */
         public static final int SlidingMenu_touchModeBehind = 7;
         /**
@@ -898,7 +901,7 @@ containing a value of this type.
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name android:viewAbove
+          @attr name cn.pdc.mobile:viewAbove
         */
         public static final int SlidingMenu_viewAbove = 1;
         /**
@@ -908,7 +911,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name android:viewBehind
+          @attr name cn.pdc.mobile:viewBehind
         */
         public static final int SlidingMenu_viewBehind = 2;
     };

@@ -35,6 +35,8 @@
             android:id="@+id/homepage_menu"
             style="@style/menu_radio_style"
             android:checked="true"
+            android:drawableLeft="@drawable/homepage"
+            android:drawablePadding="10dp"
             android:text="@string/Homepage" />
 
         <include layout="@layout/divider" />
@@ -42,6 +44,8 @@
         <RadioButton
             android:id="@+id/friends_menu"
             style="@style/menu_radio_style"
+            android:drawableLeft="@drawable/friends"
+            android:drawablePadding="10dp"
             android:text="@string/Friends" />
 
         <include layout="@layout/divider" />
@@ -49,6 +53,8 @@
         <RadioButton
             android:id="@+id/settings_menu"
             style="@style/menu_radio_style"
+            android:drawableLeft="@drawable/settings"
+            android:drawablePadding="10dp"
             android:text="@string/Settings" />
 
         <include layout="@layout/divider" />
