@@ -53,6 +53,11 @@ public class HomepageFragment extends Fragment {
 	 * init data
 	 */
 	private void initData() {
+		nickname = getString(R.string.undefined);
+		birthday = getString(R.string.undefined);
+		location = getString(R.string.undefined);
+		interesting = getString(R.string.undefined);
+
 		new getBasicInfoTask().execute();
 	}
 
@@ -95,7 +100,7 @@ public class HomepageFragment extends Fragment {
 		mButtonView.addBasicItem(bi_wish);
 
 		bi_have = new BasicItem(R.drawable.ic_launcher,
-				getString(R.string.Wish), getString(R.string.undefined));
+				getString(R.string.Have), getString(R.string.undefined));
 		mButtonView.addBasicItem(bi_have);
 	}
 
@@ -131,17 +136,25 @@ public class HomepageFragment extends Fragment {
 		protected void onPostExecute(String result) {
 			try {
 				JSONObject jo = new JSONObject(result);
-				nickname = jo.getString("nick");
-				birthday = jo.getString("birthday");
-				location = jo.getString("hometown");
-				interesting = getString(R.string.undefined);
+				if (!jo.isNull("nick")) {
+					nickname = jo.getString("nick");
+				}
+				if (!jo.isNull("birthday")) {
+					birthday = jo.getString("birthday");
+				}
+				if (!jo.isNull("hometown")) {
+					location = jo.getString("hometown");
+				}
+				if (!jo.isNull("interesting")) {
+					interesting = jo.getString("interesting");
+				}
 				Log.e("data", nickname + "-" + birthday + "-" + location + "-"
 						+ interesting);
-
-				createList();
-				mTableView.commit();
 			} catch (JSONException e) {
 				e.printStackTrace();
+			} finally {
+				createList();
+				mTableView.commit();
 			}
 		}
 
