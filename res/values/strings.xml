@@ -1,17 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <!-- for basic -->
     <string name="app_name">Weiboshengrihui</string>
     <string name="Homepage">Homepage</string>
     <string name="Friends">Friends</string>
     <string name="Settings">Settings</string>
     <string name="default_name">default</string>
+    <string name="undefined">undefined</string>
     
-    <string name="undefined">未设置</string>
-    
+    <!-- for homepage -->
     <string name="Birthday">Birthday</string>
     <string name="Location">Location</string>
     <string name="Nickname">Nickname</string>
     <string name="Interesting">Interesting</string>
+    <string name="Wish">Wish</string>
+    <string name="Have">Have</string>
+    
+	<!-- for login -->
+    <string name="uname">Username</string>
+    <string name="upwd">Password</string>
+    <string name="login_text">Login</string>
+    <string name="rights_text">©zouliping</string>
 
 </resources>
