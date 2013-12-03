@@ -652,17 +652,18 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int icon=0x7f020011;
         public static final int list_divider_line=0x7f020012;
         public static final int loading=0x7f020013;
-        public static final int male=0x7f020014;
-        public static final int menu_fragment_bg_normal=0x7f020015;
-        public static final int menu_fragment_bg_pressed=0x7f020016;
-        public static final int menu_fragment_bg_selected=0x7f020017;
-        public static final int menu_radio_divider=0x7f020018;
-        public static final int menu_radio_selector=0x7f020019;
-        public static final int progress_bar=0x7f02001a;
-        public static final int rounded_rect=0x7f02001b;
-        public static final int settings=0x7f02001c;
-        public static final int shadow=0x7f02001d;
-        public static final int splash=0x7f02001e;
+        public static final int login_btn=0x7f020014;
+        public static final int male=0x7f020015;
+        public static final int menu_fragment_bg_normal=0x7f020016;
+        public static final int menu_fragment_bg_pressed=0x7f020017;
+        public static final int menu_fragment_bg_selected=0x7f020018;
+        public static final int menu_radio_divider=0x7f020019;
+        public static final int menu_radio_selector=0x7f02001a;
+        public static final int progress_bar=0x7f02001b;
+        public static final int rounded_rect=0x7f02001c;
+        public static final int settings=0x7f02001d;
+        public static final int shadow=0x7f02001e;
+        public static final int splash=0x7f02001f;
     }
     public static final class id {
         public static final int accounts=0x7f080022;

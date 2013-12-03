@@ -11,6 +11,7 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -91,7 +92,7 @@ public class LoginActivity extends Activity {
 	 * @author zouliping
 	 * 
 	 */
-	private class LoginTask extends AsyncTask<String, Integer, String> {
+	private class LoginTask extends AsyncTask<String, Integer, Boolean> {
 
 		ProgressDialog dlg;
 
@@ -107,7 +108,7 @@ public class LoginActivity extends Activity {
 		}
 
 		@Override
-		protected String doInBackground(String... params) {
+		protected Boolean doInBackground(String... params) {
 			JSONObject jo = new JSONObject();
 			try {
 				jo.put("id", uname);
@@ -115,7 +116,7 @@ public class LoginActivity extends Activity {
 
 				JSONObject result = new JSONObject(HttpUtil.doPost(
 						Config.LOGIN, jo));
-				return (String) result.get("result");
+				return (Boolean) result.get("result");
 			} catch (JSONException e) {
 				e.printStackTrace();
 			}
@@ -123,9 +124,10 @@ public class LoginActivity extends Activity {
 		}
 
 		@Override
-		protected void onPostExecute(String result) {
+		protected void onPostExecute(Boolean result) {
 			dlg.dismiss();
-			if ("false".equals(result)) {
+			Log.e("login result", result + "");
+			if (result == false) {
 				ToastUtil.showShortToast(mContext,
 						"Login failed! Please try again");
 			} else {

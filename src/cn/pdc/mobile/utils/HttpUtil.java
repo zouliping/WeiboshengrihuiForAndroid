@@ -10,8 +10,11 @@ import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.methods.HttpPut;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicHeader;
+import org.apache.http.protocol.HTTP;
 import org.apache.http.util.EntityUtils;
 import org.json.JSONObject;
 
@@ -48,10 +51,37 @@ public class HttpUtil {
 	 * @return
 	 */
 	public static String doPost(String uri, JSONObject jo) {
-
 		try {
 			HttpClient client = new DefaultHttpClient();
 			HttpPost request = new HttpPost(uri);
+			StringEntity se = new StringEntity(jo.toString());
+			se.setContentEncoding(new BasicHeader(HTTP.CONTENT_TYPE,
+					"application/json"));
+			request.setEntity(se);
+			request.setHeader("Content-type", "application/json");
+			HttpResponse response = client.execute(request);
+			return EntityUtils.toString(response.getEntity());
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		} catch (ClientProtocolException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	/**
+	 * do put
+	 * 
+	 * @param uri
+	 * @param jo
+	 * @return
+	 */
+	public static String doPut(String uri, JSONObject jo) {
+		try {
+			HttpClient client = new DefaultHttpClient();
+			HttpPut request = new HttpPut(uri);
 			StringEntity se = new StringEntity(jo.toString());
 			request.setEntity(se);
 			HttpResponse response = client.execute(request);
