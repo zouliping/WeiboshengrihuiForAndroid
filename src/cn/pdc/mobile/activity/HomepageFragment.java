@@ -135,7 +135,8 @@ public class HomepageFragment extends Fragment {
 		@Override
 		protected void onPostExecute(String result) {
 			try {
-				// to avoid that server does not work
+				// to avoid that server does not work or network is not
+				// connected
 				if (result == null) {
 					return;
 				}

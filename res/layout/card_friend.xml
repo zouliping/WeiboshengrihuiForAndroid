@@ -4,6 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
+    <!-- avatar -->
+
     <ImageView
         android:id="@+id/card_avatar"
         android:layout_width="@dimen/card_avatar_width"
@@ -20,28 +22,23 @@
         android:layout_toRightOf="@id/card_avatar"
         android:orientation="vertical" >
 
-        <LinearLayout
-            android:layout_width="fill_parent"
+        <!-- nick and gender -->
+
+        <TextView
+            android:id="@+id/card_nick"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal" >
+            android:drawablePadding="10dp"
+            android:drawableRight="@drawable/male" />
 
-            <TextView
-                android:id="@+id/card_nick"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content" />
-
-            <ImageView
-                android:id="@+id/card_gender"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:contentDescription="@string/default_name"
-                android:src="@drawable/male" />
-        </LinearLayout>
+        <!-- birthday -->
 
         <TextView
             android:id="@+id/card_birthday"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content" />
+
+        <!-- location -->
 
         <TextView
             android:id="@+id/card_location"

@@ -5,16 +5,16 @@
         <shape
             android:dither="true"
             android:shape="rectangle" >
-            <corners android:radius="2dp" />
+            <corners android:radius="5dp" />
 
             <solid android:color="#ccc" />
         </shape>
     </item>
-    <item android:bottom="2dp">
+    <item android:bottom="3dp">
         <shape
             android:dither="true"
             android:shape="rectangle" >
-            <corners android:radius="2dp" />
+            <corners android:radius="5dp" />
 
             <solid android:color="@android:color/white" />
 

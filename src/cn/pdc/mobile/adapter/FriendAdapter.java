@@ -63,8 +63,6 @@ public class FriendAdapter extends BaseAdapter {
 					.findViewById(R.id.card_avatar);
 			holder.card_birthday = (TextView) convertView
 					.findViewById(R.id.card_birthday);
-			holder.card_gender = (ImageView) convertView
-					.findViewById(R.id.card_gender);
 			holder.card_location = (TextView) convertView
 					.findViewById(R.id.card_location);
 			holder.card_nick = (TextView) convertView
@@ -78,9 +76,15 @@ public class FriendAdapter extends BaseAdapter {
 		holder.card_location.setText(friendsList.get(position).getLocation());
 		holder.card_nick.setText(friendsList.get(position).getNickname());
 		if (friendsList.get(position).getGender()) {
-			holder.card_gender.setImageResource(R.drawable.male);
+			holder.card_nick.setCompoundDrawablesWithIntrinsicBounds(null,
+					null,
+					convertView.getResources().getDrawable(R.drawable.male),
+					null);
 		} else {
-			holder.card_gender.setImageResource(R.drawable.female);
+			holder.card_nick.setCompoundDrawablesWithIntrinsicBounds(null,
+					null,
+					convertView.getResources().getDrawable(R.drawable.female),
+					null);
 		}
 		// to set avatar
 		holder.card_avatar.setImageResource(R.drawable.avatar_default);
@@ -91,7 +95,6 @@ public class FriendAdapter extends BaseAdapter {
 	private class FriendItemHolder {
 		public ImageView card_avatar;
 		public TextView card_nick;
-		public ImageView card_gender;
 		public TextView card_birthday;
 		public TextView card_location;
 	}

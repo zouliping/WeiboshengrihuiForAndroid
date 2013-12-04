@@ -114,7 +114,7 @@ public class LoginActivity extends Activity {
 				jo.put("id", uname);
 				jo.put("password", upwd);
 
-				JSONObject result = new JSONObject(HttpUtil.doPost(
+				JSONObject result = new JSONObject(HttpUtil.doPut(
 						Config.LOGIN, jo));
 				return (Boolean) result.get("result");
 			} catch (JSONException e) {
