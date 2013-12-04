@@ -8,7 +8,7 @@
     <string name="Settings">Settings</string>
     <string name="default_name">default</string>
     <string name="undefined">undefined</string>
-    
+
     <!-- for homepage -->
     <string name="Birthday">Birthday</string>
     <string name="Location">Location</string>
@@ -16,11 +16,18 @@
     <string name="Interesting">Interesting</string>
     <string name="Wish">Wish</string>
     <string name="Have">Have</string>
-    
-	<!-- for login -->
+
+    <!-- for login -->
     <string name="uname">Username</string>
     <string name="upwd">Password</string>
     <string name="login_text">Login</string>
     <string name="rights_text">©zouliping</string>
+
+    <!-- for settings -->
+    <string name="pdc_setting">PDC Settings</string>
+    <string name="privacy">Privacy</string>
+    <string name="clear_cache">Clear Cache</string>
+    <string name="about">About</string>
+    <string name="logout">Logout</string>
 
 </resources>

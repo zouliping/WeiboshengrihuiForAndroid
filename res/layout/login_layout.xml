@@ -94,8 +94,9 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:background="@drawable/login_btn"
-                android:text="@string/login_text" />
+                android:background="@drawable/login_selector"
+                android:text="@string/login_text"
+                android:textColor="@color/white" />
         </LinearLayout>
     </LinearLayout>
 
