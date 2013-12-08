@@ -671,8 +671,9 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int splash=0x7f020024;
     }
     public static final class id {
-        public static final int accounts=0x7f080024;
+        public static final int accounts=0x7f080025;
         public static final int avatar_menu=0x7f08000e;
+        public static final int basic_scroll_view=0x7f08000b;
         public static final int buttonsContainer=0x7f080018;
         public static final int card_avatar=0x7f080005;
         public static final int card_birthday=0x7f080007;
@@ -696,7 +697,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int margin=0x7f080002;
         public static final int menu_frame=0x7f080022;
         public static final int right=0x7f080001;
-        public static final int scrollView=0x7f08000b;
+        public static final int scrollView=0x7f080024;
         public static final int selected_view=0x7f080004;
         public static final int settings_menu=0x7f080013;
         public static final int settings_scrollView=0x7f080014;
@@ -737,34 +738,39 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
     public static final class string {
         /**  for homepage 
          */
-        public static final int Birthday=0x7f060007;
+        public static final int Birthday=0x7f060009;
+        public static final int Female=0x7f060010;
         public static final int Friends=0x7f060003;
-        public static final int Have=0x7f06000c;
+        public static final int Gender=0x7f06000d;
+        public static final int Have=0x7f06000f;
         public static final int Homepage=0x7f060002;
-        public static final int Interesting=0x7f06000a;
-        public static final int Location=0x7f060008;
-        public static final int Nickname=0x7f060009;
+        public static final int Interesting=0x7f06000c;
+        public static final int Location=0x7f06000a;
+        public static final int Male=0x7f060011;
+        public static final int Nickname=0x7f06000b;
         public static final int Settings=0x7f060004;
-        public static final int Wish=0x7f06000b;
-        public static final int about=0x7f060014;
+        public static final int Wish=0x7f06000e;
+        public static final int about=0x7f060019;
         /**  for basic 
          */
         public static final int app_name=0x7f060001;
-        public static final int clear_cache=0x7f060013;
+        public static final int cancel=0x7f060008;
+        public static final int clear_cache=0x7f060018;
         public static final int default_name=0x7f060005;
         public static final int hello=0x7f060000;
-        public static final int login_text=0x7f06000f;
-        public static final int logout=0x7f060015;
+        public static final int login_text=0x7f060014;
+        public static final int logout=0x7f06001a;
         /**  for settings 
          */
-        public static final int pdc_setting=0x7f060011;
-        public static final int privacy=0x7f060012;
-        public static final int rights_text=0x7f060010;
+        public static final int pdc_setting=0x7f060016;
+        public static final int privacy=0x7f060017;
+        public static final int rights_text=0x7f060015;
         /**  for login 
          */
-        public static final int uname=0x7f06000d;
+        public static final int uname=0x7f060012;
         public static final int undefined=0x7f060006;
-        public static final int upwd=0x7f06000e;
+        public static final int upwd=0x7f060013;
+        public static final int yes=0x7f060007;
     }
     public static final class style {
         /** 

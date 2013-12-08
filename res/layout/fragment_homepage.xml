@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/basic_scroll_view"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:background="#ffd3d3d3"
-    android:orientation="vertical" >
+    android:layout_height="wrap_content"
+    android:background="#ffd3d3d3" >
 
-    <ScrollView
-        android:id="@+id/scrollView"
+    <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
 
         <br.com.dina.ui.widget.UITableView
             android:id="@+id/tableView"
             style="@style/UITableView" />
-    </ScrollView>
 
-    <br.com.dina.ui.widget.UITableView
-        android:id="@+id/tableBtn"
-        style="@style/UITableView" />
+        <br.com.dina.ui.widget.UITableView
+            android:id="@+id/tableBtn"
+            style="@style/UITableView" />
+    </LinearLayout>
 
-</LinearLayout>
+</ScrollView>

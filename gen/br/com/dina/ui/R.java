@@ -42,7 +42,7 @@ public final class R {
 		public static final int image = 0x7f08001a;
 		public static final int itemContainer = 0x7f080019;
 		public static final int itemCount = 0x7f08001d;
-		public static final int scrollView = 0x7f08000b;
+		public static final int scrollView = 0x7f080024;
 		public static final int subtitle = 0x7f08001c;
 		public static final int tableView = 0x7f08000c;
 		public static final int title = 0x7f08001b;

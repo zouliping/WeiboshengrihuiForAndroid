@@ -3,6 +3,7 @@ package cn.pdc.mobile.activity;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -11,6 +12,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import br.com.dina.ui.model.BasicItem;
 import br.com.dina.ui.widget.UITableView;
 import br.com.dina.ui.widget.UITableView.ClickListener;
@@ -30,11 +32,13 @@ public class HomepageFragment extends Fragment {
 	private String birthday;
 	private String location;
 	private String interesting;
+	private String gender;
 
 	private BasicItem bi_nickname;
 	private BasicItem bi_birthday;
 	private BasicItem bi_location;
 	private BasicItem bi_interesting;
+	private BasicItem bi_gender;
 	private BasicItem bi_wish;
 	private BasicItem bi_have;
 
@@ -57,6 +61,7 @@ public class HomepageFragment extends Fragment {
 		birthday = getString(R.string.undefined);
 		location = getString(R.string.undefined);
 		interesting = getString(R.string.undefined);
+		gender = getString(R.string.undefined);
 
 		new getBasicInfoTask().execute();
 	}
@@ -80,12 +85,14 @@ public class HomepageFragment extends Fragment {
 		mTableView.setClickListener(listener);
 
 		bi_nickname = new BasicItem(getString(R.string.Nickname), nickname);
+		bi_gender = new BasicItem(getString(R.string.Gender), gender);
 		bi_birthday = new BasicItem(getString(R.string.Birthday), birthday);
 		bi_location = new BasicItem(getString(R.string.Location), location);
 		bi_interesting = new BasicItem(getString(R.string.Interesting),
 				interesting);
 
 		mTableView.addBasicItem(bi_nickname);
+		mTableView.addBasicItem(bi_gender);
 		mTableView.addBasicItem(bi_birthday);
 		mTableView.addBasicItem(bi_location);
 		mTableView.addBasicItem(bi_interesting);
@@ -95,6 +102,9 @@ public class HomepageFragment extends Fragment {
 	 * create menu list with img
 	 */
 	private void createBtnList() {
+		MoreMenuClickListener moreMenuClickListener = new MoreMenuClickListener();
+		mButtonView.setClickListener(moreMenuClickListener);
+
 		bi_wish = new BasicItem(R.drawable.ic_launcher,
 				getString(R.string.Wish), getString(R.string.undefined));
 		mButtonView.addBasicItem(bi_wish);
@@ -104,15 +114,73 @@ public class HomepageFragment extends Fragment {
 		mButtonView.addBasicItem(bi_have);
 	}
 
+	/**
+	 * basic detail menu click listener
+	 * 
+	 * @author zouliping
+	 * 
+	 */
 	private class MenuClickListener implements ClickListener {
 
 		@Override
 		public void onClick(int index) {
 			switch (index) {
 			case 0:
-				ToastUtil.showShortToast(mContext, "get");
+				ToastUtil.showShortToast(mContext, "nick");
+				new AlertDialog.Builder(mContext)
+						.setTitle(getString(R.string.Nickname))
+						.setView(new EditText(mContext))
+						.setPositiveButton(getString(R.string.yes), null)
+						.setNegativeButton(getString(R.string.cancel), null)
+						.show();
 				break;
+			case 1:
+				ToastUtil.showShortToast(mContext, "gender");
+				break;
+			case 2:
+				ToastUtil.showShortToast(mContext, "birthday");
+				break;
+			case 3:
+				ToastUtil.showShortToast(mContext, "location");
+				new AlertDialog.Builder(mContext)
+						.setTitle(getString(R.string.Location))
+						.setView(new EditText(mContext))
+						.setPositiveButton(getString(R.string.yes), null)
+						.setNegativeButton(getString(R.string.cancel), null)
+						.show();
+				break;
+			case 4:
+				ToastUtil.showShortToast(mContext, "interesting");
+				new AlertDialog.Builder(mContext)
+						.setTitle(getString(R.string.Interesting))
+						.setView(new EditText(mContext))
+						.setPositiveButton(getString(R.string.yes), null)
+						.setNegativeButton(getString(R.string.cancel), null)
+						.show();
+				break;
+			default:
+				break;
+			}
+		}
+	}
 
+	/**
+	 * more menu click listener
+	 * 
+	 * @author zouliping
+	 * 
+	 */
+	private class MoreMenuClickListener implements ClickListener {
+
+		@Override
+		public void onClick(int index) {
+			switch (index) {
+			case 0:
+				ToastUtil.showShortToast(mContext, "wish");
+				break;
+			case 1:
+				ToastUtil.showShortToast(mContext, "have");
+				break;
 			default:
 				break;
 			}
@@ -145,6 +213,13 @@ public class HomepageFragment extends Fragment {
 				if (!jo.isNull("nick")) {
 					nickname = jo.getString("nick");
 				}
+				if (!jo.isNull("gender")) {
+					if (jo.getBoolean("gender")) {
+						gender = getString(R.string.Male);
+					} else {
+						gender = getString(R.string.Female);
+					}
+				}
 				if (!jo.isNull("birthday")) {
 					birthday = jo.getString("birthday");
 				}
@@ -154,8 +229,8 @@ public class HomepageFragment extends Fragment {
 				if (!jo.isNull("interesting")) {
 					interesting = jo.getString("interesting");
 				}
-				Log.e("data", nickname + "-" + birthday + "-" + location + "-"
-						+ interesting);
+				Log.e("data", nickname + "-" + gender + "-" + birthday + "-"
+						+ location + "-" + interesting);
 			} catch (JSONException e) {
 				e.printStackTrace();
 			} finally {
