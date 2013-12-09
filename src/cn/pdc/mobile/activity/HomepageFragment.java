@@ -7,7 +7,10 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.DialogInterface.OnClickListener;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -31,17 +34,21 @@ public class HomepageFragment extends Fragment {
 	private Context mContext;
 	private View mainView;
 
-	private String nickname;
 	private String birthday;
 	private String location;
 	private String interesting;
 	private String gender;
 
 	private CornerListView cornerListView = null;
-
 	private List<Pairs> listData = null;
 	private Pairs pairs = null;
 	private UserDetailAdapter adapter = null;
+
+	private AlertDialog.Builder builder;
+	private EditText et;
+
+	private Integer index = 0;
+	private String attrvalue;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -61,15 +68,12 @@ public class HomepageFragment extends Fragment {
 	 * init data
 	 */
 	private void initData() {
-		nickname = getString(R.string.undefined);
 		birthday = getString(R.string.undefined);
 		location = getString(R.string.undefined);
 		interesting = getString(R.string.undefined);
 		gender = getString(R.string.undefined);
 		listData = new ArrayList<Pairs>();
 
-		pairs = new Pairs(getString(R.string.Nickname), nickname);
-		listData.add(pairs);
 		pairs = new Pairs(getString(R.string.Gender), gender);
 		listData.add(pairs);
 		pairs = new Pairs(getString(R.string.Birthday), birthday);
@@ -95,46 +99,62 @@ public class HomepageFragment extends Fragment {
 	private class ListItemClickListener implements OnItemClickListener {
 
 		@Override
-		public void onItemClick(AdapterView<?> parent, View view, int position,
-				long id) {
+		public void onItemClick(AdapterView<?> parent, View view,
+				final int position, long id) {
 			switch (position) {
 			case 0:
-				ToastUtil.showShortToast(mContext, "nick");
-				new AlertDialog.Builder(mContext)
-						.setTitle(getString(R.string.Nickname))
-						.setView(new EditText(mContext))
-						.setPositiveButton(getString(R.string.yes), null)
-						.setNegativeButton(getString(R.string.cancel), null)
-						.show();
-				break;
-			case 1:
 				ToastUtil.showShortToast(mContext, "gender");
 				break;
-			case 2:
+			case 1:
 				ToastUtil.showShortToast(mContext, "birthday");
+
+				break;
+			case 2:
+				ToastUtil.showShortToast(mContext, "location");
+				builder = getBuilder(getString(R.string.Location), location);
+				builder.setPositiveButton(getString(R.string.yes),
+						new OnClickListener() {
+
+							@Override
+							public void onClick(DialogInterface dialog,
+									int which) {
+								index = position;
+								attrvalue = et.getText().toString();
+								new PutDataTask().execute("nick");
+							}
+						});
+				builder.show();
 				break;
 			case 3:
-				ToastUtil.showShortToast(mContext, "location");
-				new AlertDialog.Builder(mContext)
-						.setTitle(getString(R.string.Location))
-						.setView(new EditText(mContext))
-						.setPositiveButton(getString(R.string.yes), null)
-						.setNegativeButton(getString(R.string.cancel), null)
-						.show();
-				break;
-			case 4:
 				ToastUtil.showShortToast(mContext, "interesting");
-				new AlertDialog.Builder(mContext)
-						.setTitle(getString(R.string.Interesting))
-						.setView(new EditText(mContext))
-						.setPositiveButton(getString(R.string.yes), null)
-						.setNegativeButton(getString(R.string.cancel), null)
-						.show();
+				builder = getBuilder(getString(R.string.Interesting),
+						interesting);
+				builder.setPositiveButton(getString(R.string.yes), null);
+				builder.show();
 				break;
 			default:
 				break;
 			}
 		}
+	}
+
+	/**
+	 * get the builder
+	 * 
+	 * @param name
+	 * @return
+	 */
+	private AlertDialog.Builder getBuilder(String name, String value) {
+		builder = new AlertDialog.Builder(mContext);
+		builder.setTitle(name);
+		et = new EditText(mContext);
+		if (!(value.equals(getString(R.string.undefined)))) {
+			et.setText(value);
+			et.setSelection(value.length());
+		}
+		builder.setView(et);
+		builder.setNegativeButton(getString(R.string.cancel), null);
+		return builder;
 	}
 
 	/**
@@ -160,9 +180,6 @@ public class HomepageFragment extends Fragment {
 				}
 
 				JSONObject jo = new JSONObject(result);
-				if (!jo.isNull("nick")) {
-					nickname = jo.getString("nick");
-				}
 				if (!jo.isNull("gender")) {
 					if (jo.getBoolean("gender")) {
 						gender = getString(R.string.Male);
@@ -179,20 +196,72 @@ public class HomepageFragment extends Fragment {
 				if (!jo.isNull("interesting")) {
 					interesting = jo.getString("interesting");
 				}
-				Log.e("data", nickname + "-" + gender + "-" + birthday + "-"
-						+ location + "-" + interesting);
+				Log.e("data", gender + "-" + birthday + "-" + location + "-"
+						+ interesting);
 			} catch (JSONException e) {
 				e.printStackTrace();
 			} finally {
-				listData.get(0).setValue(nickname);
-				listData.get(1).setValue(gender);
-				listData.get(2).setValue(birthday);
-				listData.get(3).setValue(location);
-				listData.get(4).setValue(interesting);
+				listData.get(0).setValue(gender);
+				listData.get(1).setValue(birthday);
+				listData.get(2).setValue(location);
+				listData.get(3).setValue(interesting);
 
 				adapter.notifyDataSetChanged();
 			}
 		}
+	}
 
+	/**
+	 * put data to server
+	 * 
+	 * @author zouliping
+	 * 
+	 */
+	private class PutDataTask extends AsyncTask<String, Integer, Boolean> {
+
+		ProgressDialog dlg;
+
+		@Override
+		protected void onPreExecute() {
+			dlg = new ProgressDialog(mContext);
+			dlg.setTitle("Sending Data");
+			dlg.setMessage("Please wait for a monent...");
+			dlg.setCancelable(false);
+			dlg.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+			dlg.show();
+
+		}
+
+		@Override
+		protected Boolean doInBackground(String... params) {
+			JSONObject jo = new JSONObject();
+			try {
+				jo.put("classname", "User");
+				jo.put("individualname", Config.uid);
+				jo.put("uid", Config.uid);
+				Log.e("param", params[0]);
+				jo.put(params[0], attrvalue);
+
+				JSONObject result = new JSONObject(HttpUtil.doPut(
+						Config.UPDATE_USER_INFO, jo));
+				return (Boolean) result.get("result");
+			} catch (JSONException e) {
+				e.printStackTrace();
+			}
+			return null;
+		}
+
+		@Override
+		protected void onPostExecute(Boolean result) {
+			dlg.dismiss();
+			if (result == false) {
+				ToastUtil.showShortToast(mContext, "Failed");
+			} else if (result == true) {
+				ToastUtil.showShortToast(mContext, "Success");
+				listData.get(index).setValue(attrvalue);
+				adapter.setDetailList(listData);
+				adapter.notifyDataSetChanged();
+			}
+		}
 	}
 }

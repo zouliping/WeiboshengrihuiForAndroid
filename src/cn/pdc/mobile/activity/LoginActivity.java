@@ -100,7 +100,7 @@ public class LoginActivity extends Activity {
 		protected void onPreExecute() {
 			dlg = new ProgressDialog(mContext);
 			dlg.setTitle("Login");
-			dlg.setMessage("please wait for a monent...");
+			dlg.setMessage("Please wait for a monent...");
 			dlg.setCancelable(false);
 			dlg.setProgressStyle(ProgressDialog.STYLE_SPINNER);
 			dlg.show();

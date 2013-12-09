@@ -10,5 +10,8 @@ public class Config {
 	// login uri
 	public static final String LOGIN = IP + "/user/login";
 	// get user detail info uri
-	public static final String GET_USER_INFO = IP + "/indiv/getpro?indivname=$indivname&uid=";
+	public static final String GET_USER_INFO = IP
+			+ "/indiv/getpro?indivname=$indivname&uid=";
+	// update the user info uri
+	public static final String UPDATE_USER_INFO = IP + "/indiv/update";
 }
