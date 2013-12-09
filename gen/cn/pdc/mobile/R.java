@@ -180,9 +180,11 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int base_end_color_default=0x7f050002;
         public static final int base_end_color_pressed=0x7f050004;
         /**  ITEM BACKGROUND COLOR - STATE - DEFAULT 
+ ITEM BACKGROUND COLOR - STATE - DEFAULT 
          */
         public static final int base_start_color_default=0x7f050001;
         /**  ITEM BACKGROUND COLOR - STATE - PRESSED 
+ ITEM BACKGROUND COLOR - STATE - PRESSED 
          */
         public static final int base_start_color_pressed=0x7f050003;
         /**  烟白色 
@@ -534,6 +536,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
          */
         public static final int rosybrown=0x7f05004c;
         /**  LIST BORDER COLOR 
+ LIST BORDER COLOR 
          */
         public static final int rounded_container_border=0x7f050000;
         /**  钢兰色 
@@ -632,83 +635,86 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int slidingmenu_offset=0x7f090002;
     }
     public static final class drawable {
-        public static final int avatar_default=0x7f020000;
-        public static final int background_view_rounded_bottom=0x7f020001;
-        public static final int background_view_rounded_container=0x7f020002;
-        public static final int background_view_rounded_middle=0x7f020003;
-        public static final int background_view_rounded_single=0x7f020004;
-        public static final int background_view_rounded_top=0x7f020005;
-        public static final int bg_card=0x7f020006;
-        public static final int button_text_color=0x7f020007;
-        public static final int chevron=0x7f020008;
-        public static final int chevron_default=0x7f020009;
-        public static final int chevron_default_down=0x7f02000a;
-        public static final int chevron_white=0x7f02000b;
-        public static final int chevron_white_down=0x7f02000c;
-        public static final int female=0x7f02000d;
-        public static final int friends=0x7f02000e;
-        public static final int homepage=0x7f02000f;
-        public static final int ic_launcher=0x7f020010;
-        public static final int icon=0x7f020011;
-        public static final int list_divider_line=0x7f020012;
-        public static final int loading=0x7f020013;
-        public static final int login=0x7f020014;
-        public static final int login_pressed=0x7f020015;
-        public static final int login_selector=0x7f020016;
-        public static final int logout=0x7f020017;
-        public static final int logout_pressed=0x7f020018;
-        public static final int logout_selector=0x7f020019;
-        public static final int male=0x7f02001a;
-        public static final int menu_fragment_bg_normal=0x7f02001b;
-        public static final int menu_fragment_bg_pressed=0x7f02001c;
-        public static final int menu_fragment_bg_selected=0x7f02001d;
-        public static final int menu_radio_divider=0x7f02001e;
-        public static final int menu_radio_selector=0x7f02001f;
-        public static final int progress_bar=0x7f020020;
-        public static final int rounded_rect=0x7f020021;
-        public static final int settings=0x7f020022;
-        public static final int shadow=0x7f020023;
-        public static final int splash=0x7f020024;
+        public static final int arrow=0x7f020000;
+        public static final int avatar_default=0x7f020001;
+        public static final int background_view_rounded_bottom=0x7f020002;
+        public static final int background_view_rounded_container=0x7f020003;
+        public static final int background_view_rounded_middle=0x7f020004;
+        public static final int background_view_rounded_single=0x7f020005;
+        public static final int background_view_rounded_top=0x7f020006;
+        public static final int bg_card=0x7f020007;
+        public static final int button_text_color=0x7f020008;
+        public static final int chevron=0x7f020009;
+        public static final int chevron_default=0x7f02000a;
+        public static final int chevron_default_down=0x7f02000b;
+        public static final int chevron_white=0x7f02000c;
+        public static final int chevron_white_down=0x7f02000d;
+        public static final int female=0x7f02000e;
+        public static final int friends=0x7f02000f;
+        public static final int homepage=0x7f020010;
+        public static final int ic_launcher=0x7f020011;
+        public static final int icon=0x7f020012;
+        public static final int list_bg=0x7f020013;
+        public static final int list_divider_line=0x7f020014;
+        public static final int loading=0x7f020015;
+        public static final int login=0x7f020016;
+        public static final int login_pressed=0x7f020017;
+        public static final int login_selector=0x7f020018;
+        public static final int logout=0x7f020019;
+        public static final int logout_pressed=0x7f02001a;
+        public static final int logout_selector=0x7f02001b;
+        public static final int male=0x7f02001c;
+        public static final int menu_fragment_bg_normal=0x7f02001d;
+        public static final int menu_fragment_bg_pressed=0x7f02001e;
+        public static final int menu_fragment_bg_selected=0x7f02001f;
+        public static final int menu_radio_divider=0x7f020020;
+        public static final int menu_radio_selector=0x7f020021;
+        public static final int progress_bar=0x7f020022;
+        public static final int rounded_rect=0x7f020023;
+        public static final int settings=0x7f020024;
+        public static final int shadow=0x7f020025;
+        public static final int shape_bg_listview=0x7f020026;
+        public static final int splash=0x7f020027;
     }
     public static final class id {
         public static final int accounts=0x7f080025;
         public static final int avatar_menu=0x7f08000e;
-        public static final int basic_scroll_view=0x7f08000b;
-        public static final int buttonsContainer=0x7f080018;
+        public static final int buttonsContainer=0x7f080017;
         public static final int card_avatar=0x7f080005;
         public static final int card_birthday=0x7f080007;
         public static final int card_location=0x7f080008;
         public static final int card_nick=0x7f080006;
-        public static final int chevron=0x7f08001e;
+        public static final int chevron=0x7f08001d;
         public static final int content_frame=0x7f080009;
-        public static final int friends_list=0x7f08000a;
+        public static final int detail_list=0x7f08000d;
+        public static final int detail_name=0x7f08000a;
+        public static final int detail_value=0x7f08000b;
+        public static final int friends_list=0x7f08000c;
         public static final int friends_menu=0x7f080012;
         public static final int fullscreen=0x7f080003;
         public static final int homepage_menu=0x7f080011;
-        public static final int image=0x7f08001a;
-        public static final int itemContainer=0x7f080019;
-        public static final int itemCount=0x7f08001d;
+        public static final int image=0x7f080019;
+        public static final int itemContainer=0x7f080018;
+        public static final int itemCount=0x7f08001c;
         public static final int left=0x7f080000;
-        public static final int login_btn=0x7f080021;
-        public static final int login_name=0x7f08001f;
-        public static final int login_pwd=0x7f080020;
-        public static final int logout_btn=0x7f080016;
+        public static final int login_btn=0x7f080020;
+        public static final int login_name=0x7f08001e;
+        public static final int login_pwd=0x7f08001f;
+        public static final int logout_btn=0x7f080015;
         public static final int main_menu=0x7f080010;
         public static final int margin=0x7f080002;
-        public static final int menu_frame=0x7f080022;
+        public static final int menu_frame=0x7f080021;
         public static final int right=0x7f080001;
-        public static final int scrollView=0x7f080024;
+        public static final int scrollView=0x7f080023;
         public static final int selected_view=0x7f080004;
+        public static final int setting_list=0x7f080014;
         public static final int settings_menu=0x7f080013;
-        public static final int settings_scrollView=0x7f080014;
-        public static final int settings_table=0x7f080015;
-        public static final int slidingmenumain=0x7f080023;
-        public static final int subtitle=0x7f08001c;
-        public static final int tableBtn=0x7f08000d;
-        public static final int tableView=0x7f08000c;
-        public static final int title=0x7f08001b;
+        public static final int slidingmenumain=0x7f080022;
+        public static final int subtitle=0x7f08001b;
+        public static final int tableView=0x7f080024;
+        public static final int title=0x7f08001a;
         public static final int username_menu=0x7f08000f;
-        public static final int viewsContainer=0x7f080017;
+        public static final int viewsContainer=0x7f080016;
     }
     public static final class integer {
         public static final int num_cols=0x7f0a0000;
@@ -716,21 +722,22 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
     public static final class layout {
         public static final int card_friend=0x7f030000;
         public static final int content_frame=0x7f030001;
-        public static final int divider=0x7f030002;
-        public static final int fragment_friends=0x7f030003;
-        public static final int fragment_homepage=0x7f030004;
-        public static final int fragment_left_menu=0x7f030005;
-        public static final int fragment_settings=0x7f030006;
-        public static final int list_container=0x7f030007;
-        public static final int list_item_bottom=0x7f030008;
-        public static final int list_item_middle=0x7f030009;
-        public static final int list_item_single=0x7f03000a;
-        public static final int list_item_top=0x7f03000b;
-        public static final int login_layout=0x7f03000c;
-        public static final int menu_frame=0x7f03000d;
-        public static final int slidingmenumain=0x7f03000e;
-        public static final int splash=0x7f03000f;
-        public static final int uitableview_activity=0x7f030010;
+        public static final int detail_list_item=0x7f030002;
+        public static final int divider=0x7f030003;
+        public static final int fragment_friends=0x7f030004;
+        public static final int fragment_homepage=0x7f030005;
+        public static final int fragment_left_menu=0x7f030006;
+        public static final int fragment_settings=0x7f030007;
+        public static final int list_container=0x7f030008;
+        public static final int list_item_bottom=0x7f030009;
+        public static final int list_item_middle=0x7f03000a;
+        public static final int list_item_single=0x7f03000b;
+        public static final int list_item_top=0x7f03000c;
+        public static final int login_layout=0x7f03000d;
+        public static final int menu_frame=0x7f03000e;
+        public static final int slidingmenumain=0x7f03000f;
+        public static final int splash=0x7f030010;
+        public static final int uitableview_activity=0x7f030011;
     }
     public static final class menu {
         public static final int main=0x7f0c0000;

@@ -5,15 +5,13 @@
     android:background="#ffd3d3d3"
     android:orientation="vertical" >
 
-    <ScrollView
-        android:id="@+id/settings_scrollView"
+    <cn.pdc.mobile.view.CornerListView
+        android:id="@+id/setting_list"
+        style="@style/list_container"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content" >
-
-        <br.com.dina.ui.widget.UITableView
-            android:id="@+id/settings_table"
-            style="@style/UITableView" />
-    </ScrollView>
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp" >
+    </cn.pdc.mobile.view.CornerListView>
 
     <Button
         android:id="@+id/logout_btn"

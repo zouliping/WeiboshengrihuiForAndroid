@@ -24,7 +24,7 @@
         <item name="android:minHeight">16dp</item>
         <item name="android:maxHeight">16dp</item>
     </style>
-    
+
     <!-- 侧滑菜单 -->
     <style name="menu_radio_style">
         <item name="android:layout_width">match_parent</item>
@@ -36,15 +36,15 @@
         <item name="android:paddingLeft">25dp</item>
         <item name="android:background">@drawable/menu_radio_selector</item>
     </style>
-    
+
     <!-- 侧滑菜单中头像下面的用户名 -->
     <style name="username_below_avatar">
         <item name="android:text">@string/default_name</item>
         <item name="android:textColor">@color/white</item>
         <item name="android:textSize">18sp</item>
     </style>
-    
-     <!-- 卡片总体样式 -->
+
+    <!-- 卡片总体样式 -->
     <style name="card_style">
         <item name="android:layout_marginBottom">4dp</item>
         <item name="android:layout_marginLeft">6dp</item>
@@ -52,6 +52,32 @@
         <item name="android:layout_marginTop">4dp</item>
         <item name="android:background">@drawable/bg_card</item>
         <item name="android:orientation">vertical</item>
+    </style>
+
+    <style name="content_page_large_text">
+        <item name="android:duplicateParentState">true</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:typeface">sans</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/text_color_selector</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:singleLine">true</item>
+    </style>
+
+    <style name="content_page_small_text">
+        <item name="android:duplicateParentState">true</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/text_color_selector</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:singleLine">true</item>
+    </style>
+
+    <style name="list_container">
+        <item name="android:background">@drawable/shape_bg_listview</item>
     </style>
 
 </resources>

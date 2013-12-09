@@ -1,5 +1,8 @@
 package cn.pdc.mobile.activity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -13,20 +16,19 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
-import br.com.dina.ui.model.BasicItem;
-import br.com.dina.ui.widget.UITableView;
 import br.com.dina.ui.widget.UITableView.ClickListener;
 import cn.pdc.mobile.R;
+import cn.pdc.mobile.adapter.UserDetailAdapter;
+import cn.pdc.mobile.entity.Pairs;
 import cn.pdc.mobile.utils.Config;
 import cn.pdc.mobile.utils.HttpUtil;
 import cn.pdc.mobile.utils.ToastUtil;
+import cn.pdc.mobile.view.CornerListView;
 
 public class HomepageFragment extends Fragment {
 
 	private Context mContext;
 	private View mainView;
-	private UITableView mTableView;
-	private UITableView mButtonView;
 
 	private String nickname;
 	private String birthday;
@@ -34,13 +36,11 @@ public class HomepageFragment extends Fragment {
 	private String interesting;
 	private String gender;
 
-	private BasicItem bi_nickname;
-	private BasicItem bi_birthday;
-	private BasicItem bi_location;
-	private BasicItem bi_interesting;
-	private BasicItem bi_gender;
-	private BasicItem bi_wish;
-	private BasicItem bi_have;
+	private CornerListView cornerListView = null;
+
+	private List<Pairs> listData = null;
+	private Pairs pairs = null;
+	private UserDetailAdapter adapter = null;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -50,6 +50,9 @@ public class HomepageFragment extends Fragment {
 
 		initData();
 		initViews();
+
+//		new getBasicInfoTask().execute();
+
 		return mainView;
 	}
 
@@ -62,56 +65,29 @@ public class HomepageFragment extends Fragment {
 		location = getString(R.string.undefined);
 		interesting = getString(R.string.undefined);
 		gender = getString(R.string.undefined);
+		listData = new ArrayList<Pairs>();
 
-		new getBasicInfoTask().execute();
+		pairs = new Pairs(getString(R.string.Nickname), nickname);
+		listData.add(pairs);
+		pairs = new Pairs(getString(R.string.Gender), gender);
+		listData.add(pairs);
+		pairs = new Pairs(getString(R.string.Birthday), birthday);
+		listData.add(pairs);
+		pairs = new Pairs(getString(R.string.Location), location);
+		listData.add(pairs);
+		pairs = new Pairs(getString(R.string.Interesting), interesting);
+		listData.add(pairs);
 	}
 
 	/**
 	 * init views
 	 */
 	private void initViews() {
-		mTableView = (UITableView) mainView.findViewById(R.id.tableView);
-
-		mButtonView = (UITableView) mainView.findViewById(R.id.tableBtn);
-		createBtnList();
-		mButtonView.commit();
-	}
-
-	/**
-	 * create menu list without img
-	 */
-	private void createList() {
-		MenuClickListener listener = new MenuClickListener();
-		mTableView.setClickListener(listener);
-
-		bi_nickname = new BasicItem(getString(R.string.Nickname), nickname);
-		bi_gender = new BasicItem(getString(R.string.Gender), gender);
-		bi_birthday = new BasicItem(getString(R.string.Birthday), birthday);
-		bi_location = new BasicItem(getString(R.string.Location), location);
-		bi_interesting = new BasicItem(getString(R.string.Interesting),
-				interesting);
-
-		mTableView.addBasicItem(bi_nickname);
-		mTableView.addBasicItem(bi_gender);
-		mTableView.addBasicItem(bi_birthday);
-		mTableView.addBasicItem(bi_location);
-		mTableView.addBasicItem(bi_interesting);
-	}
-
-	/**
-	 * create menu list with img
-	 */
-	private void createBtnList() {
-		MoreMenuClickListener moreMenuClickListener = new MoreMenuClickListener();
-		mButtonView.setClickListener(moreMenuClickListener);
-
-		bi_wish = new BasicItem(R.drawable.ic_launcher,
-				getString(R.string.Wish), getString(R.string.undefined));
-		mButtonView.addBasicItem(bi_wish);
-
-		bi_have = new BasicItem(R.drawable.ic_launcher,
-				getString(R.string.Have), getString(R.string.undefined));
-		mButtonView.addBasicItem(bi_have);
+		cornerListView = (CornerListView) mainView
+				.findViewById(R.id.detail_list);
+		adapter = new UserDetailAdapter(mContext, listData);
+		cornerListView.setAdapter(adapter);
+		adapter.notifyDataSetChanged();
 	}
 
 	/**
@@ -234,8 +210,13 @@ public class HomepageFragment extends Fragment {
 			} catch (JSONException e) {
 				e.printStackTrace();
 			} finally {
-				createList();
-				mTableView.commit();
+				listData.get(0).setValue(nickname);
+				listData.get(1).setValue(gender);
+				listData.get(2).setValue(birthday);
+				listData.get(3).setValue(location);
+				listData.get(4).setValue(interesting);
+
+				adapter.notifyDataSetChanged();
 			}
 		}
 

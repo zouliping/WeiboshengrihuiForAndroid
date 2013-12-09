@@ -1,5 +1,8 @@
 package cn.pdc.mobile.activity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -11,16 +14,21 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
-import br.com.dina.ui.widget.UITableView;
 import cn.pdc.mobile.R;
+import cn.pdc.mobile.adapter.UserDetailAdapter;
+import cn.pdc.mobile.entity.Pairs;
+import cn.pdc.mobile.view.CornerListView;
 
 public class SettingsFragement extends Fragment {
 
 	private Context mContext;
 
 	private View mainView;
-	private UITableView settings_tableView;
 	private Button logout_btn;
+	private CornerListView cornerListView;
+	private UserDetailAdapter adapter;
+	private List<Pairs> nameList;
+	private Pairs pairs;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -33,13 +41,22 @@ public class SettingsFragement extends Fragment {
 	}
 
 	public void initView() {
-		settings_tableView = (UITableView) mainView
-				.findViewById(R.id.settings_table);
-		settings_tableView.addBasicItem(getString(R.string.pdc_setting));
-		settings_tableView.addBasicItem(getString(R.string.privacy));
-		settings_tableView.addBasicItem(getString(R.string.clear_cache));
-		settings_tableView.addBasicItem(getString(R.string.about));
-		settings_tableView.commit();
+		cornerListView = (CornerListView) mainView
+				.findViewById(R.id.setting_list);
+		nameList = new ArrayList<Pairs>();
+
+		pairs = new Pairs(getString(R.string.pdc_setting), "");
+		nameList.add(pairs);
+		pairs = new Pairs(getString(R.string.privacy), "");
+		nameList.add(pairs);
+		pairs = new Pairs(getString(R.string.clear_cache), "");
+		nameList.add(pairs);
+		pairs = new Pairs(getString(R.string.about), "");
+		nameList.add(pairs);
+
+		adapter = new UserDetailAdapter(mContext,nameList);
+		cornerListView.setAdapter(adapter);
+		adapter.notifyDataSetChanged();
 
 		logout_btn = (Button) mainView.findViewById(R.id.logout_btn);
 		logout_btn.setOnClickListener(listener);
