@@ -15,8 +15,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.EditText;
-import br.com.dina.ui.widget.UITableView.ClickListener;
 import cn.pdc.mobile.R;
 import cn.pdc.mobile.adapter.UserDetailAdapter;
 import cn.pdc.mobile.entity.Pairs;
@@ -51,7 +52,7 @@ public class HomepageFragment extends Fragment {
 		initData();
 		initViews();
 
-//		new getBasicInfoTask().execute();
+		new getBasicInfoTask().execute();
 
 		return mainView;
 	}
@@ -87,20 +88,16 @@ public class HomepageFragment extends Fragment {
 				.findViewById(R.id.detail_list);
 		adapter = new UserDetailAdapter(mContext, listData);
 		cornerListView.setAdapter(adapter);
+		cornerListView.setOnItemClickListener(new ListItemClickListener());
 		adapter.notifyDataSetChanged();
 	}
 
-	/**
-	 * basic detail menu click listener
-	 * 
-	 * @author zouliping
-	 * 
-	 */
-	private class MenuClickListener implements ClickListener {
+	private class ListItemClickListener implements OnItemClickListener {
 
 		@Override
-		public void onClick(int index) {
-			switch (index) {
+		public void onItemClick(AdapterView<?> parent, View view, int position,
+				long id) {
+			switch (position) {
 			case 0:
 				ToastUtil.showShortToast(mContext, "nick");
 				new AlertDialog.Builder(mContext)
@@ -133,29 +130,6 @@ public class HomepageFragment extends Fragment {
 						.setPositiveButton(getString(R.string.yes), null)
 						.setNegativeButton(getString(R.string.cancel), null)
 						.show();
-				break;
-			default:
-				break;
-			}
-		}
-	}
-
-	/**
-	 * more menu click listener
-	 * 
-	 * @author zouliping
-	 * 
-	 */
-	private class MoreMenuClickListener implements ClickListener {
-
-		@Override
-		public void onClick(int index) {
-			switch (index) {
-			case 0:
-				ToastUtil.showShortToast(mContext, "wish");
-				break;
-			case 1:
-				ToastUtil.showShortToast(mContext, "have");
 				break;
 			default:
 				break;
