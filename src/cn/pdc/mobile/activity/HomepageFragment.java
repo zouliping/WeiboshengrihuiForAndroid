@@ -1,12 +1,15 @@
 package cn.pdc.mobile.activity;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.app.AlertDialog;
+import android.app.DatePickerDialog;
+import android.app.DatePickerDialog.OnDateSetListener;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -20,6 +23,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import cn.pdc.mobile.R;
 import cn.pdc.mobile.adapter.UserDetailAdapter;
@@ -38,6 +42,8 @@ public class HomepageFragment extends Fragment {
 	private String location;
 	private String interesting;
 	private String gender;
+	private String want;
+	private String have;
 
 	private CornerListView cornerListView = null;
 	private List<Pairs> listData = null;
@@ -49,6 +55,7 @@ public class HomepageFragment extends Fragment {
 
 	private Integer index = 0;
 	private String attrvalue;
+	private Boolean genderValue;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -72,6 +79,8 @@ public class HomepageFragment extends Fragment {
 		location = getString(R.string.undefined);
 		interesting = getString(R.string.undefined);
 		gender = getString(R.string.undefined);
+		want = getString(R.string.undefined);
+		have = getString(R.string.undefined);
 		listData = new ArrayList<Pairs>();
 
 		pairs = new Pairs(getString(R.string.Gender), gender);
@@ -81,6 +90,10 @@ public class HomepageFragment extends Fragment {
 		pairs = new Pairs(getString(R.string.Location), location);
 		listData.add(pairs);
 		pairs = new Pairs(getString(R.string.Interesting), interesting);
+		listData.add(pairs);
+		pairs = new Pairs(getString(R.string.Want), want);
+		listData.add(pairs);
+		pairs = new Pairs(getString(R.string.Have), have);
 		listData.add(pairs);
 	}
 
@@ -104,10 +117,66 @@ public class HomepageFragment extends Fragment {
 			switch (position) {
 			case 0:
 				ToastUtil.showShortToast(mContext, "gender");
+				builder = new AlertDialog.Builder(mContext);
+				builder.setTitle("Gender");
+				int choice = 0;
+				if (gender.equals(getString(R.string.Female))) {
+					choice = 1;
+				}
+				builder.setSingleChoiceItems(new String[] { "Male", "Female" },
+						choice, new OnClickListener() {
+
+							@Override
+							public void onClick(DialogInterface dialog,
+									int which) {
+								index = position;
+								if (which == 0) {
+									attrvalue = getString(R.string.Male);
+									genderValue = true;
+								} else if (which == 1) {
+									attrvalue = getString(R.string.Female);
+									genderValue = false;
+								}
+							}
+						});
+				builder.setPositiveButton(getString(R.string.yes),
+						new OnClickListener() {
+
+							@Override
+							public void onClick(DialogInterface dialog,
+									int which) {
+								gender = attrvalue;
+								new PutDataTask().execute("gender");
+							}
+						});
+				builder.setNegativeButton(getString(R.string.cancel), null);
+				builder.show();
 				break;
 			case 1:
 				ToastUtil.showShortToast(mContext, "birthday");
-
+				index = position;
+				int year = 1990;
+				int month = 01;
+				int day = 01;
+				if (birthday.equals(getString(R.string.undefined))) {
+					Calendar calendar = Calendar.getInstance();
+					year = calendar.get(Calendar.YEAR);
+					month = calendar.get(Calendar.MONTH);
+					day = calendar.get(Calendar.DAY_OF_MONTH);
+				} else {
+					String[] str = birthday.split("-");
+					try {
+						year = Integer.parseInt(str[0]);
+						month = Integer.parseInt(str[1]) - 1;
+						day = Integer.parseInt(str[2]);
+					} catch (NumberFormatException e) {
+						e.printStackTrace();
+					}
+				}
+				DatePickerDialog dialog = new DatePickerDialog(mContext,
+						dateSetListener, year, month, day);
+				dialog.setTitle("Birthday");
+				dialog.show();
 				break;
 			case 2:
 				ToastUtil.showShortToast(mContext, "location");
@@ -120,7 +189,8 @@ public class HomepageFragment extends Fragment {
 									int which) {
 								index = position;
 								attrvalue = et.getText().toString();
-								new PutDataTask().execute("nick");
+								location = attrvalue;
+								new PutDataTask().execute("hometown");
 							}
 						});
 				builder.show();
@@ -137,6 +207,17 @@ public class HomepageFragment extends Fragment {
 			}
 		}
 	}
+
+	OnDateSetListener dateSetListener = new OnDateSetListener() {
+
+		@Override
+		public void onDateSet(DatePicker view, int year, int monthOfYear,
+				int dayOfMonth) {
+			attrvalue = year + "-" + (monthOfYear + 1) + "-" + dayOfMonth;
+			birthday = attrvalue;
+			new PutDataTask().execute("birthday");
+		}
+	};
 
 	/**
 	 * get the builder
@@ -240,7 +321,11 @@ public class HomepageFragment extends Fragment {
 				jo.put("individualname", Config.uid);
 				jo.put("uid", Config.uid);
 				Log.e("param", params[0]);
-				jo.put(params[0], attrvalue);
+				if (index == 0) {
+					jo.put(params[0], genderValue);
+				} else {
+					jo.put(params[0], attrvalue);
+				}
 
 				JSONObject result = new JSONObject(HttpUtil.doPut(
 						Config.UPDATE_USER_INFO, jo));

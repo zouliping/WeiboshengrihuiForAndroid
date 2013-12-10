@@ -51,9 +51,9 @@ public class HttpUtil {
 							"Mozilla/5.0(Linux;U;Android 2.2.1;en-us;Nexus One Build.FRG83) "
 									+ "AppleWebKit/553.1(KHTML,like Gecko) Version/4.0 Mobile Safari/533.1");
 
-			ConnManagerParams.setTimeout(params, 1000);
-			HttpConnectionParams.setConnectionTimeout(params, 2000);
-			HttpConnectionParams.setSoTimeout(params, 4000);
+			ConnManagerParams.setTimeout(params, 10000);
+			HttpConnectionParams.setConnectionTimeout(params, 10000);
+			HttpConnectionParams.setSoTimeout(params, 10000);
 
 			// set for http and https
 			SchemeRegistry schReg = new SchemeRegistry();

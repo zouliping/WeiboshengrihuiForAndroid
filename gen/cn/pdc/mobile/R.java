@@ -706,7 +706,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int Male=0x7f0a0010;
         public static final int Nickname=0x7f0a000a;
         public static final int Settings=0x7f0a0003;
-        public static final int Wish=0x7f0a000d;
+        public static final int Want=0x7f0a000d;
         public static final int about=0x7f0a0018;
         /**  for basic 
          */
