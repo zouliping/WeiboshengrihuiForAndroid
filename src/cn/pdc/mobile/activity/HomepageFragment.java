@@ -26,7 +26,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import cn.pdc.mobile.R;
-import cn.pdc.mobile.adapter.UserDetailAdapter;
+import cn.pdc.mobile.adapter.DetailAdapter;
 import cn.pdc.mobile.entity.Pairs;
 import cn.pdc.mobile.utils.Config;
 import cn.pdc.mobile.utils.HttpUtil;
@@ -48,7 +48,7 @@ public class HomepageFragment extends Fragment {
 	private CornerListView cornerListView = null;
 	private List<Pairs> listData = null;
 	private Pairs pairs = null;
-	private UserDetailAdapter adapter = null;
+	private DetailAdapter adapter = null;
 
 	private AlertDialog.Builder builder;
 	private EditText et;
@@ -103,7 +103,7 @@ public class HomepageFragment extends Fragment {
 	private void initViews() {
 		cornerListView = (CornerListView) mainView
 				.findViewById(R.id.detail_list);
-		adapter = new UserDetailAdapter(mContext, listData);
+		adapter = new DetailAdapter(mContext, listData);
 		cornerListView.setAdapter(adapter);
 		cornerListView.setOnItemClickListener(new ListItemClickListener());
 		adapter.notifyDataSetChanged();

@@ -31,12 +31,12 @@ public class MainActivity extends BaseActivity {
 		}
 
 		// above view
-		setContentView(R.layout.content_frame);
+		setContentView(R.layout.frame_content);
 		manager.beginTransaction().replace(R.id.content_frame, mContent)
 				.commit();
 
 		// behind view
-		setBehindContentView(R.layout.menu_frame);
+		setBehindContentView(R.layout.frame_menu);
 		manager.beginTransaction()
 				.replace(R.id.menu_frame, menuFragment).commit();
 

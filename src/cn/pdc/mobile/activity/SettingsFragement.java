@@ -15,7 +15,7 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
 import cn.pdc.mobile.R;
-import cn.pdc.mobile.adapter.UserDetailAdapter;
+import cn.pdc.mobile.adapter.DetailAdapter;
 import cn.pdc.mobile.entity.Pairs;
 import cn.pdc.mobile.view.CornerListView;
 
@@ -26,7 +26,7 @@ public class SettingsFragement extends Fragment {
 	private View mainView;
 	private Button logout_btn;
 	private CornerListView cornerListView;
-	private UserDetailAdapter adapter;
+	private DetailAdapter adapter;
 	private List<Pairs> nameList;
 	private Pairs pairs;
 
@@ -54,7 +54,7 @@ public class SettingsFragement extends Fragment {
 		pairs = new Pairs(getString(R.string.about), "");
 		nameList.add(pairs);
 
-		adapter = new UserDetailAdapter(mContext,nameList);
+		adapter = new DetailAdapter(mContext, nameList);
 		cornerListView.setAdapter(adapter);
 		adapter.notifyDataSetChanged();
 

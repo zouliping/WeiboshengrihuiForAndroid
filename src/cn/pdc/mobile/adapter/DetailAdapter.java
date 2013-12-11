@@ -11,17 +11,17 @@ import android.widget.TextView;
 import cn.pdc.mobile.R;
 import cn.pdc.mobile.entity.Pairs;
 
-public class UserDetailAdapter extends BaseAdapter {
+public class DetailAdapter extends BaseAdapter {
 
 	private List<Pairs> detailList;
 	private Context mContext;
 
-	public UserDetailAdapter(Context mContext) {
+	public DetailAdapter(Context mContext) {
 		super();
 		this.mContext = mContext;
 	}
 
-	public UserDetailAdapter(Context mContext, List<Pairs> detailList) {
+	public DetailAdapter(Context mContext, List<Pairs> detailList) {
 		super();
 		this.detailList = detailList;
 		this.mContext = mContext;
@@ -52,19 +52,19 @@ public class UserDetailAdapter extends BaseAdapter {
 
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
-		UserDetailItemHolder holder = null;
+		DetailItemHolder holder = null;
 
 		if (convertView == null) {
 			convertView = LayoutInflater.from(mContext).inflate(
-					R.layout.detail_list_item, null);
-			holder = new UserDetailItemHolder();
+					R.layout.list_item_detail, null);
+			holder = new DetailItemHolder();
 			holder.tv_name = (TextView) convertView
 					.findViewById(R.id.detail_name);
 			holder.tv_value = (TextView) convertView
 					.findViewById(R.id.detail_value);
 			convertView.setTag(holder);
 		} else {
-			holder = (UserDetailItemHolder) convertView.getTag();
+			holder = (DetailItemHolder) convertView.getTag();
 		}
 
 		holder.tv_name.setText(detailList.get(position).getName());
@@ -73,7 +73,7 @@ public class UserDetailAdapter extends BaseAdapter {
 		return convertView;
 	}
 
-	private class UserDetailItemHolder {
+	private class DetailItemHolder {
 		private TextView tv_name;
 		private TextView tv_value;
 	}

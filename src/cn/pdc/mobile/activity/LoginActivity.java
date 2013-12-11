@@ -39,7 +39,7 @@ public class LoginActivity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		AppUtil.setNoTitleAndNoStatusBarScreen(LoginActivity.this);
-		setContentView(R.layout.login_layout);
+		setContentView(R.layout.activity_login);
 
 		initViews();
 	}

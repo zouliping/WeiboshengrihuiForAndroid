@@ -46,7 +46,7 @@ public class SlidingActivityHelper {
 	 */
 	public void onCreate(Bundle savedInstanceState) {
 		mSlidingMenu = (SlidingMenu) LayoutInflater.from(mActivity).inflate(
-				R.layout.slidingmenumain, null);
+				R.layout.slidingmenu, null);
 	}
 
 	/**
