@@ -4,11 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import cn.pdc.mobile.R;
 import cn.pdc.mobile.adapter.FriendAdapter;
@@ -38,6 +41,7 @@ public class FriendsFragment extends Fragment {
 
 	private void initViews() {
 		lv_friend = (ListView) mainView.findViewById(R.id.friends_list);
+		lv_friend.setOnItemClickListener(listener);
 		adapter = new FriendAdapter(mContext);
 		adapter.setFriendsList(list_friend);
 		lv_friend.setAdapter(adapter);
@@ -52,4 +56,14 @@ public class FriendsFragment extends Fragment {
 			list_friend.add(user);
 		}
 	}
+
+	private OnItemClickListener listener = new OnItemClickListener() {
+
+		@Override
+		public void onItemClick(AdapterView<?> parent, View view, int position,
+				long id) {
+			Intent intent = new Intent(mContext, FriendDetailActivity.class);
+			startActivity(intent);
+		}
+	};
 }

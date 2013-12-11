@@ -80,4 +80,9 @@
         <item name="android:background">@drawable/shape_bg_listview</item>
     </style>
 
+    <style name="title_activity_text">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+
 </resources>

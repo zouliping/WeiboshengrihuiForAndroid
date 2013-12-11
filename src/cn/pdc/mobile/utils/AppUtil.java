@@ -7,7 +7,7 @@ import android.view.WindowManager;
 public class AppUtil {
 
 	/**
-	 * 设置全屏无标题栏且无状态栏
+	 * set no title and no status bar
 	 * 
 	 * @param activity
 	 */
@@ -16,5 +16,14 @@ public class AppUtil {
 		activity.getWindow().setFlags(
 				WindowManager.LayoutParams.FLAG_FULLSCREEN,
 				WindowManager.LayoutParams.FLAG_FULLSCREEN);
+	}
+
+	/**
+	 * set no title
+	 * 
+	 * @param activity
+	 */
+	public static void setNotTitleScreen(Activity activity) {
+		activity.requestWindowFeature(Window.FEATURE_NO_TITLE);
 	}
 }

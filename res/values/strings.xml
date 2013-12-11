@@ -34,5 +34,8 @@
     <string name="clear_cache">Clear Cache</string>
     <string name="about">About</string>
     <string name="logout">Logout</string>
+    
+    <!-- for friends -->
+    <string name="title_friend_detail">Friend Detail</string>
 
 </resources>

@@ -1,11 +1,11 @@
 package cn.pdc.mobile.entity;
 
-public class Pairs {
+public class Pair {
 
 	String name;
 	String value;
 
-	public Pairs(String name, String value) {
+	public Pair(String name, String value) {
 		super();
 		this.name = name;
 		this.value = value;

@@ -16,7 +16,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import cn.pdc.mobile.R;
 import cn.pdc.mobile.adapter.DetailAdapter;
-import cn.pdc.mobile.entity.Pairs;
+import cn.pdc.mobile.entity.Pair;
 import cn.pdc.mobile.view.CornerListView;
 
 public class SettingsFragement extends Fragment {
@@ -27,8 +27,8 @@ public class SettingsFragement extends Fragment {
 	private Button logout_btn;
 	private CornerListView cornerListView;
 	private DetailAdapter adapter;
-	private List<Pairs> nameList;
-	private Pairs pairs;
+	private List<Pair> nameList;
+	private Pair pair;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -43,18 +43,18 @@ public class SettingsFragement extends Fragment {
 	public void initView() {
 		cornerListView = (CornerListView) mainView
 				.findViewById(R.id.setting_list);
-		nameList = new ArrayList<Pairs>();
+		nameList = new ArrayList<Pair>();
 
-		pairs = new Pairs(getString(R.string.pdc_setting), "");
-		nameList.add(pairs);
-		pairs = new Pairs(getString(R.string.privacy), "");
-		nameList.add(pairs);
-		pairs = new Pairs(getString(R.string.clear_cache), "");
-		nameList.add(pairs);
-		pairs = new Pairs(getString(R.string.about), "");
-		nameList.add(pairs);
+		pair = new Pair(getString(R.string.pdc_setting), "");
+		nameList.add(pair);
+		pair = new Pair(getString(R.string.privacy), "");
+		nameList.add(pair);
+		pair = new Pair(getString(R.string.clear_cache), "");
+		nameList.add(pair);
+		pair = new Pair(getString(R.string.about), "");
+		nameList.add(pair);
 
-		adapter = new DetailAdapter(mContext, nameList);
+		adapter = new DetailAdapter(mContext, nameList, 0);
 		cornerListView.setAdapter(adapter);
 		adapter.notifyDataSetChanged();
 

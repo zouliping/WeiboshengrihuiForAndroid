@@ -11,6 +11,10 @@
     <!-- ITEM BACKGROUND COLOR - STATE - PRESSED -->
     <color name="base_start_color_pressed">#ff3590c4</color>
     <color name="base_end_color_pressed">#ff2570ba</color>
+    
+    <color name="activity_title_bg">#262625</color>
+    
+    <!-- common -->
     <color name="white">#FFFFFF</color>
     <!-- 白色 -->
     <color name="ivory">#FFFFF0</color>

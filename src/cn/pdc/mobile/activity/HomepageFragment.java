@@ -27,7 +27,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import cn.pdc.mobile.R;
 import cn.pdc.mobile.adapter.DetailAdapter;
-import cn.pdc.mobile.entity.Pairs;
+import cn.pdc.mobile.entity.Pair;
 import cn.pdc.mobile.utils.Config;
 import cn.pdc.mobile.utils.HttpUtil;
 import cn.pdc.mobile.utils.ToastUtil;
@@ -46,8 +46,8 @@ public class HomepageFragment extends Fragment {
 	private String have;
 
 	private CornerListView cornerListView = null;
-	private List<Pairs> listData = null;
-	private Pairs pairs = null;
+	private List<Pair> listData = null;
+	private Pair pair = null;
 	private DetailAdapter adapter = null;
 
 	private AlertDialog.Builder builder;
@@ -81,20 +81,20 @@ public class HomepageFragment extends Fragment {
 		gender = getString(R.string.undefined);
 		want = getString(R.string.undefined);
 		have = getString(R.string.undefined);
-		listData = new ArrayList<Pairs>();
+		listData = new ArrayList<Pair>();
 
-		pairs = new Pairs(getString(R.string.Gender), gender);
-		listData.add(pairs);
-		pairs = new Pairs(getString(R.string.Birthday), birthday);
-		listData.add(pairs);
-		pairs = new Pairs(getString(R.string.Location), location);
-		listData.add(pairs);
-		pairs = new Pairs(getString(R.string.Interesting), interesting);
-		listData.add(pairs);
-		pairs = new Pairs(getString(R.string.Want), want);
-		listData.add(pairs);
-		pairs = new Pairs(getString(R.string.Have), have);
-		listData.add(pairs);
+		pair = new Pair(getString(R.string.Gender), gender);
+		listData.add(pair);
+		pair = new Pair(getString(R.string.Birthday), birthday);
+		listData.add(pair);
+		pair = new Pair(getString(R.string.Location), location);
+		listData.add(pair);
+		pair = new Pair(getString(R.string.Interesting), interesting);
+		listData.add(pair);
+		pair = new Pair(getString(R.string.Want), want);
+		listData.add(pair);
+		pair = new Pair(getString(R.string.Have), have);
+		listData.add(pair);
 	}
 
 	/**
@@ -103,7 +103,7 @@ public class HomepageFragment extends Fragment {
 	private void initViews() {
 		cornerListView = (CornerListView) mainView
 				.findViewById(R.id.detail_list);
-		adapter = new DetailAdapter(mContext, listData);
+		adapter = new DetailAdapter(mContext, listData,0);
 		cornerListView.setAdapter(adapter);
 		cornerListView.setOnItemClickListener(new ListItemClickListener());
 		adapter.notifyDataSetChanged();
