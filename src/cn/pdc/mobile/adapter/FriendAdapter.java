@@ -57,7 +57,7 @@ public class FriendAdapter extends BaseAdapter {
 
 		if (convertView == null) {
 			convertView = LayoutInflater.from(mContext).inflate(
-					R.layout.card_friend, null);
+					R.layout.list_item_friend, null);
 			holder = new FriendItemHolder();
 			holder.card_avatar = (ImageView) convertView
 					.findViewById(R.id.card_avatar);

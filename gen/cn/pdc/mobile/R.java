@@ -647,36 +647,40 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int splash=0x7f020025;
     }
     public static final class id {
-        public static final int accounts=0x7f05001d;
+        public static final int accounts=0x7f050021;
         public static final int avatar_menu=0x7f050007;
         public static final int back_btn=0x7f050005;
-        public static final int card_avatar=0x7f05000b;
-        public static final int card_birthday=0x7f05000d;
-        public static final int card_location=0x7f05000e;
-        public static final int card_nick=0x7f05000c;
-        public static final int content_frame=0x7f050018;
-        public static final int detail_list=0x7f050010;
-        public static final int detail_name=0x7f05001a;
-        public static final int detail_value=0x7f05001b;
+        public static final int card_avatar=0x7f050019;
+        public static final int card_birthday=0x7f05001b;
+        public static final int card_location=0x7f05001c;
+        public static final int card_nick=0x7f05001a;
+        public static final int content_frame=0x7f050015;
+        public static final int detail_list=0x7f05000d;
+        public static final int detail_name=0x7f050017;
+        public static final int detail_value=0x7f050018;
         public static final int friend_detail_list=0x7f050006;
-        public static final int friends_list=0x7f05000f;
-        public static final int friends_menu=0x7f050014;
+        public static final int friends_list=0x7f05000c;
+        public static final int friends_menu=0x7f050011;
         public static final int fullscreen=0x7f050003;
-        public static final int homepage_menu=0x7f050013;
+        public static final int homepage_menu=0x7f050010;
         public static final int left=0x7f050000;
         public static final int login_btn=0x7f05000a;
         public static final int login_name=0x7f050008;
         public static final int login_pwd=0x7f050009;
-        public static final int logout_btn=0x7f050017;
-        public static final int main_menu=0x7f050012;
+        public static final int logout_btn=0x7f050014;
+        public static final int main_menu=0x7f05000f;
         public static final int margin=0x7f050002;
-        public static final int menu_frame=0x7f050019;
+        public static final int menu_frame=0x7f050016;
+        public static final int production_description=0x7f05001f;
+        public static final int production_list=0x7f05000b;
+        public static final int production_title=0x7f05001d;
+        public static final int production_tpye=0x7f05001e;
         public static final int right=0x7f050001;
         public static final int selected_view=0x7f050004;
-        public static final int setting_list=0x7f050016;
-        public static final int settings_menu=0x7f050015;
-        public static final int slidingmenumain=0x7f05001c;
-        public static final int username_menu=0x7f050011;
+        public static final int setting_list=0x7f050013;
+        public static final int settings_menu=0x7f050012;
+        public static final int slidingmenumain=0x7f050020;
+        public static final int username_menu=0x7f05000e;
     }
     public static final class integer {
         public static final int num_cols=0x7f080000;
@@ -684,8 +688,8 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
     public static final class layout {
         public static final int activity_friend_detail=0x7f030000;
         public static final int activity_login=0x7f030001;
-        public static final int activity_splash=0x7f030002;
-        public static final int card_friend=0x7f030003;
+        public static final int activity_production_detail=0x7f030002;
+        public static final int activity_splash=0x7f030003;
         public static final int divider=0x7f030004;
         public static final int fragment_friends=0x7f030005;
         public static final int fragment_homepage=0x7f030006;
@@ -694,8 +698,10 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int frame_content=0x7f030009;
         public static final int frame_menu=0x7f03000a;
         public static final int list_item_detail_without_img=0x7f03000b;
-        public static final int list_item_user_detail=0x7f03000c;
-        public static final int slidingmenu=0x7f03000d;
+        public static final int list_item_friend=0x7f03000c;
+        public static final int list_item_production_detail=0x7f03000d;
+        public static final int list_item_user_detail=0x7f03000e;
+        public static final int slidingmenu=0x7f03000f;
     }
     public static final class menu {
         public static final int main=0x7f0c0000;
@@ -704,6 +710,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         /**  for homepage 
          */
         public static final int Birthday=0x7f0a0008;
+        public static final int Description=0x7f0a001c;
         public static final int Female=0x7f0a000f;
         public static final int Friends=0x7f0a0002;
         public static final int Gender=0x7f0a000c;
@@ -714,6 +721,10 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int Male=0x7f0a0010;
         public static final int Nickname=0x7f0a000a;
         public static final int Settings=0x7f0a0003;
+        /**  for production 
+         */
+        public static final int Title=0x7f0a001a;
+        public static final int Type=0x7f0a001b;
         public static final int Want=0x7f0a000d;
         public static final int about=0x7f0a0018;
         /**  for basic 
@@ -729,9 +740,10 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int pdc_setting=0x7f0a0015;
         public static final int privacy=0x7f0a0016;
         public static final int rights_text=0x7f0a0014;
-        /**  for friends 
+        /**  for titile 
          */
-        public static final int title_friend_detail=0x7f0a001a;
+        public static final int title_friend_detail=0x7f0a001d;
+        public static final int title_production_detail=0x7f0a001e;
         /**  for login 
          */
         public static final int uname=0x7f0a0011;
@@ -769,14 +781,24 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         /**  卡片总体样式 
          */
         public static final int card_style=0x7f0b0005;
+        /**  common list large text 
+         */
+        public static final int common_list_large_text=0x7f0b0008;
+        /**  common list small text 
+         */
+        public static final int common_list_small_text=0x7f0b0009;
+        /**  corner list large text 
+         */
         public static final int content_page_large_text=0x7f0b0006;
+        /**  corner list small text 
+         */
         public static final int content_page_small_text=0x7f0b0007;
-        public static final int list_container=0x7f0b0008;
+        public static final int list_container=0x7f0b000a;
         /**  侧滑菜单 
          */
         public static final int menu_radio_style=0x7f0b0003;
         public static final int progress=0x7f0b0002;
-        public static final int title_activity_text=0x7f0b0009;
+        public static final int title_activity_text=0x7f0b000b;
         /**  侧滑菜单中头像下面的用户名 
          */
         public static final int username_below_avatar=0x7f0b0004;

@@ -14,6 +14,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -103,7 +104,7 @@ public class HomepageFragment extends Fragment {
 	private void initViews() {
 		cornerListView = (CornerListView) mainView
 				.findViewById(R.id.detail_list);
-		adapter = new DetailAdapter(mContext, listData,0);
+		adapter = new DetailAdapter(mContext, listData, 0);
 		cornerListView.setAdapter(adapter);
 		cornerListView.setOnItemClickListener(new ListItemClickListener());
 		adapter.notifyDataSetChanged();
@@ -201,6 +202,12 @@ public class HomepageFragment extends Fragment {
 						interesting);
 				builder.setPositiveButton(getString(R.string.yes), null);
 				builder.show();
+				break;
+			case 4:
+			case 5:
+				Intent intent = new Intent(mContext,
+						ProductionDetailActivity.class);
+				startActivity(intent);
 				break;
 			default:
 				break;

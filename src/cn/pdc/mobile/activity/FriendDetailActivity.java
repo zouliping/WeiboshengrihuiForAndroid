@@ -23,7 +23,7 @@ public class FriendDetailActivity extends Activity {
 	private List<Pair> nameList;
 	private Pair pair;
 
-	private ImageView back_btn;
+	private ImageView btn_back;
 
 	private String birthday;
 	private String location;
@@ -72,8 +72,8 @@ public class FriendDetailActivity extends Activity {
 		cornerListView.setAdapter(adapter);
 		adapter.notifyDataSetChanged();
 
-		back_btn = (ImageView) findViewById(R.id.back_btn);
-		back_btn.setOnClickListener(btnClickListener);
+		btn_back = (ImageView) findViewById(R.id.back_btn);
+		btn_back.setOnClickListener(btnClickListener);
 	}
 
 	private OnClickListener btnClickListener = new OnClickListener() {

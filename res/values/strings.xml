@@ -34,8 +34,14 @@
     <string name="clear_cache">Clear Cache</string>
     <string name="about">About</string>
     <string name="logout">Logout</string>
-    
-    <!-- for friends -->
+
+    <!-- for production -->
+    <string name="Title">Title:</string>
+    <string name="Type">Type:</string>
+    <string name="Description">Description:</string>
+
+    <!-- for titile -->
     <string name="title_friend_detail">Friend Detail</string>
+    <string name="title_production_detail">Production Detail</string>
 
 </resources>
