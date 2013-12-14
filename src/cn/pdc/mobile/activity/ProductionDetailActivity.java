@@ -24,6 +24,7 @@ public class ProductionDetailActivity extends Activity {
 	private Production production;
 
 	private ImageView btn_back;
+	private ImageView btn_tao;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -42,7 +43,9 @@ public class ProductionDetailActivity extends Activity {
 		adapter.notifyDataSetChanged();
 
 		btn_back = (ImageView) findViewById(R.id.back_btn);
+		btn_tao = (ImageView) findViewById(R.id.tao_btn);
 		btn_back.setOnClickListener(listener);
+		btn_tao.setOnClickListener(listener);
 	}
 
 	private void initData() {
@@ -62,6 +65,9 @@ public class ProductionDetailActivity extends Activity {
 			switch (v.getId()) {
 			case R.id.back_btn:
 				finish();
+				break;
+			case R.id.tao_btn:
+				AppUtil.openApp(mContext, "com.taobao.taobao");
 				break;
 			default:
 				break;
