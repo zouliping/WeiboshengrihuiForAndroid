@@ -64,9 +64,9 @@ public class AppUtil {
 				i.setComponent(componentName);
 				mContext.startActivity(i);
 			}
-
 		} catch (NameNotFoundException e) {
 			e.printStackTrace();
+			ToastUtil.showShortToast(mContext, "You have not installed Taobao");
 		}
 	}
 }
