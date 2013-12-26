@@ -191,7 +191,7 @@ public class HomepageFragment extends Fragment {
 								index = position;
 								attrvalue = et.getText().toString();
 								location = attrvalue;
-								new PutDataTask().execute("hometown");
+								new PutDataTask().execute("current_location");
 							}
 						});
 				builder.show();
@@ -278,8 +278,8 @@ public class HomepageFragment extends Fragment {
 				if (!jo.isNull("birthday")) {
 					birthday = jo.getString("birthday");
 				}
-				if (!jo.isNull("hometown")) {
-					location = jo.getString("hometown");
+				if (!jo.isNull("current_location")) {
+					location = jo.getString("current_location");
 				}
 				if (!jo.isNull("interesting")) {
 					interesting = jo.getString("interesting");
