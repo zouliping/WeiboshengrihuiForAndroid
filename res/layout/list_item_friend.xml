@@ -26,24 +26,32 @@
 
         <TextView
             android:id="@+id/card_nick"
-            android:layout_width="wrap_content"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:drawablePadding="10dp"
-            android:drawableRight="@drawable/male" />
+            android:textSize="@dimen/card_text_size" />
+        <!--
+   android:drawablePadding="10dp"
+            android:drawableRight="@drawable/male"
+        -->
+
 
         <!-- birthday -->
 
         <TextView
             android:id="@+id/card_birthday"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:textSize="@dimen/card_text_size" />
 
         <!-- location -->
 
         <TextView
             android:id="@+id/card_location"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:textSize="@dimen/card_text_size" />
     </LinearLayout>
 
 </RelativeLayout>

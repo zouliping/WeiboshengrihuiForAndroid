@@ -23,9 +23,10 @@
     <dimen name="shadow_width">15dp</dimen>
 
     <integer name="num_cols">1</integer>
-    
-    <dimen name="card_avatar_width">60dp</dimen>
-    <dimen name="card_avatar_height">60dp</dimen>
+
+    <dimen name="card_avatar_width">80dp</dimen>
+    <dimen name="card_avatar_height">80dp</dimen>
     <dimen name="card_margin">15dp</dimen>
+    <dimen name="card_text_size">16sp</dimen>
 
 </resources>

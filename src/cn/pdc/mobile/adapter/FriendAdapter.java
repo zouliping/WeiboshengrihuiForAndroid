@@ -76,18 +76,20 @@ public class FriendAdapter extends BaseAdapter {
 		holder.card_location.setText(friendsList.get(position).getLocation());
 		holder.card_nick.setText(friendsList.get(position).getNickname());
 		if (friendsList.get(position).getGender()) {
-			holder.card_nick.setCompoundDrawablesWithIntrinsicBounds(null,
-					null,
-					convertView.getResources().getDrawable(R.drawable.male),
-					null);
+			// holder.card_nick.setCompoundDrawablesWithIntrinsicBounds(null,
+			// null,
+			// convertView.getResources().getDrawable(R.drawable.male),
+			// null);
+			holder.card_avatar.setImageResource(R.drawable.male_avatar);
 		} else {
-			holder.card_nick.setCompoundDrawablesWithIntrinsicBounds(null,
-					null,
-					convertView.getResources().getDrawable(R.drawable.female),
-					null);
+			// holder.card_nick.setCompoundDrawablesWithIntrinsicBounds(null,
+			// null,
+			// convertView.getResources().getDrawable(R.drawable.female),
+			// null);
+			holder.card_avatar.setImageResource(R.drawable.female_avatar);
 		}
 		// to set avatar
-		holder.card_avatar.setImageResource(R.drawable.avatar_default);
+		// holder.card_avatar.setImageResource(R.drawable.avatar_default);
 
 		return convertView;
 	}
