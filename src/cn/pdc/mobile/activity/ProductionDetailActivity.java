@@ -12,6 +12,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
@@ -51,9 +52,9 @@ public class ProductionDetailActivity extends Activity {
 		initData();
 		tv_title = (TextView) findViewById(R.id.production_title);
 		if ("Goods".equals(title_activity)) {
-			tv_title.setText("Have");
+			tv_title.setText(getString(R.string.Have));
 		} else if ("WishItem".equals(title_activity)) {
-			tv_title.setText("Want");
+			tv_title.setText(getString(R.string.Want));
 		}
 		initViews();
 		new getBasicInfoTask().execute("");
@@ -99,6 +100,9 @@ public class ProductionDetailActivity extends Activity {
 	private class getBasicInfoTask extends AsyncTask<String, String, String> {
 		@Override
 		protected String doInBackground(String... params) {
+			Log.e("url",
+					Config.GET_PROPERTITY.replace("$classname", title_activity)
+							+ uid);
 			return HttpUtil.doGet(Config.GET_PROPERTITY.replace("$classname",
 					title_activity) + uid);
 		}

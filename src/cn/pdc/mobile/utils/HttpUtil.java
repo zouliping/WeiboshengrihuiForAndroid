@@ -13,7 +13,6 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpPut;
 import org.apache.http.conn.ClientConnectionManager;
-import org.apache.http.conn.params.ConnManagerParams;
 import org.apache.http.conn.scheme.PlainSocketFactory;
 import org.apache.http.conn.scheme.Scheme;
 import org.apache.http.conn.scheme.SchemeRegistry;
@@ -23,7 +22,6 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.impl.conn.tsccm.ThreadSafeClientConnManager;
 import org.apache.http.message.BasicHeader;
 import org.apache.http.params.BasicHttpParams;
-import org.apache.http.params.HttpConnectionParams;
 import org.apache.http.params.HttpParams;
 import org.apache.http.params.HttpProtocolParams;
 import org.apache.http.protocol.HTTP;
@@ -51,9 +49,9 @@ public class HttpUtil {
 							"Mozilla/5.0(Linux;U;Android 2.2.1;en-us;Nexus One Build.FRG83) "
 									+ "AppleWebKit/553.1(KHTML,like Gecko) Version/4.0 Mobile Safari/533.1");
 
-			ConnManagerParams.setTimeout(params, 10000);
-			HttpConnectionParams.setConnectionTimeout(params, 10000);
-			HttpConnectionParams.setSoTimeout(params, 10000);
+//			ConnManagerParams.setTimeout(params, 10000);
+//			HttpConnectionParams.setConnectionTimeout(params, 10000);
+//			HttpConnectionParams.setSoTimeout(params, 10000);
 
 			// set for http and https
 			SchemeRegistry schReg = new SchemeRegistry();

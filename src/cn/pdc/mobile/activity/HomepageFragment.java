@@ -209,6 +209,7 @@ public class HomepageFragment extends Fragment {
 				intent.putExtra("uid", Config.uid);
 				intent.putExtra("item", "Goods");
 				startActivity(intent);
+				break;
 			case 5:
 				Intent intent2 = new Intent(mContext,
 						ProductionDetailActivity.class);
