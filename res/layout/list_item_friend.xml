@@ -28,6 +28,8 @@
             android:id="@+id/card_nick"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/nickname"
+            android:drawablePadding="5dp"
             android:textSize="@dimen/card_text_size" />
         <!--
    android:drawablePadding="10dp"
@@ -42,6 +44,8 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
+            android:drawableLeft="@drawable/birthday"
+            android:drawablePadding="5dp"
             android:textSize="@dimen/card_text_size" />
 
         <!-- location -->
@@ -51,6 +55,8 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
+            android:drawableLeft="@drawable/location"
+            android:drawablePadding="5dp"
             android:textSize="@dimen/card_text_size" />
     </LinearLayout>
 

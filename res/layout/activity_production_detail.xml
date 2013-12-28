@@ -21,12 +21,12 @@
             android:src="@drawable/back" />
 
         <TextView
+            android:id="@+id/production_title"
             style="@style/title_activity_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:gravity="center"
-            android:text="@string/title_production_detail" />
+            android:gravity="center" />
 
         <ImageView
             android:id="@+id/tao_btn"

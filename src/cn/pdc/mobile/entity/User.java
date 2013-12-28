@@ -5,17 +5,21 @@ public class User {
 	private String nickname;
 	private String location;
 	private String birthday;
+	private String interesting;
 	private Boolean gender;
-	private String avatar_url;
 
 	public User(String nickname, String location, String birthday,
-			Boolean gender, String avatar_url) {
+			String interesting, Boolean gender) {
 		super();
 		this.nickname = nickname;
 		this.location = location;
 		this.birthday = birthday;
+		this.interesting = interesting;
 		this.gender = gender;
-		this.avatar_url = avatar_url;
+	}
+
+	public User() {
+		super();
 	}
 
 	public String getNickname() {
@@ -50,12 +54,11 @@ public class User {
 		this.gender = gender;
 	}
 
-	public String getAvatar_url() {
-		return avatar_url;
+	public String getInteresting() {
+		return interesting;
 	}
 
-	public void setAvatar_url(String avatar_url) {
-		this.avatar_url = avatar_url;
+	public void setInteresting(String interesting) {
+		this.interesting = interesting;
 	}
-
 }

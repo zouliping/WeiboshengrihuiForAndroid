@@ -5,6 +5,7 @@ import java.util.List;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -25,6 +26,7 @@ public class FriendDetailActivity extends Activity {
 
 	private ImageView btn_back;
 
+	private String nickname;
 	private String birthday;
 	private String location;
 	private String interesting;
@@ -43,15 +45,24 @@ public class FriendDetailActivity extends Activity {
 	}
 
 	private void initData() {
-		birthday = getString(R.string.undefined);
-		location = getString(R.string.undefined);
-		interesting = getString(R.string.undefined);
-		gender = getString(R.string.undefined);
-		want = getString(R.string.undefined);
-		have = getString(R.string.undefined);
+		Intent intent = getIntent();
+		birthday = intent.getStringExtra("birthday");
+		location = intent.getStringExtra("location");
+		interesting = intent.getStringExtra("interesting");
+		nickname = intent.getStringExtra("nickname");
+		if (intent.getBooleanExtra("gender", true)) {
+			gender = getString(R.string.Male);
+		} else {
+			gender = getString(R.string.Female);
+		}
+
+		want = ">";
+		have = ">";
 
 		nameList = new ArrayList<Pair>();
 
+		pair = new Pair(getString(R.string.Nickname), nickname);
+		nameList.add(pair);
 		pair = new Pair(getString(R.string.Gender), gender);
 		nameList.add(pair);
 		pair = new Pair(getString(R.string.Birthday), birthday);

@@ -14,4 +14,10 @@ public class Config {
 			+ "/indiv/getpro?indivname=$indivname&uid=";
 	// update the user info uri
 	public static final String UPDATE_USER_INFO = IP + "/indiv/update";
+	// get friends list uri
+	public static final String GET_FRIENDS_LIST = IP
+			+ "/indiv/get?classname=User&uid=";
+	// get propertities or wish item uri
+	public static final String GET_PROPERTITY = IP
+			+ "/indiv/get?classname=$classname&uid=";
 }

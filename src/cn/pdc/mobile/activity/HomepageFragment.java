@@ -80,8 +80,8 @@ public class HomepageFragment extends Fragment {
 		location = getString(R.string.undefined);
 		interesting = getString(R.string.undefined);
 		gender = getString(R.string.undefined);
-		want = getString(R.string.undefined);
-		have = getString(R.string.undefined);
+		want = "";
+		have = "";
 		listData = new ArrayList<Pair>();
 
 		pair = new Pair(getString(R.string.Gender), gender);
@@ -204,10 +204,17 @@ public class HomepageFragment extends Fragment {
 				builder.show();
 				break;
 			case 4:
-			case 5:
 				Intent intent = new Intent(mContext,
 						ProductionDetailActivity.class);
+				intent.putExtra("uid", Config.uid);
+				intent.putExtra("item", "Goods");
 				startActivity(intent);
+			case 5:
+				Intent intent2 = new Intent(mContext,
+						ProductionDetailActivity.class);
+				intent2.putExtra("uid", Config.uid);
+				intent2.putExtra("item", "WishItem");
+				startActivity(intent2);
 				break;
 			default:
 				break;
