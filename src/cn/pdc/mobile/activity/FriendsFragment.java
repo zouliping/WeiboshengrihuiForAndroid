@@ -12,6 +12,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,8 +47,10 @@ public class FriendsFragment extends Fragment {
 		mainView = inflater.inflate(R.layout.fragment_friends, null);
 		mContext = getActivity();
 
+		Log.e("test", "test");
 		initList();
 		initViews();
+		Log.e("friend", "begin");
 		new getBasicInfoTask().execute("");
 
 		return mainView;
@@ -74,6 +77,7 @@ public class FriendsFragment extends Fragment {
 			Intent intent = new Intent(mContext, FriendDetailActivity.class);
 			User user = list_friend.get(position);
 			Bundle bundle = new Bundle();
+			bundle.putString("uid", user.getUid());
 			bundle.putString("nickname", user.getNickname());
 			bundle.putString("location", user.getLocation());
 			bundle.putString("interesting", user.getInteresting());
@@ -87,6 +91,7 @@ public class FriendsFragment extends Fragment {
 	private class getBasicInfoTask extends AsyncTask<String, String, String> {
 		@Override
 		protected String doInBackground(String... params) {
+			Log.e("get", "follow");
 			return HttpUtil.doGet(Config.GET_FRIENDS_LIST + Config.uid);
 		}
 
@@ -113,21 +118,21 @@ public class FriendsFragment extends Fragment {
 						gender = true;
 					}
 					if (!user.isNull("birthday")) {
-						birthday = jo.getString("birthday");
+						birthday = user.getString("birthday");
 					} else {
 						birthday = getString(R.string.undefined);
 					}
 					if (!user.isNull("current_location")) {
-						location = jo.getString("current_location");
+						location = user.getString("current_location");
 					} else {
 						location = getString(R.string.undefined);
 					}
-					if (!user.isNull("interesting")) {
-						interesting = jo.getString("interesting");
+					if (!user.isNull("interest")) {
+						interesting = user.getString("interest");
 					} else {
 						interesting = getString(R.string.undefined);
 					}
-					User tmp = new User(nickname, location, birthday,
+					User tmp = new User(key, nickname, location, birthday,
 							interesting, gender);
 					list_friend.add(tmp);
 				}

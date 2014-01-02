@@ -50,6 +50,7 @@ public class ProductionDetailActivity extends Activity {
 		setContentView(R.layout.activity_production_detail);
 
 		initData();
+		initViews();
 		tv_title = (TextView) findViewById(R.id.production_title);
 		if ("Goods".equals(title_activity)) {
 			tv_title.setText(getString(R.string.Have));
@@ -58,7 +59,6 @@ public class ProductionDetailActivity extends Activity {
 			tv_title.setText(getString(R.string.Want));
 			btn_tao.setVisibility(View.GONE);
 		}
-		initViews();
 		new getBasicInfoTask().execute("");
 	}
 

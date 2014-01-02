@@ -9,6 +9,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ImageView;
 import cn.pdc.mobile.R;
 import cn.pdc.mobile.adapter.DetailAdapter;
@@ -26,6 +28,7 @@ public class FriendDetailActivity extends Activity {
 
 	private ImageView btn_back;
 
+	private String uid;
 	private String nickname;
 	private String birthday;
 	private String location;
@@ -46,6 +49,7 @@ public class FriendDetailActivity extends Activity {
 
 	private void initData() {
 		Intent intent = getIntent();
+		uid = intent.getStringExtra("uid");
 		birthday = intent.getStringExtra("birthday");
 		location = intent.getStringExtra("location");
 		interesting = intent.getStringExtra("interesting");
@@ -79,6 +83,7 @@ public class FriendDetailActivity extends Activity {
 
 	private void initViews() {
 		cornerListView = (CornerListView) findViewById(R.id.friend_detail_list);
+		cornerListView.setOnItemClickListener(itemClickListener);
 		adapter = new DetailAdapter(mContext, nameList, 1);
 		cornerListView.setAdapter(adapter);
 		adapter.notifyDataSetChanged();
@@ -98,6 +103,31 @@ public class FriendDetailActivity extends Activity {
 				break;
 			}
 		}
+	};
 
+	private OnItemClickListener itemClickListener = new OnItemClickListener() {
+
+		@Override
+		public void onItemClick(AdapterView<?> parent, View view, int position,
+				long id) {
+			switch (position) {
+			case 5:
+				Intent intent = new Intent(mContext,
+						ProductionDetailActivity.class);
+				intent.putExtra("uid", uid);
+				intent.putExtra("item", "WishItem");
+				startActivity(intent);
+				break;
+			case 6:
+				Intent intent2 = new Intent(mContext,
+						ProductionDetailActivity.class);
+				intent2.putExtra("uid", uid);
+				intent2.putExtra("item", "Goods");
+				startActivity(intent2);
+				break;
+			default:
+				break;
+			}
+		}
 	};
 }

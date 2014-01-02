@@ -2,15 +2,17 @@ package cn.pdc.mobile.entity;
 
 public class User {
 
+	private String uid;
 	private String nickname;
 	private String location;
 	private String birthday;
 	private String interesting;
 	private Boolean gender;
 
-	public User(String nickname, String location, String birthday,
+	public User(String uid, String nickname, String location, String birthday,
 			String interesting, Boolean gender) {
 		super();
+		this.uid = uid;
 		this.nickname = nickname;
 		this.location = location;
 		this.birthday = birthday;
@@ -20,6 +22,14 @@ public class User {
 
 	public User() {
 		super();
+	}
+
+	public String getUid() {
+		return uid;
+	}
+
+	public void setUid(String uid) {
+		this.uid = uid;
 	}
 
 	public String getNickname() {

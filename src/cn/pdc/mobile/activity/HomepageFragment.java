@@ -207,14 +207,14 @@ public class HomepageFragment extends Fragment {
 				Intent intent = new Intent(mContext,
 						ProductionDetailActivity.class);
 				intent.putExtra("uid", Config.uid);
-				intent.putExtra("item", "Goods");
+				intent.putExtra("item", "WishItem");
 				startActivity(intent);
 				break;
 			case 5:
 				Intent intent2 = new Intent(mContext,
 						ProductionDetailActivity.class);
 				intent2.putExtra("uid", Config.uid);
-				intent2.putExtra("item", "WishItem");
+				intent2.putExtra("item", "Goods");
 				startActivity(intent2);
 				break;
 			default:
