@@ -66,7 +66,24 @@ public class AppUtil {
 			}
 		} catch (NameNotFoundException e) {
 			e.printStackTrace();
-			ToastUtil.showShortToast(mContext, "You have not installed Taobao");
+			ToastUtil.showShortToast(mContext,
+					"You have not installed this app");
 		}
+	}
+
+	/**
+	 * open a specific activity
+	 * 
+	 * @param mContext
+	 * @param packagename
+	 * @param activityname
+	 */
+	public static void openActivity(Context mContext, String packagename,
+			String activityname, String info) {
+		ComponentName name = new ComponentName(packagename, activityname);
+		Intent i = new Intent();
+		i.putExtra("info", info);
+		i.setComponent(name);
+		mContext.startActivity(i);
 	}
 }

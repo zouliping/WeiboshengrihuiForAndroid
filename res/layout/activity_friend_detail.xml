@@ -28,6 +28,16 @@
             android:layout_centerInParent="true"
             android:gravity="center"
             android:text="@string/title_friend_detail" />
+
+        <ImageView
+            android:id="@+id/back_calendar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:contentDescription="@string/default_name"
+            android:src="@drawable/calendar" />
     </RelativeLayout>
 
     <cn.pdc.mobile.view.CornerListView

@@ -1,12 +1,17 @@
 package cn.pdc.mobile.activity;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
@@ -27,6 +32,7 @@ public class FriendDetailActivity extends Activity {
 	private Pair pair;
 
 	private ImageView btn_back;
+	private ImageView btn_calendar;
 
 	private String uid;
 	private String nickname;
@@ -90,6 +96,8 @@ public class FriendDetailActivity extends Activity {
 
 		btn_back = (ImageView) findViewById(R.id.back_btn);
 		btn_back.setOnClickListener(btnClickListener);
+		btn_calendar = (ImageView) findViewById(R.id.back_calendar);
+		btn_calendar.setOnClickListener(btnClickListener);
 	}
 
 	private OnClickListener btnClickListener = new OnClickListener() {
@@ -98,6 +106,30 @@ public class FriendDetailActivity extends Activity {
 			switch (v.getId()) {
 			case R.id.back_btn:
 				finish();
+				break;
+			case R.id.back_calendar:
+				// AppUtil.openApp(FriendDetailActivity.this,
+				// "cn.pdc.calendar");
+				String tmp = birthday.substring(birthday.indexOf("-"));
+				int year = Calendar.getInstance().get(Calendar.YEAR);
+				Log.e("calendar time", year + tmp);
+				JSONObject jo = new JSONObject();
+				try {
+					jo.put("title", "To celebrate " + nickname + "'s birthday");
+					jo.put("start", year + tmp);
+					jo.put("end", year + tmp);
+					jo.put("description", "To celebrate " + nickname
+							+ "'s birthday");
+					jo.put("location", location);
+				} catch (JSONException e) {
+					e.printStackTrace();
+				}
+//				MyActivity myActivity = new MyActivity("To celebrate "
+//						+ nickname + "'s birthday", year + tmp, year + tmp,
+//						"To celebrate " + nickname + "'s birthday", location);
+				AppUtil.openActivity(mContext, "cn.pdc.calendar",
+						"cn.pdc.calendar.activity.AddActivityActivity",
+						jo.toString());
 				break;
 			default:
 				break;
