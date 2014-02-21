@@ -720,7 +720,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         /**  for homepage 
          */
         public static final int Birthday=0x7f0a0008;
-        public static final int Description=0x7f0a001c;
+        public static final int Description=0x7f0a001f;
         public static final int Female=0x7f0a000f;
         public static final int Friends=0x7f0a0002;
         public static final int Gender=0x7f0a000c;
@@ -733,8 +733,8 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int Settings=0x7f0a0003;
         /**  for production 
          */
-        public static final int Title=0x7f0a001a;
-        public static final int Type=0x7f0a001b;
+        public static final int Title=0x7f0a001d;
+        public static final int Type=0x7f0a001e;
         public static final int Want=0x7f0a000d;
         public static final int about=0x7f0a0018;
         /**  for basic 
@@ -743,6 +743,9 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int cancel=0x7f0a0007;
         public static final int clear_cache=0x7f0a0017;
         public static final int default_name=0x7f0a0004;
+        public static final int developer=0x7f0a001a;
+        public static final int feedback=0x7f0a001c;
+        public static final int github=0x7f0a001b;
         public static final int login_text=0x7f0a0013;
         public static final int logout=0x7f0a0019;
         /**  for settings 
@@ -752,8 +755,8 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int rights_text=0x7f0a0014;
         /**  for titile 
          */
-        public static final int title_friend_detail=0x7f0a001d;
-        public static final int title_production_detail=0x7f0a001e;
+        public static final int title_friend_detail=0x7f0a0020;
+        public static final int title_production_detail=0x7f0a0021;
         /**  for login 
          */
         public static final int uname=0x7f0a0011;

@@ -3,20 +3,26 @@ package cn.pdc.mobile.activity;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import cn.pdc.mobile.R;
 import cn.pdc.mobile.adapter.DetailAdapter;
 import cn.pdc.mobile.entity.Pair;
+import cn.pdc.mobile.utils.AppUtil;
+import cn.pdc.mobile.utils.Config;
 import cn.pdc.mobile.view.CornerListView;
 
 public class SettingsFragement extends Fragment {
@@ -43,15 +49,16 @@ public class SettingsFragement extends Fragment {
 	public void initView() {
 		cornerListView = (CornerListView) mainView
 				.findViewById(R.id.setting_list);
+		cornerListView.setOnItemClickListener(itemClickListener);
 		nameList = new ArrayList<Pair>();
 
 		pair = new Pair(getString(R.string.pdc_setting), "");
 		nameList.add(pair);
-		pair = new Pair(getString(R.string.privacy), "");
+		pair = new Pair(getString(R.string.developer), "");
 		nameList.add(pair);
-		pair = new Pair(getString(R.string.clear_cache), "");
+		pair = new Pair(getString(R.string.github), "");
 		nameList.add(pair);
-		pair = new Pair(getString(R.string.about), "");
+		pair = new Pair(getString(R.string.feedback), "");
 		nameList.add(pair);
 
 		adapter = new DetailAdapter(mContext, nameList, 0);
@@ -76,6 +83,37 @@ public class SettingsFragement extends Fragment {
 
 				Intent i = new Intent(mContext, LoginActivity.class);
 				startActivity(i);
+				break;
+			default:
+				break;
+			}
+		}
+	};
+
+	private OnItemClickListener itemClickListener = new OnItemClickListener() {
+
+		@Override
+		public void onItemClick(AdapterView<?> parent, View view, int position,
+				long id) {
+			switch (position) {
+			case 0:
+				break;
+			case 1:
+				AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+				builder.setTitle(getString(R.string.developer));
+				builder.setMessage(Config.DEVELOPER_EMAIL);
+				builder.show();
+				break;
+			case 2:
+				Intent intent = new Intent(Intent.ACTION_VIEW,
+						Uri.parse(Config.URL_GITHUB));
+				startActivity(intent);
+				break;
+			case 3:
+				AppUtil.openWeiciyuanActivity(mContext,
+						Config.WEICIYUAN_PACKAGE_NAME,
+						Config.WEICIYUAN_ACTIIVTY_NAME,
+						"#Feedback of Weiboshengrihui#");
 				break;
 			default:
 				break;

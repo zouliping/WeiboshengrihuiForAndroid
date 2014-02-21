@@ -86,4 +86,21 @@ public class AppUtil {
 		i.setComponent(name);
 		mContext.startActivity(i);
 	}
+
+	/**
+	 * open a weiciyuan activity
+	 * 
+	 * @param mContext
+	 * @param packagename
+	 * @param activityname
+	 */
+	public static void openWeiciyuanActivity(Context mContext,
+			String packagename, String activityname, String info) {
+		ComponentName name = new ComponentName(packagename, activityname);
+		Intent i = new Intent(Intent.ACTION_SEND);
+		i.setType("text/plain");
+		i.putExtra(Intent.EXTRA_TEXT, info);
+		i.setComponent(name);
+		mContext.startActivity(i);
+	}
 }

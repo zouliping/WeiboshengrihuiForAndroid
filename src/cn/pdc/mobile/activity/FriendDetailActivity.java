@@ -11,7 +11,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
@@ -21,6 +20,7 @@ import cn.pdc.mobile.R;
 import cn.pdc.mobile.adapter.DetailAdapter;
 import cn.pdc.mobile.entity.Pair;
 import cn.pdc.mobile.utils.AppUtil;
+import cn.pdc.mobile.utils.Config;
 import cn.pdc.mobile.view.CornerListView;
 
 public class FriendDetailActivity extends Activity {
@@ -112,7 +112,6 @@ public class FriendDetailActivity extends Activity {
 				// "cn.pdc.calendar");
 				String tmp = birthday.substring(birthday.indexOf("-"));
 				int year = Calendar.getInstance().get(Calendar.YEAR);
-				Log.e("calendar time", year + tmp);
 				JSONObject jo = new JSONObject();
 				try {
 					jo.put("title", "To celebrate " + nickname + "'s birthday");
@@ -124,12 +123,11 @@ public class FriendDetailActivity extends Activity {
 				} catch (JSONException e) {
 					e.printStackTrace();
 				}
-//				MyActivity myActivity = new MyActivity("To celebrate "
-//						+ nickname + "'s birthday", year + tmp, year + tmp,
-//						"To celebrate " + nickname + "'s birthday", location);
-				AppUtil.openActivity(mContext, "cn.pdc.calendar",
-						"cn.pdc.calendar.activity.AddActivityActivity",
-						jo.toString());
+				// MyActivity myActivity = new MyActivity("To celebrate "
+				// + nickname + "'s birthday", year + tmp, year + tmp,
+				// "To celebrate " + nickname + "'s birthday", location);
+				AppUtil.openActivity(mContext, Config.CALENDAR_PACKAGE_NAME,
+						Config.CALENDAR_ACTIVITY_NAME, jo.toString());
 				break;
 			default:
 				break;

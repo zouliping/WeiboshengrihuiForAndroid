@@ -47,10 +47,8 @@ public class FriendsFragment extends Fragment {
 		mainView = inflater.inflate(R.layout.fragment_friends, null);
 		mContext = getActivity();
 
-		Log.e("test", "test");
 		initList();
 		initViews();
-		Log.e("friend", "begin");
 		new getBasicInfoTask().execute("");
 
 		return mainView;

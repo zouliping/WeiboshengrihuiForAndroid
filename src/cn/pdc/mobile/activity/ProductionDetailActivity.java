@@ -91,7 +91,7 @@ public class ProductionDetailActivity extends Activity {
 				finish();
 				break;
 			case R.id.tao_btn:
-				AppUtil.openApp(mContext, "com.taobao.taobao");
+				AppUtil.openApp(mContext, Config.TAOBAO_PACKAGE_NAME);
 				break;
 			default:
 				break;
