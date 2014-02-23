@@ -102,6 +102,8 @@ public class SettingsFragement extends Fragment {
 				AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
 				builder.setTitle(getString(R.string.developer));
 				builder.setMessage(Config.DEVELOPER_EMAIL);
+				builder.setPositiveButton(getString(R.string.yes), null);
+				builder.setNegativeButton(getString(R.string.cancel), null);
 				builder.show();
 				break;
 			case 2:
