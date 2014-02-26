@@ -42,6 +42,7 @@
     <string name="Title">Title:</string>
     <string name="Type">Type:</string>
     <string name="Description">Description:</string>
+    <string name="sendTo">Send To Whom</string>
 
     <!-- for titile -->
     <string name="title_friend_detail">Friend Detail</string>

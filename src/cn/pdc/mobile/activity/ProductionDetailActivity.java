@@ -8,13 +8,17 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -24,15 +28,18 @@ import cn.pdc.mobile.entity.Production;
 import cn.pdc.mobile.utils.AppUtil;
 import cn.pdc.mobile.utils.Config;
 import cn.pdc.mobile.utils.HttpUtil;
+import cn.pdc.mobile.utils.ToastUtil;
 
 public class ProductionDetailActivity extends Activity {
 
 	private Context mContext = ProductionDetailActivity.this;
 	private List<Production> list_production;
+	private Production production;
+	private List<String> list_friends;
+	private CharSequence[] cs_friends;
+
 	private ListView lv_production;
 	private ProductionAdapter adapter;
-	private Production production;
-
 	private ImageView btn_back;
 	private ImageView btn_tao;
 	private TextView tv_title;
@@ -51,6 +58,23 @@ public class ProductionDetailActivity extends Activity {
 
 		initData();
 		initViews();
+
+		new getBasicInfoTask().execute("");
+		new getFriendsInfoTask().execute("");
+	}
+
+	private void initViews() {
+		lv_production = (ListView) findViewById(R.id.production_list);
+		adapter = new ProductionAdapter(mContext, list_production);
+		lv_production.setAdapter(adapter);
+		lv_production.setOnItemClickListener(itemClickListener);
+		adapter.notifyDataSetChanged();
+
+		btn_back = (ImageView) findViewById(R.id.back_btn);
+		btn_tao = (ImageView) findViewById(R.id.tao_btn);
+		btn_back.setOnClickListener(listener);
+		btn_tao.setOnClickListener(listener);
+
 		tv_title = (TextView) findViewById(R.id.production_title);
 		if ("Goods".equals(title_activity)) {
 			tv_title.setText(getString(R.string.Have));
@@ -59,19 +83,6 @@ public class ProductionDetailActivity extends Activity {
 			tv_title.setText(getString(R.string.Want));
 			btn_tao.setVisibility(View.GONE);
 		}
-		new getBasicInfoTask().execute("");
-	}
-
-	private void initViews() {
-		lv_production = (ListView) findViewById(R.id.production_list);
-		adapter = new ProductionAdapter(mContext, list_production);
-		lv_production.setAdapter(adapter);
-		adapter.notifyDataSetChanged();
-
-		btn_back = (ImageView) findViewById(R.id.back_btn);
-		btn_tao = (ImageView) findViewById(R.id.tao_btn);
-		btn_back.setOnClickListener(listener);
-		btn_tao.setOnClickListener(listener);
 	}
 
 	private void initData() {
@@ -81,6 +92,28 @@ public class ProductionDetailActivity extends Activity {
 
 		list_production = new ArrayList<Production>();
 	}
+
+	private OnItemClickListener itemClickListener = new OnItemClickListener() {
+
+		@Override
+		public void onItemClick(AdapterView<?> parent, View view, int position,
+				long id) {
+			ToastUtil.showShortToast(mContext, position + "---");
+			AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+			builder.setTitle(getString(R.string.sendTo));
+			builder.setSingleChoiceItems(cs_friends, 0,
+					new DialogInterface.OnClickListener() {
+
+						@Override
+						public void onClick(DialogInterface dialog, int which) {
+							ToastUtil.showShortToast(mContext, "test");
+						}
+					});
+			builder.setPositiveButton(getString(R.string.yes), null);
+			builder.setNegativeButton(getString(R.string.cancel), null);
+			builder.show();
+		}
+	};
 
 	private OnClickListener listener = new OnClickListener() {
 
@@ -99,6 +132,47 @@ public class ProductionDetailActivity extends Activity {
 		}
 	};
 
+	/**
+	 * get friends list
+	 * 
+	 * @author zouliping
+	 * 
+	 */
+	private class getFriendsInfoTask extends AsyncTask<String, String, String> {
+
+		@Override
+		protected String doInBackground(String... params) {
+			return HttpUtil.doGet(Config.GET_FRIENDS_LIST + Config.uid);
+		}
+
+		@Override
+		protected void onPostExecute(String result) {
+			try {
+				// to avoid that server does not work or network is not
+				// connected
+				if (result == null) {
+					return;
+				}
+
+				JSONObject jo = new JSONObject(result);
+				list_friends = new ArrayList<String>();
+				for (Iterator<?> i = jo.keys(); i.hasNext();) {
+					list_friends.add((String) i.next());
+				}
+				cs_friends = list_friends.toArray(new CharSequence[list_friends
+						.size()]);
+			} catch (JSONException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
+	/**
+	 * get production list
+	 * 
+	 * @author zouliping
+	 * 
+	 */
 	private class getBasicInfoTask extends AsyncTask<String, String, String> {
 		@Override
 		protected String doInBackground(String... params) {

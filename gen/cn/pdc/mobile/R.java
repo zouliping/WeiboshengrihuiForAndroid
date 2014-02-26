@@ -753,10 +753,11 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int pdc_setting=0x7f0a0015;
         public static final int privacy=0x7f0a0016;
         public static final int rights_text=0x7f0a0014;
+        public static final int sendTo=0x7f0a0020;
         /**  for titile 
          */
-        public static final int title_friend_detail=0x7f0a0020;
-        public static final int title_production_detail=0x7f0a0021;
+        public static final int title_friend_detail=0x7f0a0021;
+        public static final int title_production_detail=0x7f0a0022;
         /**  for login 
          */
         public static final int uname=0x7f0a0011;
