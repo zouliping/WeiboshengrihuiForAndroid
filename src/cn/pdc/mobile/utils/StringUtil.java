@@ -31,4 +31,17 @@ public class StringUtil {
 		}
 		return null;
 	}
+
+	/**
+	 * remove ^^
+	 * 
+	 * @param oldStr
+	 * @return
+	 */
+	public static String removeSpecialChar(String oldStr) {
+		if (oldStr.contains("^^")) {
+			oldStr = oldStr.substring(0, oldStr.indexOf("^^"));
+		}
+		return oldStr;
+	}
 }

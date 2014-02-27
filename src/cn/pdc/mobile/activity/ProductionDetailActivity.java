@@ -28,7 +28,7 @@ import cn.pdc.mobile.entity.Production;
 import cn.pdc.mobile.utils.AppUtil;
 import cn.pdc.mobile.utils.Config;
 import cn.pdc.mobile.utils.HttpUtil;
-import cn.pdc.mobile.utils.ToastUtil;
+import cn.pdc.mobile.utils.StringUtil;
 
 public class ProductionDetailActivity extends Activity {
 
@@ -37,6 +37,7 @@ public class ProductionDetailActivity extends Activity {
 	private Production production;
 	private List<String> list_friends;
 	private CharSequence[] cs_friends;
+	private List<String> list_production_name;
 
 	private ListView lv_production;
 	private ProductionAdapter adapter;
@@ -67,7 +68,6 @@ public class ProductionDetailActivity extends Activity {
 		lv_production = (ListView) findViewById(R.id.production_list);
 		adapter = new ProductionAdapter(mContext, list_production);
 		lv_production.setAdapter(adapter);
-		lv_production.setOnItemClickListener(itemClickListener);
 		adapter.notifyDataSetChanged();
 
 		btn_back = (ImageView) findViewById(R.id.back_btn);
@@ -79,6 +79,7 @@ public class ProductionDetailActivity extends Activity {
 		if ("Goods".equals(title_activity)) {
 			tv_title.setText(getString(R.string.Have));
 			btn_tao.setVisibility(View.VISIBLE);
+			lv_production.setOnItemClickListener(itemClickListener);
 		} else if ("WishItem".equals(title_activity)) {
 			tv_title.setText(getString(R.string.Want));
 			btn_tao.setVisibility(View.GONE);
@@ -91,6 +92,7 @@ public class ProductionDetailActivity extends Activity {
 		title_activity = intent.getStringExtra("item");
 
 		list_production = new ArrayList<Production>();
+		list_production_name = new ArrayList<String>();
 	}
 
 	private OnItemClickListener itemClickListener = new OnItemClickListener() {
@@ -98,7 +100,6 @@ public class ProductionDetailActivity extends Activity {
 		@Override
 		public void onItemClick(AdapterView<?> parent, View view, int position,
 				long id) {
-			ToastUtil.showShortToast(mContext, position + "---");
 			AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
 			builder.setTitle(getString(R.string.sendTo));
 			builder.setSingleChoiceItems(cs_friends, 0,
@@ -106,7 +107,7 @@ public class ProductionDetailActivity extends Activity {
 
 						@Override
 						public void onClick(DialogInterface dialog, int which) {
-							ToastUtil.showShortToast(mContext, "test");
+
 						}
 					});
 			builder.setPositiveButton(getString(R.string.yes), null);
@@ -131,6 +132,22 @@ public class ProductionDetailActivity extends Activity {
 			}
 		}
 	};
+
+	/**
+	 * remove spec goods
+	 * 
+	 * @author zouliping
+	 * 
+	 */
+	private class removeGoodsTask extends AsyncTask<String, String, Boolean> {
+
+		@Override
+		protected Boolean doInBackground(String... params) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+	}
 
 	/**
 	 * get friends list
@@ -159,6 +176,7 @@ public class ProductionDetailActivity extends Activity {
 				for (Iterator<?> i = jo.keys(); i.hasNext();) {
 					list_friends.add((String) i.next());
 				}
+				Log.e("friends size", list_friends.size() + "");
 				cs_friends = list_friends.toArray(new CharSequence[list_friends
 						.size()]);
 			} catch (JSONException e) {
@@ -195,19 +213,23 @@ public class ProductionDetailActivity extends Activity {
 				JSONObject jo = new JSONObject(result);
 				for (Iterator<?> i = jo.keys(); i.hasNext();) {
 					String key = (String) i.next();
+					list_production_name.add(key);
 					JSONObject tmp = jo.getJSONObject(key);
 					if (!tmp.isNull("title")) {
-						title = tmp.getString("title");
+						title = StringUtil.removeSpecialChar(tmp
+								.getString("title"));
 					} else {
 						title = getString(R.string.undefined);
 					}
 					if (!tmp.isNull("goods_type")) {
-						type = tmp.getString("goods_type");
+						type = StringUtil.removeSpecialChar(tmp
+								.getString("goods_type"));
 					} else {
 						type = getString(R.string.undefined);
 					}
 					if (!tmp.isNull("description")) {
-						description = tmp.getString("description");
+						description = StringUtil.removeSpecialChar(tmp
+								.getString("description"));
 					} else {
 						description = getString(R.string.undefined);
 					}
