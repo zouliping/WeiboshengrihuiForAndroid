@@ -9,6 +9,7 @@ import org.json.JSONObject;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -29,6 +30,7 @@ import cn.pdc.mobile.utils.AppUtil;
 import cn.pdc.mobile.utils.Config;
 import cn.pdc.mobile.utils.HttpUtil;
 import cn.pdc.mobile.utils.StringUtil;
+import cn.pdc.mobile.utils.ToastUtil;
 
 public class ProductionDetailActivity extends Activity {
 
@@ -98,7 +100,8 @@ public class ProductionDetailActivity extends Activity {
 	private OnItemClickListener itemClickListener = new OnItemClickListener() {
 
 		@Override
-		public void onItemClick(AdapterView<?> parent, View view, int position,
+		public void onItemClick(AdapterView<?> parent, View view,
+				final int position,
 				long id) {
 			AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
 			builder.setTitle(getString(R.string.sendTo));
@@ -107,7 +110,9 @@ public class ProductionDetailActivity extends Activity {
 
 						@Override
 						public void onClick(DialogInterface dialog, int which) {
-
+							new sendGoodsTask().execute(
+									list_production_name.get(position),
+									position + "", cs_friends[which].toString());
 						}
 					});
 			builder.setPositiveButton(getString(R.string.yes), null);
@@ -139,14 +144,68 @@ public class ProductionDetailActivity extends Activity {
 	 * @author zouliping
 	 * 
 	 */
-	private class removeGoodsTask extends AsyncTask<String, String, Boolean> {
+	private class sendGoodsTask extends AsyncTask<String, String, Boolean> {
+
+		ProgressDialog dlg;
+
+		@Override
+		protected void onPreExecute() {
+			dlg = new ProgressDialog(mContext);
+			dlg.setTitle("Sending");
+			dlg.setMessage("Please wait for a monent...");
+			dlg.setCancelable(false);
+			dlg.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+			dlg.show();
+
+		}
 
 		@Override
 		protected Boolean doInBackground(String... params) {
-			// TODO Auto-generated method stub
+			String present = params[0];
+			Integer index = Integer.parseInt(params[1]);
+			String to = params[2];
+			JSONObject jo = new JSONObject();
+
+			try {
+				jo.put("indivname", present);
+				jo.put("uid", Config.uid);
+			} catch (JSONException e) {
+				e.printStackTrace();
+			}
+
+			try {
+				JSONObject reJsonObject = new JSONObject(HttpUtil.doPut(
+						Config.REMOVE_URL, jo));
+				if ((Boolean) reJsonObject.get("result")) {
+					jo.put("classname", "Goods");
+					jo.put("individualname",
+							present + System.currentTimeMillis());
+					jo.put("uid", to);
+					jo.put("title", list_production.get(index).getTitle());
+					jo.put("goods_type", list_production.get(index).getType());
+					jo.put("description", list_production.get(index)
+							.getDescription());
+
+					reJsonObject = new JSONObject(HttpUtil.doPut(
+							Config.UPDATE_INFO, jo));
+					return (Boolean) reJsonObject.get("result");
+				}
+			} catch (JSONException e) {
+				e.printStackTrace();
+			}
 			return null;
 		}
 
+		@Override
+		protected void onPostExecute(Boolean result) {
+			dlg.dismiss();
+			if (result == false) {
+				ToastUtil.showShortToast(mContext, "Failed");
+			} else {
+				ToastUtil.showShortToast(mContext, "Success");
+				ProductionDetailActivity.this.finish();
+			}
+		}
 	}
 
 	/**
@@ -183,6 +242,7 @@ public class ProductionDetailActivity extends Activity {
 				e.printStackTrace();
 			}
 		}
+
 	}
 
 	/**

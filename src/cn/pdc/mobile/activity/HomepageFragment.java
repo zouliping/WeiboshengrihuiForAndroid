@@ -343,7 +343,7 @@ public class HomepageFragment extends Fragment {
 				}
 
 				JSONObject result = new JSONObject(HttpUtil.doPut(
-						Config.UPDATE_USER_INFO, jo));
+						Config.UPDATE_INFO, jo));
 				return (Boolean) result.get("result");
 			} catch (JSONException e) {
 				e.printStackTrace();

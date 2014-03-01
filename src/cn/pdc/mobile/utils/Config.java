@@ -15,19 +15,22 @@ public class Config {
 
 	public static final String URL_GITHUB = "https://github.com/zouliping/WeiboshengrihuiForAndroid";
 
-	public static final String IP = "http://192.168.0.126:9000";
+	public static final String URL = "http://192.168.0.126:9000";
 
 	// login uri
-	public static final String LOGIN = IP + "/user/login";
+	public static final String LOGIN = URL + "/user/login";
 	// get user detail info uri
-	public static final String GET_USER_INFO = IP
+	public static final String GET_USER_INFO = URL
 			+ "/indiv/getpro?indivname=$indivname&uid=";
 	// update the user info uri
-	public static final String UPDATE_USER_INFO = IP + "/indiv/update";
+	public static final String UPDATE_INFO = URL + "/indiv/update";
 	// get friends list uri
-	public static final String GET_FRIENDS_LIST = IP
+	public static final String GET_FRIENDS_LIST = URL
 			+ "/indiv/get?classname=User&uid=";
 	// get propertities or wish item uri
-	public static final String GET_PROPERTITY = IP
+	public static final String GET_PROPERTITY = URL
 			+ "/indiv/get?classname=$classname&uid=";
+
+	// remove goods
+	public static final String REMOVE_URL = URL + "/indiv/remove";
 }
