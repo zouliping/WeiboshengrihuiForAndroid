@@ -53,6 +53,8 @@ public class ProductionDetailActivity extends Activity {
 	private String type;
 	private String description;
 
+	private Integer sendToIndex = 0;
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -101,8 +103,7 @@ public class ProductionDetailActivity extends Activity {
 
 		@Override
 		public void onItemClick(AdapterView<?> parent, View view,
-				final int position,
-				long id) {
+				final int position, long id) {
 			AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
 			builder.setTitle(getString(R.string.sendTo));
 			builder.setSingleChoiceItems(cs_friends, 0,
@@ -110,12 +111,22 @@ public class ProductionDetailActivity extends Activity {
 
 						@Override
 						public void onClick(DialogInterface dialog, int which) {
-							new sendGoodsTask().execute(
-									list_production_name.get(position),
-									position + "", cs_friends[which].toString());
+							sendToIndex = which;
+							Log.e("selected index", sendToIndex + "");
 						}
 					});
-			builder.setPositiveButton(getString(R.string.yes), null);
+			builder.setPositiveButton(getString(R.string.yes),
+					new DialogInterface.OnClickListener() {
+
+						@Override
+						public void onClick(DialogInterface dialog, int which) {
+							Log.e("in btn --- selected index", sendToIndex + "");
+							new sendGoodsTask().execute(
+									list_production_name.get(position),
+									position + "",
+									cs_friends[sendToIndex].toString());
+						}
+					});
 			builder.setNegativeButton(getString(R.string.cancel), null);
 			builder.show();
 		}
@@ -185,6 +196,8 @@ public class ProductionDetailActivity extends Activity {
 					jo.put("goods_type", list_production.get(index).getType());
 					jo.put("description", list_production.get(index)
 							.getDescription());
+
+					Log.e("send present", jo.toString());
 
 					reJsonObject = new JSONObject(HttpUtil.doPut(
 							Config.UPDATE_INFO, jo));
