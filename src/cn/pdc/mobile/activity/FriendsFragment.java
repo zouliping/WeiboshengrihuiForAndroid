@@ -7,7 +7,10 @@ import java.util.List;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -18,12 +21,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.ListView;
 import cn.pdc.mobile.R;
 import cn.pdc.mobile.adapter.FriendAdapter;
 import cn.pdc.mobile.entity.User;
 import cn.pdc.mobile.utils.Config;
 import cn.pdc.mobile.utils.HttpUtil;
+import cn.pdc.mobile.utils.ToastUtil;
 
 public class FriendsFragment extends Fragment {
 
@@ -57,6 +62,7 @@ public class FriendsFragment extends Fragment {
 	private void initViews() {
 		lv_friend = (ListView) mainView.findViewById(R.id.friends_list);
 		lv_friend.setOnItemClickListener(listener);
+		lv_friend.setOnItemLongClickListener(longClickListener);
 		adapter = new FriendAdapter(mContext);
 		adapter.setFriendsList(list_friend);
 		lv_friend.setAdapter(adapter);
@@ -85,6 +91,76 @@ public class FriendsFragment extends Fragment {
 			startActivity(intent);
 		}
 	};
+
+	private OnItemLongClickListener longClickListener = new OnItemLongClickListener() {
+
+		@Override
+		public boolean onItemLongClick(AdapterView<?> parent, View view,
+				final int position, long id) {
+			AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+			builder.setTitle("Delete Friend");
+			builder.setMessage("Are you sure to delete "
+					+ list_friend.get(position).getNickname() + "?");
+			builder.setPositiveButton(getString(R.string.yes),
+					new DialogInterface.OnClickListener() {
+
+						@Override
+						public void onClick(DialogInterface dialog, int which) {
+							new removeFriendTask().execute(list_friend.get(
+									position).getUid());
+						}
+					});
+			builder.setNegativeButton(getString(R.string.cancel), null);
+			builder.show();
+			return false;
+		}
+	};
+
+	private class removeFriendTask extends AsyncTask<String, String, Boolean> {
+
+		ProgressDialog dlg;
+
+		@Override
+		protected void onPreExecute() {
+			dlg = new ProgressDialog(mContext);
+			dlg.setTitle("Sending");
+			dlg.setMessage("Please wait for a monent...");
+			dlg.setCancelable(false);
+			dlg.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+			dlg.show();
+
+		}
+
+		@Override
+		protected Boolean doInBackground(String... params) {
+			String friend = params[0];
+			JSONObject jo = new JSONObject();
+			try {
+				jo.put("indivi1", Config.uid);
+				jo.put("indivi2", friend);
+				jo.put("relation", "follow");
+				jo.put("uid", Config.uid);
+
+				JSONObject result = new JSONObject(HttpUtil.doPut(
+						Config.REMOVE_RELATION_URL, jo));
+				return (Boolean) result.get("result");
+			} catch (JSONException e) {
+				e.printStackTrace();
+			}
+			return null;
+		}
+
+		@Override
+		protected void onPostExecute(Boolean result) {
+			dlg.dismiss();
+			if (result == false) {
+				ToastUtil.showShortToast(mContext, "Failed");
+			} else {
+				ToastUtil.showShortToast(mContext, "Success");
+			}
+		}
+
+	}
 
 	private class getBasicInfoTask extends AsyncTask<String, String, String> {
 		@Override

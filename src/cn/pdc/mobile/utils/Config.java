@@ -33,4 +33,8 @@ public class Config {
 
 	// remove goods
 	public static final String REMOVE_URL = URL + "/indiv/remove";
+
+	// remove relation
+	public static final String REMOVE_RELATION_URL = URL
+			+ "/indiv/removerelation";
 }
