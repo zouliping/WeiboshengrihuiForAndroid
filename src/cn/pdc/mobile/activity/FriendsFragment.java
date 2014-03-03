@@ -12,6 +12,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -23,6 +24,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.ListView;
+import android.widget.ViewSwitcher;
 import cn.pdc.mobile.R;
 import cn.pdc.mobile.adapter.FriendAdapter;
 import cn.pdc.mobile.entity.User;
@@ -35,6 +37,7 @@ public class FriendsFragment extends Fragment {
 	private Context mContext;
 
 	private View mainView;
+	private ViewSwitcher vs_friend;
 	private ListView lv_friend;
 	private FriendAdapter adapter;
 
@@ -60,13 +63,25 @@ public class FriendsFragment extends Fragment {
 	}
 
 	private void initViews() {
-		lv_friend = (ListView) mainView.findViewById(R.id.friends_list);
+		vs_friend = (ViewSwitcher) mainView.findViewById(R.id.friends_vs);
+		lv_friend = new ListView(mContext);
+		lv_friend.setCacheColorHint(Color.argb(0, 0, 0, 0));
+		lv_friend.setDivider(getResources().getDrawable(
+				R.drawable.list_divider_line));
+		lv_friend.setDividerHeight(1);
+		lv_friend.setSelector(R.drawable.list_item_selector);
 		lv_friend.setOnItemClickListener(listener);
 		lv_friend.setOnItemLongClickListener(longClickListener);
 		adapter = new FriendAdapter(mContext);
 		adapter.setFriendsList(list_friend);
 		lv_friend.setAdapter(adapter);
 		adapter.notifyDataSetChanged();
+
+		vs_friend.addView(lv_friend);
+		vs_friend.addView(getActivity().getLayoutInflater().inflate(
+				R.layout.layout_progress_page, null));
+
+		vs_friend.showNext();
 	}
 
 	private void initList() {
@@ -116,6 +131,12 @@ public class FriendsFragment extends Fragment {
 		}
 	};
 
+	/**
+	 * remove friend relationship
+	 * 
+	 * @author zouliping
+	 * 
+	 */
 	private class removeFriendTask extends AsyncTask<String, String, Boolean> {
 
 		ProgressDialog dlg;
@@ -216,6 +237,7 @@ public class FriendsFragment extends Fragment {
 			} finally {
 				adapter.setFriendsList(list_friend);
 				adapter.notifyDataSetChanged();
+				vs_friend.setDisplayedChild(0);
 			}
 		}
 	}

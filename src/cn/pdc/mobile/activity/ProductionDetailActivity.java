@@ -13,6 +13,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -23,6 +24,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.ViewSwitcher;
 import cn.pdc.mobile.R;
 import cn.pdc.mobile.adapter.ProductionAdapter;
 import cn.pdc.mobile.entity.Production;
@@ -41,6 +43,7 @@ public class ProductionDetailActivity extends Activity {
 	private CharSequence[] cs_friends;
 	private List<String> list_production_name;
 
+	private ViewSwitcher vs_production;
 	private ListView lv_production;
 	private ProductionAdapter adapter;
 	private ImageView btn_back;
@@ -69,10 +72,22 @@ public class ProductionDetailActivity extends Activity {
 	}
 
 	private void initViews() {
-		lv_production = (ListView) findViewById(R.id.production_list);
+		vs_production = (ViewSwitcher) findViewById(R.id.production_vs);
+		lv_production = new ListView(mContext);
+		lv_production.setCacheColorHint(Color.argb(0, 0, 0, 0));
+		lv_production.setDivider(getResources().getDrawable(
+				R.drawable.list_divider_line));
+		lv_production.setDividerHeight(1);
+		lv_production.setSelector(R.drawable.list_item_selector);
+
 		adapter = new ProductionAdapter(mContext, list_production);
 		lv_production.setAdapter(adapter);
 		adapter.notifyDataSetChanged();
+
+		vs_production.addView(lv_production);
+		vs_production.addView(getLayoutInflater().inflate(
+				R.layout.layout_progress_page, null));
+		vs_production.showNext();
 
 		btn_back = (ImageView) findViewById(R.id.back_btn);
 		btn_tao = (ImageView) findViewById(R.id.tao_btn);
@@ -313,6 +328,7 @@ public class ProductionDetailActivity extends Activity {
 				e.printStackTrace();
 			} finally {
 				adapter.notifyDataSetChanged();
+				vs_production.setDisplayedChild(0);
 			}
 		}
 	}
