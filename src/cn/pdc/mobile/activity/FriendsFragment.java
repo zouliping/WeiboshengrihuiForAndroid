@@ -115,7 +115,7 @@ public class FriendsFragment extends Fragment {
 			AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
 			builder.setTitle("Delete Friend");
 			builder.setMessage("Are you sure to delete "
-					+ list_friend.get(position).getNickname() + "?");
+					+ list_friend.get(position).getUid() + "?");
 			builder.setPositiveButton(getString(R.string.yes),
 					new DialogInterface.OnClickListener() {
 
@@ -178,6 +178,8 @@ public class FriendsFragment extends Fragment {
 				ToastUtil.showShortToast(mContext, "Failed");
 			} else {
 				ToastUtil.showShortToast(mContext, "Success");
+				vs_friend.setDisplayedChild(1);
+				new getBasicInfoTask().execute("");
 			}
 		}
 
@@ -198,6 +200,7 @@ public class FriendsFragment extends Fragment {
 				if (result == null) {
 					return;
 				}
+				list_friend = new ArrayList<User>();
 				JSONObject jo = new JSONObject(result);
 				for (Iterator<?> i = jo.keys(); i.hasNext();) {
 					String key = (String) i.next();
