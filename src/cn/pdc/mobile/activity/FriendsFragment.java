@@ -42,7 +42,7 @@ public class FriendsFragment extends Fragment {
 	private FriendAdapter adapter;
 
 	private List<User> list_friend;
-
+   
 	private String nickname;
 	private String location;
 	private String birthday;
