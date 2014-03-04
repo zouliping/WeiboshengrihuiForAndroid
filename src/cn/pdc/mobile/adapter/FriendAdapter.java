@@ -1,5 +1,6 @@
 package cn.pdc.mobile.adapter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import android.content.Context;
@@ -14,7 +15,7 @@ import cn.pdc.mobile.entity.User;
 
 public class FriendAdapter extends BaseAdapter {
 
-	private List<User> friendsList;
+	private List<User> friendsList = new ArrayList<User>();
 	private Context mContext;
 
 	public FriendAdapter(Context mContext) {
