@@ -80,9 +80,8 @@ public class ProductionDetailActivity extends Activity {
 		lv_production.setDividerHeight(1);
 		lv_production.setSelector(R.drawable.list_item_selector);
 
-		adapter = new ProductionAdapter(mContext, list_production);
+		adapter = new ProductionAdapter(mContext);
 		lv_production.setAdapter(adapter);
-		adapter.notifyDataSetChanged();
 
 		vs_production.addView(lv_production);
 		vs_production.addView(getLayoutInflater().inflate(
@@ -109,9 +108,6 @@ public class ProductionDetailActivity extends Activity {
 		Intent intent = getIntent();
 		uid = intent.getStringExtra("uid");
 		title_activity = intent.getStringExtra("item");
-
-		list_production = new ArrayList<Production>();
-		list_production_name = new ArrayList<String>();
 	}
 
 	private OnItemClickListener itemClickListener = new OnItemClickListener() {
@@ -298,6 +294,8 @@ public class ProductionDetailActivity extends Activity {
 					return;
 				}
 
+				list_production = new ArrayList<Production>();
+				list_production_name = new ArrayList<String>();
 				JSONObject jo = new JSONObject(result);
 				for (Iterator<?> i = jo.keys(); i.hasNext();) {
 					String key = (String) i.next();
@@ -327,6 +325,7 @@ public class ProductionDetailActivity extends Activity {
 			} catch (JSONException e) {
 				e.printStackTrace();
 			} finally {
+				adapter.setProductionList(list_production);
 				adapter.notifyDataSetChanged();
 				vs_production.setDisplayedChild(0);
 			}

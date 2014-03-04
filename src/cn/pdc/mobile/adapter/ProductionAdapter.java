@@ -1,9 +1,7 @@
 package cn.pdc.mobile.adapter;
 
+import java.util.ArrayList;
 import java.util.List;
-
-import cn.pdc.mobile.R;
-import cn.pdc.mobile.entity.Production;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -11,10 +9,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
+import cn.pdc.mobile.R;
+import cn.pdc.mobile.entity.Production;
 
 public class ProductionAdapter extends BaseAdapter {
 
-	private List<Production> productionList;
+	private List<Production> productionList = new ArrayList<Production>();
 	private Context mContext;
 
 	public ProductionAdapter(Context mContext) {
@@ -26,6 +26,10 @@ public class ProductionAdapter extends BaseAdapter {
 		super();
 		this.productionList = productionList;
 		this.mContext = mContext;
+	}
+
+	public void setProductionList(List<Production> productionList) {
+		this.productionList = productionList;
 	}
 
 	@Override

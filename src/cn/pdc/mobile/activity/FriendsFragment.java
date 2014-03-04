@@ -55,7 +55,6 @@ public class FriendsFragment extends Fragment {
 		mainView = inflater.inflate(R.layout.fragment_friends, null);
 		mContext = getActivity();
 
-		initList();
 		initViews();
 		new getBasicInfoTask().execute("");
 
@@ -72,8 +71,8 @@ public class FriendsFragment extends Fragment {
 		lv_friend.setSelector(R.drawable.list_item_selector);
 		lv_friend.setOnItemClickListener(listener);
 		lv_friend.setOnItemLongClickListener(longClickListener);
+
 		adapter = new FriendAdapter(mContext);
-		adapter.setFriendsList(list_friend);
 		lv_friend.setAdapter(adapter);
 		adapter.notifyDataSetChanged();
 
@@ -82,10 +81,6 @@ public class FriendsFragment extends Fragment {
 				R.layout.layout_progress_page, null));
 
 		vs_friend.showNext();
-	}
-
-	private void initList() {
-		list_friend = new ArrayList<User>();
 	}
 
 	private OnItemClickListener listener = new OnItemClickListener() {
@@ -202,6 +197,7 @@ public class FriendsFragment extends Fragment {
 				}
 				list_friend = new ArrayList<User>();
 				JSONObject jo = new JSONObject(result);
+				list_friend = new ArrayList<User>();
 				for (Iterator<?> i = jo.keys(); i.hasNext();) {
 					String key = (String) i.next();
 					JSONObject user = jo.getJSONObject(key);

@@ -7,7 +7,7 @@
         android:showAsAction="always"
         android:title="@string/default_name"
         android:titleCondensed="@string/default_name"
-        android:visible="true">
+        android:visible="false">
     </item>
 
 </menu>
