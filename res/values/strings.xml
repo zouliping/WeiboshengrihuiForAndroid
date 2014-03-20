@@ -29,7 +29,7 @@
     <string name="rights_text">©zouliping</string>
 
     <!-- for settings -->
-    <string name="pdc_setting">PDC Settings</string>
+    <string name="pdc_setting">PDC Privacy</string>
     <string name="privacy">Privacy</string>
     <string name="clear_cache">Clear Cache</string>
     <string name="about">About</string>

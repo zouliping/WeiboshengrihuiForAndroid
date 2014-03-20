@@ -10,6 +10,12 @@ import android.view.WindowManager;
 import cn.pdc.mobile.R;
 import cn.pdc.mobile.utils.Config;
 
+/**
+ * Splash
+ * 
+ * @author zouliping
+ * 
+ */
 public class SplashScreen extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);

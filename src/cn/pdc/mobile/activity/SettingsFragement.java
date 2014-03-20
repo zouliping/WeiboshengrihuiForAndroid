@@ -26,6 +26,12 @@ import cn.pdc.mobile.utils.AppUtil;
 import cn.pdc.mobile.utils.Config;
 import cn.pdc.mobile.view.CornerListView;
 
+/**
+ * Settings
+ * 
+ * @author zouliping
+ * 
+ */
 public class SettingsFragement extends Fragment {
 
 	private Context mContext;

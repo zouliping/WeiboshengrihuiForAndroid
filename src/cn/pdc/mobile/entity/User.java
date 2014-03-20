@@ -1,5 +1,11 @@
 package cn.pdc.mobile.entity;
 
+/**
+ * Entity User
+ * 
+ * @author zouliping
+ * 
+ */
 public class User {
 
 	private String uid;

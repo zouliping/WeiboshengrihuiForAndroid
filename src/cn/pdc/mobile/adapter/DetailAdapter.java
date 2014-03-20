@@ -11,6 +11,12 @@ import android.widget.TextView;
 import cn.pdc.mobile.R;
 import cn.pdc.mobile.entity.Pair;
 
+/**
+ * User Detail and Friend Detail Adapter
+ * 
+ * @author zouliping
+ * 
+ */
 public class DetailAdapter extends BaseAdapter {
 
 	private List<Pair> detailList;

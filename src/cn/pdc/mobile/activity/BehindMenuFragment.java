@@ -11,6 +11,12 @@ import android.widget.RadioGroup.OnCheckedChangeListener;
 import cn.pdc.mobile.R;
 import cn.pdc.mobile.utils.Config;
 
+/**
+ * Behind Menu
+ * 
+ * @author zouliping
+ * 
+ */
 public class BehindMenuFragment extends Fragment {
 
 	private RadioGroup menuGroup;

@@ -1,5 +1,11 @@
 package cn.pdc.mobile.entity;
 
+/**
+ * Entity Pair
+ * 
+ * @author zouliping
+ * 
+ */
 public class Pair {
 
 	String name;

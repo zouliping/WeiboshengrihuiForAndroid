@@ -13,6 +13,12 @@ import android.widget.TextView;
 import cn.pdc.mobile.R;
 import cn.pdc.mobile.entity.User;
 
+/**
+ * Friend List Adapter
+ * 
+ * @author zouliping
+ * 
+ */
 public class FriendAdapter extends BaseAdapter {
 
 	private List<User> friendsList = new ArrayList<User>();

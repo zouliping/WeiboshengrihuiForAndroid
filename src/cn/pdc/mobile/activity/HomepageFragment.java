@@ -34,6 +34,12 @@ import cn.pdc.mobile.utils.HttpUtil;
 import cn.pdc.mobile.utils.ToastUtil;
 import cn.pdc.mobile.view.CornerListView;
 
+/**
+ * Homepage
+ * 
+ * @author zouliping
+ * 
+ */
 public class HomepageFragment extends Fragment {
 
 	private Context mContext;

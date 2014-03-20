@@ -7,6 +7,12 @@ import cn.pdc.mobile.R;
 
 import com.slidingmenu.lib.SlidingMenu;
 
+/**
+ * Main Activity
+ * 
+ * @author zouliping
+ * 
+ */
 public class MainActivity extends BaseActivity {
 
 	private Fragment mContent;
@@ -37,8 +43,8 @@ public class MainActivity extends BaseActivity {
 
 		// behind view
 		setBehindContentView(R.layout.frame_menu);
-		manager.beginTransaction()
-				.replace(R.id.menu_frame, menuFragment).commit();
+		manager.beginTransaction().replace(R.id.menu_frame, menuFragment)
+				.commit();
 
 		getSlidingMenu().setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);
 	}
