@@ -268,8 +268,7 @@ public class HomepageFragment extends Fragment {
 	private class getBasicInfoTask extends AsyncTask<String, String, String> {
 		@Override
 		protected String doInBackground(String... params) {
-			return HttpUtil.doGet(Config.GET_USER_INFO.replace("$indivname",
-					Config.uid) + Config.uid);
+			return HttpUtil.doGet(Config.GET_USER_INFO + Config.uid);
 		}
 
 		@Override
