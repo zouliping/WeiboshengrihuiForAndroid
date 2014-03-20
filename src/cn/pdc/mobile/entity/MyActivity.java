@@ -2,6 +2,12 @@ package cn.pdc.mobile.entity;
 
 import java.io.Serializable;
 
+/**
+ * Entity Activity
+ * 
+ * @author zouliping
+ * 
+ */
 public class MyActivity implements Serializable {
 
 	/**

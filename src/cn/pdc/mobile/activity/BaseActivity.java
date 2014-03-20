@@ -8,6 +8,12 @@ import com.actionbarsherlock.view.MenuItem;
 import com.slidingmenu.lib.SlidingMenu;
 import com.slidingmenu.lib.app.SlidingFragmentActivity;
 
+/**
+ * Basic Activity
+ * 
+ * @author zouliping
+ * 
+ */
 public class BaseActivity extends SlidingFragmentActivity {
 
 	private int titleRes; // titlebar

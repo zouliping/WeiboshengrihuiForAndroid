@@ -15,7 +15,7 @@ public class Config {
 
 	public static final String URL_GITHUB = "https://github.com/zouliping/WeiboshengrihuiForAndroid";
 
-	public static final String URL = "http://192.168.0.126:9000";
+	public static final String URL = "http://192.168.0.114:9000";
 
 	// login uri
 	public static final String LOGIN = URL + "/user/login";

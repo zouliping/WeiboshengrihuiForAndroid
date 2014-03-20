@@ -32,6 +32,12 @@ import cn.pdc.mobile.utils.Config;
 import cn.pdc.mobile.utils.HttpUtil;
 import cn.pdc.mobile.utils.ToastUtil;
 
+/**
+ * Friends
+ * 
+ * @author zouliping
+ * 
+ */
 public class FriendsFragment extends Fragment {
 
 	private Context mContext;

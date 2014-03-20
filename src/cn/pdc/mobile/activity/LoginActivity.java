@@ -23,6 +23,12 @@ import cn.pdc.mobile.utils.Config;
 import cn.pdc.mobile.utils.HttpUtil;
 import cn.pdc.mobile.utils.ToastUtil;
 
+/**
+ * Login Activity
+ * 
+ * @author zouliping
+ * 
+ */
 public class LoginActivity extends Activity {
 
 	private Context mContext = LoginActivity.this;

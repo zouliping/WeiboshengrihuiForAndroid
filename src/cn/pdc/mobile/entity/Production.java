@@ -1,5 +1,11 @@
 package cn.pdc.mobile.entity;
 
+/**
+ * Entity Production
+ * 
+ * @author zouliping
+ * 
+ */
 public class Production {
 	private String title;
 	private String type;

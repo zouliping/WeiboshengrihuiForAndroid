@@ -12,6 +12,12 @@ import android.widget.TextView;
 import cn.pdc.mobile.R;
 import cn.pdc.mobile.entity.Production;
 
+/**
+ * Production List Adapter
+ * 
+ * @author zouliping
+ * 
+ */
 public class ProductionAdapter extends BaseAdapter {
 
 	private List<Production> productionList = new ArrayList<Production>();

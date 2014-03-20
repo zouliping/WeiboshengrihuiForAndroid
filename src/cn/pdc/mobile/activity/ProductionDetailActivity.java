@@ -34,6 +34,12 @@ import cn.pdc.mobile.utils.HttpUtil;
 import cn.pdc.mobile.utils.StringUtil;
 import cn.pdc.mobile.utils.ToastUtil;
 
+/**
+ * Production Detail
+ * 
+ * @author zouliping
+ * 
+ */
 public class ProductionDetailActivity extends Activity {
 
 	private Context mContext = ProductionDetailActivity.this;

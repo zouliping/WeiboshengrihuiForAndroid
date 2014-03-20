@@ -23,6 +23,12 @@ import cn.pdc.mobile.utils.AppUtil;
 import cn.pdc.mobile.utils.Config;
 import cn.pdc.mobile.view.CornerListView;
 
+/**
+ * Friend Detail
+ * 
+ * @author zouliping
+ * 
+ */
 public class FriendDetailActivity extends Activity {
 
 	private Context mContext = FriendDetailActivity.this;
