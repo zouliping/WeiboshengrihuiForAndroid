@@ -194,6 +194,18 @@ public class ProductionDetailActivity extends Activity {
 			String to = params[2];
 			JSONObject jo = new JSONObject();
 
+			JSONObject sjo = new JSONObject();
+			JSONObject result0 = null;
+			try {
+				sjo.put("from", Config.uid);
+				sjo.put("to", to);
+				sjo.put("pid", present);
+				result0 = new JSONObject(HttpUtil.doPut(
+						Config.SEND_PRESENT_URL, sjo));
+			} catch (JSONException e) {
+				e.printStackTrace();
+			}
+
 			try {
 				jo.put("indivname", present);
 				jo.put("uid", Config.uid);
@@ -203,7 +215,7 @@ public class ProductionDetailActivity extends Activity {
 
 			try {
 				JSONObject reJsonObject = new JSONObject(HttpUtil.doPut(
-						Config.REMOVE_URL, jo));
+						Config.REMOVE_URL_API, jo));
 				if ((Boolean) reJsonObject.get("result")) {
 					jo.put("classname", "Goods");
 					jo.put("individualname",
@@ -217,8 +229,9 @@ public class ProductionDetailActivity extends Activity {
 					Log.e("send present", jo.toString());
 
 					reJsonObject = new JSONObject(HttpUtil.doPut(
-							Config.UPDATE_INFO, jo));
-					return (Boolean) reJsonObject.get("result");
+							Config.UPDATE_INFO_API, jo));
+					return (Boolean) reJsonObject.get("result")
+							&& result0.getBoolean("result");
 				}
 			} catch (JSONException e) {
 				e.printStackTrace();

@@ -163,9 +163,12 @@ public class FriendsFragment extends Fragment {
 				jo.put("relation", "follow");
 				jo.put("uid", Config.uid);
 
-				JSONObject result = new JSONObject(HttpUtil.doPut(
+				JSONObject result0 = new JSONObject(HttpUtil.doPut(
 						Config.REMOVE_RELATION_URL, jo));
-				return (Boolean) result.get("result");
+				JSONObject result = new JSONObject(HttpUtil.doPut(
+						Config.REMOVE_RELATION_URL_API, jo));
+				return (Boolean) result.get("result")
+						&& result0.getBoolean("result");
 			} catch (JSONException e) {
 				e.printStackTrace();
 			}

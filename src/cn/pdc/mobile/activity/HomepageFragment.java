@@ -268,6 +268,7 @@ public class HomepageFragment extends Fragment {
 	private class getBasicInfoTask extends AsyncTask<String, String, String> {
 		@Override
 		protected String doInBackground(String... params) {
+			Log.e("get basic", Config.GET_USER_INFO + Config.uid);
 			return HttpUtil.doGet(Config.GET_USER_INFO + Config.uid);
 		}
 
@@ -347,9 +348,12 @@ public class HomepageFragment extends Fragment {
 					jo.put(params[0], attrvalue);
 				}
 
-				JSONObject result = new JSONObject(HttpUtil.doPut(
+				JSONObject result0 = new JSONObject(HttpUtil.doPut(
 						Config.UPDATE_INFO, jo));
-				return (Boolean) result.get("result");
+				JSONObject result = new JSONObject(HttpUtil.doPut(
+						Config.UPDATE_INFO_API, jo));
+				return (Boolean) result.get("result")
+						&& result0.getBoolean("result");
 			} catch (JSONException e) {
 				e.printStackTrace();
 			}
