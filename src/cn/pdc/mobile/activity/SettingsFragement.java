@@ -104,6 +104,7 @@ public class SettingsFragement extends Fragment {
 				long id) {
 			switch (position) {
 			case 0:
+				
 				break;
 			case 1:
 				AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
