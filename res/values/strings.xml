@@ -40,6 +40,8 @@
     <string name="public_visible">Public</string>
     <string name="friends_visible">Friends Visible</string>
     <string name="service_visible">Services Visible</string>
+    <string name="privacy_type_title">Privacy Type</string>
+    <string name="privacy_class_title">Choose Class</string>
 
     <!-- for production -->
     <string name="Title">Title:</string>

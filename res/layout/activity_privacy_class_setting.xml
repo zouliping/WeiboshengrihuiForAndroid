@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#ffd3d3d3" >
+    android:layout_height="match_parent" >
 
     <RelativeLayout
-        android:id="@+id/privacy_title_bar"
+        android:id="@+id/privacy_class_title_bar"
         android:layout_width="fill_parent"
         android:layout_height="50dp"
         android:layout_alignParentTop="true"
@@ -23,22 +22,18 @@
             android:src="@drawable/back" />
 
         <TextView
-            android:id="@+id/privacy_type_title"
             style="@style/title_activity_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:gravity="center"
-            android:text="@string/privacy_type_title" />
+            android:text="@string/privacy_class_title" />
     </RelativeLayout>
-
-    <cn.pdc.mobile.view.CornerListView
-        android:id="@+id/privacy_type_list"
-        style="@style/list_container"
+    
+     <ViewSwitcher
+        android:id="@+id/class_vs"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/privacy_title_bar"
-        android:layout_margin="10dp" >
-    </cn.pdc.mobile.view.CornerListView>
+        android:layout_height="match_parent"
+        android:layout_below="@id/privacy_class_title_bar" />
 
 </RelativeLayout>

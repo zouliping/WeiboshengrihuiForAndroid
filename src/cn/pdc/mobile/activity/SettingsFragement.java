@@ -104,7 +104,8 @@ public class SettingsFragement extends Fragment {
 				long id) {
 			switch (position) {
 			case 0:
-				
+				Intent i = new Intent(mContext, PrivacySettingActivity.class);
+				startActivity(i);
 				break;
 			case 1:
 				AlertDialog.Builder builder = new AlertDialog.Builder(mContext);

@@ -16,7 +16,7 @@ public class Config {
 	public static final String URL_GITHUB = "https://github.com/zouliping/WeiboshengrihuiForAndroid";
 
 	public static final String URL = "http://192.168.0.103:6000";
-	public static final String URL_API = "http://192.168.0.103:9000";
+	public static final String URL_API = "http://192.168.0.121:9000";
 
 	// login uri
 	public static final String LOGIN = URL + "/user/login";
@@ -43,4 +43,7 @@ public class Config {
 			+ "/user/remove_friend";
 	public static final String REMOVE_RELATION_URL_API = URL_API
 			+ "/indiv/removerelation";
+
+	// get class
+	public static final String GET_CLASS_INFO_INFO = URL_API + "/onto/all";
 }

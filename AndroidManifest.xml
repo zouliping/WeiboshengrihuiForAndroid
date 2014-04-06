@@ -35,6 +35,10 @@
         </activity>
         <activity android:name="cn.pdc.mobile.activity.ProductionDetailActivity" >
         </activity>
+        <activity android:name="cn.pdc.mobile.activity.PrivacySettingActivity" >
+        </activity>
+        <activity android:name="cn.pdc.mobile.activity.PrivacyClassSettingActivity" >
+        </activity>
     </application>
 
 </manifest>
