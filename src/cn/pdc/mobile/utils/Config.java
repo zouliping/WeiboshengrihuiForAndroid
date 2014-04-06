@@ -46,4 +46,8 @@ public class Config {
 
 	// get class
 	public static final String GET_CLASS_INFO_INFO = URL_API + "/onto/all";
+
+	// get class properties
+	public static final String GET_PROPERTIES_INFO = URL_API
+			+ "/onto/get?classname=";
 }
