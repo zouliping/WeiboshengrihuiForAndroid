@@ -43,6 +43,7 @@
     <string name="privacy_type_title">Privacy Type</string>
     <string name="privacy_class_title">Choose Class</string>
     <string name="privacy_pro_title">Choose Properties</string>
+    <string name="privacy_pro_map_key">title</string>
 
     <!-- for production -->
     <string name="Title">Title:</string>

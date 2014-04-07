@@ -650,58 +650,63 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int nickname=0x7f020027;
         public static final int progress_bar=0x7f020028;
         public static final int rounded_rect=0x7f020029;
-        public static final int settings=0x7f02002a;
-        public static final int shadow=0x7f02002b;
-        public static final int shape_bg_listview=0x7f02002c;
-        public static final int splash=0x7f02002d;
-        public static final int tao=0x7f02002e;
+        public static final int selected=0x7f02002a;
+        public static final int send=0x7f02002b;
+        public static final int settings=0x7f02002c;
+        public static final int shadow=0x7f02002d;
+        public static final int shape_bg_listview=0x7f02002e;
+        public static final int splash=0x7f02002f;
+        public static final int tao=0x7f020030;
     }
     public static final class id {
-        public static final int accounts=0x7f05002c;
+        public static final int accounts=0x7f05002f;
+        public static final int all_btn=0x7f05000f;
         public static final int avatar_menu=0x7f050008;
         public static final int back_btn=0x7f050005;
         public static final int back_calendar=0x7f050006;
-        public static final int card_avatar=0x7f050024;
-        public static final int card_birthday=0x7f050026;
-        public static final int card_location=0x7f050027;
-        public static final int card_nick=0x7f050025;
+        public static final int card_avatar=0x7f050025;
+        public static final int card_birthday=0x7f050027;
+        public static final int card_location=0x7f050028;
+        public static final int card_nick=0x7f050026;
         public static final int class_vs=0x7f05000d;
-        public static final int content_frame=0x7f050020;
-        public static final int detail_list=0x7f050018;
-        public static final int detail_name=0x7f050022;
-        public static final int detail_value=0x7f050023;
+        public static final int content_frame=0x7f050021;
+        public static final int detail_list=0x7f050019;
+        public static final int detail_name=0x7f050023;
+        public static final int detail_value=0x7f050024;
         public static final int friend_detail_list=0x7f050007;
-        public static final int friends_menu=0x7f05001c;
-        public static final int friends_vs=0x7f050017;
+        public static final int friends_menu=0x7f05001d;
+        public static final int friends_vs=0x7f050018;
         public static final int fullscreen=0x7f050003;
-        public static final int homepage_menu=0x7f05001b;
+        public static final int homepage_menu=0x7f05001c;
         public static final int left=0x7f050000;
         public static final int login_btn=0x7f05000b;
         public static final int login_name=0x7f050009;
         public static final int login_pwd=0x7f05000a;
-        public static final int logout_btn=0x7f05001f;
-        public static final int main_menu=0x7f05001a;
+        public static final int logout_btn=0x7f050020;
+        public static final int main_menu=0x7f05001b;
         public static final int margin=0x7f050002;
-        public static final int menu_frame=0x7f050021;
+        public static final int menu_frame=0x7f050022;
         public static final int privacy_class_title_bar=0x7f05000c;
         public static final int privacy_pro_title_bar=0x7f05000e;
-        public static final int privacy_title_bar=0x7f050010;
-        public static final int privacy_type_list=0x7f050012;
-        public static final int privacy_type_title=0x7f050011;
-        public static final int pro_vs=0x7f05000f;
-        public static final int production_description=0x7f05002a;
-        public static final int production_title=0x7f050014;
-        public static final int production_title_bar=0x7f050013;
-        public static final int production_tpye=0x7f050029;
-        public static final int production_vs=0x7f050016;
+        public static final int privacy_title_bar=0x7f050011;
+        public static final int privacy_type_list=0x7f050013;
+        public static final int privacy_type_title=0x7f050012;
+        public static final int pro_selected=0x7f05002b;
+        public static final int pro_title=0x7f05002a;
+        public static final int pro_vs=0x7f050010;
+        public static final int production_description=0x7f05002d;
+        public static final int production_title=0x7f050015;
+        public static final int production_title_bar=0x7f050014;
+        public static final int production_tpye=0x7f05002c;
+        public static final int production_vs=0x7f050017;
         public static final int right=0x7f050001;
         public static final int selected_view=0x7f050004;
-        public static final int setting_list=0x7f05001e;
-        public static final int settings_menu=0x7f05001d;
-        public static final int slidingmenumain=0x7f05002b;
-        public static final int tao_btn=0x7f050015;
-        public static final int title=0x7f050028;
-        public static final int username_menu=0x7f050019;
+        public static final int setting_list=0x7f05001f;
+        public static final int settings_menu=0x7f05001e;
+        public static final int slidingmenumain=0x7f05002e;
+        public static final int tao_btn=0x7f050016;
+        public static final int title=0x7f050029;
+        public static final int username_menu=0x7f05001a;
     }
     public static final class integer {
         public static final int num_cols=0x7f080000;
@@ -725,9 +730,10 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int list_item_detail_without_img=0x7f03000f;
         public static final int list_item_friend=0x7f030010;
         public static final int list_item_privacy_class=0x7f030011;
-        public static final int list_item_production_detail=0x7f030012;
-        public static final int list_item_user_detail=0x7f030013;
-        public static final int slidingmenu=0x7f030014;
+        public static final int list_item_privacy_property=0x7f030012;
+        public static final int list_item_production_detail=0x7f030013;
+        public static final int list_item_user_detail=0x7f030014;
+        public static final int slidingmenu=0x7f030015;
     }
     public static final class menu {
         public static final int main=0x7f0c0000;
@@ -736,7 +742,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         /**  for homepage 
          */
         public static final int Birthday=0x7f0a0008;
-        public static final int Description=0x7f0a0025;
+        public static final int Description=0x7f0a0026;
         public static final int Female=0x7f0a000f;
         public static final int Friends=0x7f0a0002;
         public static final int Gender=0x7f0a000c;
@@ -749,8 +755,8 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int Settings=0x7f0a0003;
         /**  for production 
          */
-        public static final int Title=0x7f0a0023;
-        public static final int Type=0x7f0a0024;
+        public static final int Title=0x7f0a0024;
+        public static final int Type=0x7f0a0025;
         public static final int Want=0x7f0a000d;
         public static final int about=0x7f0a0018;
         /**  for basic 
@@ -770,16 +776,17 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int pdc_setting=0x7f0a0015;
         public static final int privacy=0x7f0a0016;
         public static final int privacy_class_title=0x7f0a0021;
+        public static final int privacy_pro_map_key=0x7f0a0023;
         public static final int privacy_pro_title=0x7f0a0022;
         public static final int privacy_type_title=0x7f0a0020;
         public static final int public_visible=0x7f0a001d;
         public static final int rights_text=0x7f0a0014;
-        public static final int sendTo=0x7f0a0026;
+        public static final int sendTo=0x7f0a0027;
         public static final int service_visible=0x7f0a001f;
         /**  for titile 
          */
-        public static final int title_friend_detail=0x7f0a0027;
-        public static final int title_production_detail=0x7f0a0028;
+        public static final int title_friend_detail=0x7f0a0028;
+        public static final int title_production_detail=0x7f0a0029;
         /**  for login 
          */
         public static final int uname=0x7f0a0011;

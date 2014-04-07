@@ -1,7 +1,6 @@
 package cn.pdc.mobile.activity;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -9,7 +8,6 @@ import org.json.JSONObject;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -20,9 +18,9 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.SimpleAdapter;
 import android.widget.ViewSwitcher;
 import cn.pdc.mobile.R;
+import cn.pdc.mobile.adapter.PrivacyPropertyAdapter;
 import cn.pdc.mobile.utils.AppUtil;
 import cn.pdc.mobile.utils.Config;
 import cn.pdc.mobile.utils.HttpUtil;
@@ -30,11 +28,12 @@ import cn.pdc.mobile.utils.HttpUtil;
 public class PrivacyPropertiesSettingActivity extends Activity {
 
 	private Context mContext = PrivacyPropertiesSettingActivity.this;
-	private ArrayList<HashMap<String, String>> list_pros;
+	private ArrayList<String> list_pro;
+	private ArrayList<Boolean> list_selected;
 
 	private ViewSwitcher vs_pro;
 	private ListView lv_pro;
-	private SimpleAdapter adapter;
+	private PrivacyPropertyAdapter adapter;
 	private ImageView btn_back;
 
 	private String classname;
@@ -57,10 +56,9 @@ public class PrivacyPropertiesSettingActivity extends Activity {
 				R.drawable.list_divider_line));
 		lv_pro.setDividerHeight(1);
 		lv_pro.setSelector(R.drawable.list_item_selector);
+		lv_pro.setOnItemClickListener(itemClickListener);
 
-		adapter = new SimpleAdapter(mContext, list_pros,
-				R.layout.list_item_privacy_class, new String[] { "title" },
-				new int[] { R.id.title });
+		adapter = new PrivacyPropertyAdapter(mContext, list_pro, list_selected);
 		lv_pro.setAdapter(adapter);
 
 		vs_pro.addView(lv_pro);
@@ -74,7 +72,8 @@ public class PrivacyPropertiesSettingActivity extends Activity {
 
 	private void initData() {
 		classname = getIntent().getStringExtra("classname");
-		list_pros = new ArrayList<HashMap<String, String>>();
+		list_pro = new ArrayList<String>();
+		list_selected = new ArrayList<Boolean>();
 		new getClassInfoTask().execute("");
 	}
 
@@ -97,8 +96,20 @@ public class PrivacyPropertiesSettingActivity extends Activity {
 		@Override
 		public void onItemClick(AdapterView<?> parent, View view, int position,
 				long id) {
-			Intent intent = getIntent();
-			startActivity(intent);
+			if (position == 0) {
+				Integer len = list_selected.size();
+				Boolean tmp = !list_selected.get(0);
+				list_selected.set(0, tmp);
+				for (int i = 1; i < len; i++) {
+					list_selected.set(i, tmp);
+				}
+				adapter.notifyDataSetChanged();
+			} else {
+				// if it is true, turn it to false. if it is false, turn it to
+				// true.
+				list_selected.set(position, !list_selected.get(position));
+				adapter.notifyDataSetChanged();
+			}
 		}
 	};
 
@@ -112,11 +123,12 @@ public class PrivacyPropertiesSettingActivity extends Activity {
 				Log.e("get all class", jo.toString());
 				JSONArray ja = jo.getJSONArray(classname);
 				Integer len = ja.length();
-				HashMap<String, String> map = null;
+				// it means user selected all properties
+				list_pro.add("All Properties");
+				list_selected.add(false);
 				for (int i = 0; i < len; i++) {
-					map = new HashMap<String, String>();
-					map.put("title", ja.getString(i));
-					list_pros.add(map);
+					list_pro.add(ja.getString(i));
+					list_selected.add(false);
 				}
 			} catch (JSONException e) {
 				e.printStackTrace();
