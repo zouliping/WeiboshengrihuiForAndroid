@@ -276,7 +276,8 @@ public class ProductionDetailActivity extends Activity {
 				JSONObject jo = new JSONObject(result);
 				list_friends = new ArrayList<String>();
 				for (Iterator<?> i = jo.keys(); i.hasNext();) {
-					list_friends.add((String) i.next());
+					JSONObject tmp = jo.getJSONObject((String) i.next());
+					list_friends.add(tmp.getString("nick"));
 				}
 				Log.e("friends size", list_friends.size() + "");
 				cs_friends = list_friends.toArray(new CharSequence[list_friends
