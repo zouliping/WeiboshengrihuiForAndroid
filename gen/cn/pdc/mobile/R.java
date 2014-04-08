@@ -660,7 +660,6 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
     }
     public static final class id {
         public static final int accounts=0x7f05002f;
-        public static final int all_btn=0x7f05000f;
         public static final int avatar_menu=0x7f050008;
         public static final int back_btn=0x7f050005;
         public static final int back_calendar=0x7f050006;
@@ -701,6 +700,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int production_vs=0x7f050017;
         public static final int right=0x7f050001;
         public static final int selected_view=0x7f050004;
+        public static final int send_btn=0x7f05000f;
         public static final int setting_list=0x7f05001f;
         public static final int settings_menu=0x7f05001e;
         public static final int slidingmenumain=0x7f05002e;

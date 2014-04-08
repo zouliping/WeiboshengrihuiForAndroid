@@ -7,7 +7,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -24,6 +26,7 @@ import cn.pdc.mobile.adapter.PrivacyPropertyAdapter;
 import cn.pdc.mobile.utils.AppUtil;
 import cn.pdc.mobile.utils.Config;
 import cn.pdc.mobile.utils.HttpUtil;
+import cn.pdc.mobile.utils.ToastUtil;
 
 public class PrivacyPropertiesSettingActivity extends Activity {
 
@@ -35,8 +38,13 @@ public class PrivacyPropertiesSettingActivity extends Activity {
 	private ListView lv_pro;
 	private PrivacyPropertyAdapter adapter;
 	private ImageView btn_back;
+	private ImageView btn_send;
 
 	private String classname;
+	private int level;
+	private CharSequence[] sid;
+	private CharSequence[] fid;
+	private Boolean allpro = false;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -68,10 +76,17 @@ public class PrivacyPropertiesSettingActivity extends Activity {
 
 		btn_back = (ImageView) findViewById(R.id.back_btn);
 		btn_back.setOnClickListener(listener);
+		btn_send = (ImageView) findViewById(R.id.send_btn);
+		btn_send.setOnClickListener(listener);
 	}
 
 	private void initData() {
-		classname = getIntent().getStringExtra("classname");
+		Intent intent = getIntent();
+		classname = intent.getStringExtra("classname");
+		level = intent.getIntExtra("level", 0);
+		fid = intent.getCharSequenceArrayExtra("fid");
+		sid = intent.getCharSequenceArrayExtra("sid");
+
 		list_pro = new ArrayList<String>();
 		list_selected = new ArrayList<Boolean>();
 		new getClassInfoTask().execute("");
@@ -84,6 +99,9 @@ public class PrivacyPropertiesSettingActivity extends Activity {
 			switch (v.getId()) {
 			case R.id.back_btn:
 				finish();
+				break;
+			case R.id.send_btn:
+				new setRulesTask().execute("");
 				break;
 			default:
 				break;
@@ -143,4 +161,83 @@ public class PrivacyPropertiesSettingActivity extends Activity {
 		}
 	}
 
+	private class setRulesTask extends AsyncTask<String, String, Boolean> {
+
+		ProgressDialog dlg;
+
+		@Override
+		protected void onPreExecute() {
+			dlg = new ProgressDialog(mContext);
+			dlg.setTitle("Sending Data");
+			dlg.setMessage("Please wait for a monent...");
+			dlg.setCancelable(false);
+			dlg.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+			dlg.show();
+
+		}
+
+		@Override
+		protected Boolean doInBackground(String... params) {
+			for (Boolean se : list_selected) {
+				if (!se) {
+					allpro = false;
+					break;
+				} else {
+					allpro = true;
+				}
+			}
+
+			JSONObject jo = new JSONObject();
+			try {
+				jo.put("classname", classname);
+				jo.put("allpro", allpro);
+				jo.put("uid", Config.uid);
+				jo.put("level", level);
+
+				if (!allpro) {
+					JSONArray ja = new JSONArray();
+					for (int i = 1; i < list_selected.size(); i++) {
+						if (list_selected.get(i)) {
+							ja.put(list_pro.get(i));
+						}
+					}
+					jo.put("pro", ja);
+				}
+
+				if (fid != null) {
+					JSONArray ja = new JSONArray();
+					for (CharSequence cs : fid) {
+						ja.put(cs);
+					}
+					jo.put("fid", ja);
+				}
+
+				if (sid != null) {
+					JSONArray ja = new JSONArray();
+					for (CharSequence cs : sid) {
+						ja.put(cs);
+					}
+					jo.put("sid", ja);
+				}
+
+				Log.e("data", jo.toString());
+				JSONObject result = new JSONObject(HttpUtil.doPut(
+						Config.SET_RULES_URL, jo));
+				return (Boolean) result.get("result");
+			} catch (JSONException e) {
+				e.printStackTrace();
+			}
+			return null;
+		}
+
+		@Override
+		protected void onPostExecute(Boolean result) {
+			dlg.dismiss();
+			if (result == false) {
+				ToastUtil.showShortToast(mContext, "Failed");
+			} else if (result == true) {
+				ToastUtil.showShortToast(mContext, "Success");
+			}
+		}
+	}
 }

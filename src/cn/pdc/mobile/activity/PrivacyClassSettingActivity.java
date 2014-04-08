@@ -99,6 +99,10 @@ public class PrivacyClassSettingActivity extends Activity {
 					PrivacyPropertiesSettingActivity.class);
 			intent.putExtra("classname", list_classes.get(position)
 					.get("title"));
+			intent.putExtra("level", getIntent().getIntExtra("level", 0));
+			intent.putExtra("fid", getIntent().getCharSequenceArrayExtra("fid"));
+			intent.putExtra("sid", getIntent().getCharSequenceArrayExtra("sid"));
+
 			startActivity(intent);
 		}
 	};

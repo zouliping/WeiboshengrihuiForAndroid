@@ -50,4 +50,7 @@ public class Config {
 	// get class properties
 	public static final String GET_PROPERTIES_INFO = URL_API
 			+ "/onto/get?classname=";
+
+	// set rules
+	public static final String SET_RULES_URL = URL_API + "/user/setrules";
 }

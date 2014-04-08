@@ -33,6 +33,7 @@ public class PrivacySettingActivity extends Activity {
 	private Context mContext = PrivacySettingActivity.this;
 
 	private List<String> list_friends;
+	private List<String> list_friends_ids;
 	private CharSequence[] cs_friends;
 	private List<Pair> list_type;
 	private Pair pair;
@@ -72,10 +73,14 @@ public class PrivacySettingActivity extends Activity {
 		pair = new Pair(getString(R.string.friends_visible), "");
 		list_type.add(pair);
 
+		list_friends = new ArrayList<String>();
+		list_friends_ids = new ArrayList<String>();
+
 		new getFriendsInfoTask().execute("");
 	}
 
 	private OnClickListener btnClickListener = new OnClickListener() {
+
 		@Override
 		public void onClick(View v) {
 			switch (v.getId()) {
@@ -95,14 +100,24 @@ public class PrivacySettingActivity extends Activity {
 				long id) {
 			final Intent intent = new Intent(mContext,
 					PrivacyClassSettingActivity.class);
+
 			switch (position) {
 			case 0:
+				intent.putExtra("level", 0);
 				startActivity(intent);
 				break;
 			case 1:
+				intent.putExtra("level", 1);
+				intent.putExtra("sid", new CharSequence[] { "weiboshengrihui" });
 				startActivity(intent);
 				break;
 			case 2:
+				final ArrayList<Boolean> selected = new ArrayList<Boolean>();
+				final ArrayList<String> selected_ids = new ArrayList<String>();
+				final int len = list_friends.size();
+				for (int i = 0; i < len; i++) {
+					selected.add(false);
+				}
 				AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
 				builder.setTitle("Choose Friends");
 				builder.setMultiChoiceItems(cs_friends, null,
@@ -111,8 +126,7 @@ public class PrivacySettingActivity extends Activity {
 							@Override
 							public void onClick(DialogInterface dialog,
 									int which, boolean isChecked) {
-								// TODO Auto-generated method stub
-
+								selected.set(which, isChecked);
 							}
 						});
 				builder.setPositiveButton(getString(R.string.yes),
@@ -121,6 +135,18 @@ public class PrivacySettingActivity extends Activity {
 							@Override
 							public void onClick(DialogInterface dialog,
 									int which) {
+								for (int i = 0; i < len; i++) {
+									if (selected.get(i)) {
+										Log.e("select", list_friends.get(i));
+										selected_ids.add(list_friends_ids
+												.get(i));
+									}
+								}
+								CharSequence[] selected_fid = selected_ids
+										.toArray(new CharSequence[selected_ids
+												.size()]);
+								intent.putExtra("fid", selected_fid);
+								intent.putExtra("level", 2);
 								startActivity(intent);
 							}
 						});
@@ -154,10 +180,12 @@ public class PrivacySettingActivity extends Activity {
 				}
 
 				JSONObject jo = new JSONObject(result);
-				list_friends = new ArrayList<String>();
+
 				for (Iterator<?> i = jo.keys(); i.hasNext();) {
-					JSONObject tmp = jo.getJSONObject((String) i.next());
+					String id = (String) i.next();
+					JSONObject tmp = jo.getJSONObject(id);
 					list_friends.add(tmp.getString("nick"));
+					list_friends_ids.add(id);
 				}
 				Log.e("friends size", list_friends.size() + "");
 				cs_friends = list_friends.toArray(new CharSequence[list_friends
