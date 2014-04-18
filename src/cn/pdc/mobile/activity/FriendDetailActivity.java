@@ -40,7 +40,7 @@ public class FriendDetailActivity extends Activity {
 	private ImageView btn_back;
 	private ImageView btn_calendar;
 
-	private String uid;
+	// private String uid;
 	private String nickname;
 	private String birthday;
 	private String location;
@@ -61,7 +61,7 @@ public class FriendDetailActivity extends Activity {
 
 	private void initData() {
 		Intent intent = getIntent();
-		uid = intent.getStringExtra("uid");
+		// uid = intent.getStringExtra("uid");
 		birthday = intent.getStringExtra("birthday");
 		location = intent.getStringExtra("location");
 		interesting = intent.getStringExtra("interesting");
@@ -150,14 +150,14 @@ public class FriendDetailActivity extends Activity {
 			case 5:
 				Intent intent = new Intent(mContext,
 						ProductionDetailActivity.class);
-				intent.putExtra("uid", uid);
+				intent.putExtra("uid", nickname);
 				intent.putExtra("item", "WishItem");
 				startActivity(intent);
 				break;
 			case 6:
 				Intent intent2 = new Intent(mContext,
 						ProductionDetailActivity.class);
-				intent2.putExtra("uid", uid);
+				intent2.putExtra("uid", nickname);
 				intent2.putExtra("item", "Goods");
 				startActivity(intent2);
 				break;

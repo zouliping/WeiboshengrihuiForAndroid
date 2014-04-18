@@ -2,8 +2,12 @@ package cn.pdc.mobile.activity;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.LinkedList;
 import java.util.List;
 
+import org.apache.http.NameValuePair;
+import org.apache.http.client.utils.URLEncodedUtils;
+import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -31,6 +35,7 @@ import cn.pdc.mobile.adapter.DetailAdapter;
 import cn.pdc.mobile.entity.Pair;
 import cn.pdc.mobile.utils.Config;
 import cn.pdc.mobile.utils.HttpUtil;
+import cn.pdc.mobile.utils.StringUtil;
 import cn.pdc.mobile.utils.ToastUtil;
 import cn.pdc.mobile.view.CornerListView;
 
@@ -212,14 +217,14 @@ public class HomepageFragment extends Fragment {
 			case 4:
 				Intent intent = new Intent(mContext,
 						ProductionDetailActivity.class);
-				intent.putExtra("uid", Config.uid);
+				intent.putExtra("uname", Config.uname);
 				intent.putExtra("item", "WishItem");
 				startActivity(intent);
 				break;
 			case 5:
 				Intent intent2 = new Intent(mContext,
 						ProductionDetailActivity.class);
-				intent2.putExtra("uid", Config.uid);
+				intent2.putExtra("uname", Config.uname);
 				intent2.putExtra("item", "Goods");
 				startActivity(intent2);
 				break;
@@ -268,8 +273,18 @@ public class HomepageFragment extends Fragment {
 	private class getBasicInfoTask extends AsyncTask<String, String, String> {
 		@Override
 		protected String doInBackground(String... params) {
-			Log.e("get basic", Config.GET_USER_INFO + Config.uid);
-			return HttpUtil.doGet(Config.GET_USER_INFO + Config.uid);
+			// Log.e("get basic", Config.GET_USER_INFO + Config.uid);
+			// return HttpUtil.doGet(Config.GET_USER_INFO + Config.uid);
+			List<NameValuePair> list_params = new LinkedList<NameValuePair>();
+			list_params.add(new BasicNameValuePair("classname", "User"));
+			list_params.add(new BasicNameValuePair("indivname", Config.uid));
+			list_params.add(new BasicNameValuePair("uid", Config.uid));
+			list_params.add(new BasicNameValuePair("uname", Config.uname));
+			list_params.add(new BasicNameValuePair("sid", Config.sid));
+			String query = URLEncodedUtils.format(list_params, "utf-8");
+
+			Log.e("get user info", Config.GET_USER_INFO + query);
+			return HttpUtil.doGet(Config.GET_USER_INFO + query);
 		}
 
 		@Override
@@ -290,13 +305,16 @@ public class HomepageFragment extends Fragment {
 					}
 				}
 				if (!jo.isNull("birthday")) {
-					birthday = jo.getString("birthday");
+					birthday = StringUtil.removeSpecialChar(jo
+							.getString("birthday"));
 				}
 				if (!jo.isNull("current_location")) {
-					location = jo.getString("current_location");
+					location = StringUtil.removeSpecialChar(jo
+							.getString("current_location"));
 				}
 				if (!jo.isNull("interesting")) {
-					interesting = jo.getString("interesting");
+					interesting = StringUtil.removeSpecialChar(jo
+							.getString("interesting"));
 				}
 				Log.e("data", gender + "-" + birthday + "-" + location + "-"
 						+ interesting);

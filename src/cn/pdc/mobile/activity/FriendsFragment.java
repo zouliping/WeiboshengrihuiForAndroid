@@ -2,8 +2,12 @@ package cn.pdc.mobile.activity;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 
+import org.apache.http.NameValuePair;
+import org.apache.http.client.utils.URLEncodedUtils;
+import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -16,7 +20,6 @@ import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,6 +33,7 @@ import cn.pdc.mobile.adapter.FriendAdapter;
 import cn.pdc.mobile.entity.User;
 import cn.pdc.mobile.utils.Config;
 import cn.pdc.mobile.utils.HttpUtil;
+import cn.pdc.mobile.utils.StringUtil;
 import cn.pdc.mobile.utils.ToastUtil;
 
 /**
@@ -190,10 +194,17 @@ public class FriendsFragment extends Fragment {
 	}
 
 	private class getBasicInfoTask extends AsyncTask<String, String, String> {
+
 		@Override
 		protected String doInBackground(String... params) {
-			Log.e("get", "follow");
-			return HttpUtil.doGet(Config.GET_FRIENDS_LIST + Config.uid);
+
+			List<NameValuePair> list_params = new LinkedList<NameValuePair>();
+			list_params.add(new BasicNameValuePair("classname", "User"));
+			list_params.add(new BasicNameValuePair("uid", Config.uid));
+			list_params.add(new BasicNameValuePair("uname", Config.uname));
+			list_params.add(new BasicNameValuePair("sid", Config.sid));
+			String query = URLEncodedUtils.format(list_params, "utf-8");
+			return HttpUtil.doGet(Config.GET_FRIENDS_LIST + query);
 		}
 
 		@Override
@@ -211,7 +222,8 @@ public class FriendsFragment extends Fragment {
 					String key = (String) i.next();
 					JSONObject user = jo.getJSONObject(key);
 					if (!user.isNull("nick")) {
-						nickname = user.getString("nick");
+						nickname = StringUtil.removeSpecialChar(user
+								.getString("nick"));
 					} else {
 						nickname = getString(R.string.undefined);
 					}
@@ -221,17 +233,20 @@ public class FriendsFragment extends Fragment {
 						gender = true;
 					}
 					if (!user.isNull("birthday")) {
-						birthday = user.getString("birthday");
+						birthday = StringUtil.removeSpecialChar(user
+								.getString("birthday"));
 					} else {
 						birthday = getString(R.string.undefined);
 					}
 					if (!user.isNull("current_location")) {
-						location = user.getString("current_location");
+						location = StringUtil.removeSpecialChar(user
+								.getString("current_location"));
 					} else {
 						location = getString(R.string.undefined);
 					}
 					if (!user.isNull("interest")) {
-						interesting = user.getString("interest");
+						interesting = StringUtil.removeSpecialChar(user
+								.getString("interest"));
 					} else {
 						interesting = getString(R.string.undefined);
 					}

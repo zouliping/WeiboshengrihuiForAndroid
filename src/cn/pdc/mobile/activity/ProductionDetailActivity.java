@@ -2,8 +2,12 @@ package cn.pdc.mobile.activity;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 
+import org.apache.http.NameValuePair;
+import org.apache.http.client.utils.URLEncodedUtils;
+import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -57,7 +61,7 @@ public class ProductionDetailActivity extends Activity {
 	private TextView tv_title;
 
 	private String title_activity;
-	private String uid;
+	private String uname;
 	private String title;
 	private String type;
 	private String description;
@@ -74,7 +78,7 @@ public class ProductionDetailActivity extends Activity {
 		initViews();
 
 		new getBasicInfoTask().execute("");
-		new getFriendsInfoTask().execute("");
+
 	}
 
 	private void initViews() {
@@ -112,8 +116,12 @@ public class ProductionDetailActivity extends Activity {
 
 	private void initData() {
 		Intent intent = getIntent();
-		uid = intent.getStringExtra("uid");
+		uname = intent.getStringExtra("uname");
 		title_activity = intent.getStringExtra("item");
+
+		if ("Goods".equals(title_activity)) {
+			new getFriendsInfoTask().execute("");
+		}
 	}
 
 	private OnItemClickListener itemClickListener = new OnItemClickListener() {
@@ -261,7 +269,15 @@ public class ProductionDetailActivity extends Activity {
 
 		@Override
 		protected String doInBackground(String... params) {
-			return HttpUtil.doGet(Config.GET_FRIENDS_LIST + Config.uid);
+
+			List<NameValuePair> list_params = new LinkedList<NameValuePair>();
+			list_params.add(new BasicNameValuePair("classname", "User"));
+			list_params.add(new BasicNameValuePair("uid", Config.uid));
+			list_params.add(new BasicNameValuePair("uname", Config.uname));
+			list_params.add(new BasicNameValuePair("sid", Config.sid));
+			String query = URLEncodedUtils.format(list_params, "utf-8");
+
+			return HttpUtil.doGet(Config.GET_FRIENDS_LIST + query);
 		}
 
 		@Override
@@ -277,7 +293,8 @@ public class ProductionDetailActivity extends Activity {
 				list_friends = new ArrayList<String>();
 				for (Iterator<?> i = jo.keys(); i.hasNext();) {
 					JSONObject tmp = jo.getJSONObject((String) i.next());
-					list_friends.add(tmp.getString("nick"));
+					list_friends.add(StringUtil.removeSpecialChar(tmp
+							.getString("nick")));
 				}
 				Log.e("friends size", list_friends.size() + "");
 				cs_friends = list_friends.toArray(new CharSequence[list_friends
@@ -298,11 +315,17 @@ public class ProductionDetailActivity extends Activity {
 	private class getBasicInfoTask extends AsyncTask<String, String, String> {
 		@Override
 		protected String doInBackground(String... params) {
-			Log.e("url",
-					Config.GET_PROPERTITY.replace("$classname", title_activity)
-							+ uid);
-			return HttpUtil.doGet(Config.GET_PROPERTITY.replace("$classname",
-					title_activity) + uid);
+
+			List<NameValuePair> list_params = new LinkedList<NameValuePair>();
+			list_params
+					.add(new BasicNameValuePair("classname", title_activity));
+			list_params.add(new BasicNameValuePair("uid", Config.uid));
+			list_params.add(new BasicNameValuePair("uname", uname));
+			list_params.add(new BasicNameValuePair("sid", Config.sid));
+			String query = URLEncodedUtils.format(list_params, "utf-8");
+
+			Log.e("get production url", Config.GET_PROPERTITY + query);
+			return HttpUtil.doGet(Config.GET_PROPERTITY + query);
 		}
 
 		@Override

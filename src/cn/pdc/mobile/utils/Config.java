@@ -4,6 +4,7 @@ public class Config {
 
 	public static String uid = "";
 	public static String uname = "";
+	public static String sid = "weiboshengrihui";
 
 	public static String DEVELOPER_EMAIL = "zouliping007@gmail.com";
 
@@ -19,18 +20,25 @@ public class Config {
 	public static final String URL_API = "http://192.168.0.121:9000";
 
 	// login uri
-	public static final String LOGIN = URL + "/user/login";
+	public static final String LOGIN = URL_API + "/user/login";
+
 	// get user detail info uri
-	public static final String GET_USER_INFO = URL + "/user/get?name=";
+	// public static final String GET_USER_INFO = URL + "/user/get?name=";
+	public static final String GET_USER_INFO = URL_API + "/indiv/get_pro?";
+
 	// update the user info uri
 	public static final String UPDATE_INFO = URL + "/user/update";
 	public static final String UPDATE_INFO_API = URL_API + "/indiv/update";
+
 	// get friends list uri
-	public static final String GET_FRIENDS_LIST = URL
-			+ "/user/get_friends?uid=";
+	// public static final String GET_FRIENDS_LIST = URL
+	// + "/user/get_friends?uid=";
+	public static final String GET_FRIENDS_LIST = URL_API + "/indiv/get?";
+
 	// get propertities or wish item uri
-	public static final String GET_PROPERTITY = URL
-			+ "/user/get_production?type=$classname&uid=";
+	// public static final String GET_PROPERTITY = URL
+	// + "/user/get_production?type=$classname&uid=";
+	public static final String GET_PROPERTITY = URL_API + "/indiv/get?";
 
 	// remove goods
 	public static final String REMOVE_URL_API = URL_API + "/indiv/remove";
@@ -42,7 +50,7 @@ public class Config {
 	public static final String REMOVE_RELATION_URL = URL
 			+ "/user/remove_friend";
 	public static final String REMOVE_RELATION_URL_API = URL_API
-			+ "/indiv/removerelation";
+			+ "/indiv/remove_relation";
 
 	// get class
 	public static final String GET_CLASS_INFO_INFO = URL_API + "/onto/all";
@@ -52,5 +60,5 @@ public class Config {
 			+ "/onto/get?classname=";
 
 	// set rules
-	public static final String SET_RULES_URL = URL_API + "/user/setrules";
+	public static final String SET_RULES_URL = URL_API + "/user/set_rules";
 }
