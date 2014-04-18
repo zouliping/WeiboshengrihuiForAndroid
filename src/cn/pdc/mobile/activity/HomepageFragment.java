@@ -128,7 +128,6 @@ public class HomepageFragment extends Fragment {
 				final int position, long id) {
 			switch (position) {
 			case 0:
-				ToastUtil.showShortToast(mContext, "gender");
 				builder = new AlertDialog.Builder(mContext);
 				builder.setTitle("Gender");
 				int choice = 0;
@@ -165,7 +164,6 @@ public class HomepageFragment extends Fragment {
 				builder.show();
 				break;
 			case 1:
-				ToastUtil.showShortToast(mContext, "birthday");
 				index = position;
 				int year = 1990;
 				int month = 01;
@@ -191,7 +189,6 @@ public class HomepageFragment extends Fragment {
 				dialog.show();
 				break;
 			case 2:
-				ToastUtil.showShortToast(mContext, "location");
 				builder = getBuilder(getString(R.string.Location), location);
 				builder.setPositiveButton(getString(R.string.yes),
 						new OnClickListener() {
@@ -208,10 +205,20 @@ public class HomepageFragment extends Fragment {
 				builder.show();
 				break;
 			case 3:
-				ToastUtil.showShortToast(mContext, "interesting");
 				builder = getBuilder(getString(R.string.Interesting),
 						interesting);
-				builder.setPositiveButton(getString(R.string.yes), null);
+				builder.setPositiveButton(getString(R.string.yes),
+						new OnClickListener() {
+
+							@Override
+							public void onClick(DialogInterface dialog,
+									int which) {
+								index = position;
+								attrvalue = et.getText().toString();
+								interesting = attrvalue;
+								new PutDataTask().execute("interest");
+							}
+						});
 				builder.show();
 				break;
 			case 4:
