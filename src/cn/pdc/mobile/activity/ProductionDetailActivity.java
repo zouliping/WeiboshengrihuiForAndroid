@@ -35,6 +35,7 @@ import cn.pdc.mobile.entity.Production;
 import cn.pdc.mobile.utils.AppUtil;
 import cn.pdc.mobile.utils.Config;
 import cn.pdc.mobile.utils.HttpUtil;
+import cn.pdc.mobile.utils.SHA1;
 import cn.pdc.mobile.utils.StringUtil;
 import cn.pdc.mobile.utils.ToastUtil;
 
@@ -228,7 +229,7 @@ public class ProductionDetailActivity extends Activity {
 					jo.put("classname", "Goods");
 					jo.put("individualname",
 							present + System.currentTimeMillis());
-					jo.put("uid", to);
+					jo.put("uid", SHA1.getSHA1String(to));
 					jo.put("title", list_production.get(index).getTitle());
 					jo.put("goods_type", list_production.get(index).getType());
 					jo.put("description", list_production.get(index)
