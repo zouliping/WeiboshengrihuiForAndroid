@@ -68,6 +68,7 @@ public class ProductionDetailActivity extends Activity {
 	private String description;
 
 	private Integer sendToIndex = 0;
+	private Boolean isMe = true;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -108,7 +109,9 @@ public class ProductionDetailActivity extends Activity {
 		if ("Goods".equals(title_activity)) {
 			tv_title.setText(getString(R.string.Have));
 			btn_tao.setVisibility(View.VISIBLE);
-			lv_production.setOnItemClickListener(itemClickListener);
+			if (isMe) {
+				lv_production.setOnItemClickListener(itemClickListener);
+			}
 		} else if ("WishItem".equals(title_activity)) {
 			tv_title.setText(getString(R.string.Want));
 			btn_tao.setVisibility(View.GONE);
@@ -119,8 +122,9 @@ public class ProductionDetailActivity extends Activity {
 		Intent intent = getIntent();
 		uname = intent.getStringExtra("uname");
 		title_activity = intent.getStringExtra("item");
+		isMe = intent.getBooleanExtra("isMe", true);
 
-		if ("Goods".equals(title_activity)) {
+		if ("Goods".equals(title_activity) && isMe) {
 			new getFriendsInfoTask().execute("");
 		}
 	}
@@ -230,9 +234,9 @@ public class ProductionDetailActivity extends Activity {
 					jo.put("individualname",
 							present + System.currentTimeMillis());
 					jo.put("uid", SHA1.getSHA1String(to));
-					jo.put("title", list_production.get(index).getTitle());
-					jo.put("goods_type", list_production.get(index).getType());
-					jo.put("description", list_production.get(index)
+					jo.put("g_title", list_production.get(index).getTitle());
+					jo.put("g_goods_type", list_production.get(index).getType());
+					jo.put("g_description", list_production.get(index)
 							.getDescription());
 
 					Log.e("send present", jo.toString());
@@ -295,7 +299,7 @@ public class ProductionDetailActivity extends Activity {
 				for (Iterator<?> i = jo.keys(); i.hasNext();) {
 					JSONObject tmp = jo.getJSONObject((String) i.next());
 					list_friends.add(StringUtil.removeSpecialChar(tmp
-							.getString("nick")));
+							.getString("-u_nick")));
 				}
 				Log.e("friends size", list_friends.size() + "");
 				cs_friends = list_friends.toArray(new CharSequence[list_friends
@@ -345,21 +349,29 @@ public class ProductionDetailActivity extends Activity {
 					String key = (String) i.next();
 					list_production_name.add(key);
 					JSONObject tmp = jo.getJSONObject(key);
-					if (!tmp.isNull("title")) {
+					String prefix = null;
+
+					if ("Goods".equals(title_activity)) {
+						prefix = "-g_";
+					} else if ("WishItem".equals(title_activity)) {
+						prefix = "-w_";
+					}
+
+					if (!tmp.isNull(prefix + "title")) {
 						title = StringUtil.removeSpecialChar(tmp
-								.getString("title"));
+								.getString(prefix + "title"));
 					} else {
 						title = getString(R.string.undefined);
 					}
-					if (!tmp.isNull("goods_type")) {
+					if (!tmp.isNull(prefix + "goods_type")) {
 						type = StringUtil.removeSpecialChar(tmp
-								.getString("goods_type"));
+								.getString(prefix + "goods_type"));
 					} else {
 						type = getString(R.string.undefined);
 					}
-					if (!tmp.isNull("description")) {
+					if (!tmp.isNull(prefix + "description")) {
 						description = StringUtil.removeSpecialChar(tmp
-								.getString("description"));
+								.getString(prefix + "description"));
 					} else {
 						description = getString(R.string.undefined);
 					}

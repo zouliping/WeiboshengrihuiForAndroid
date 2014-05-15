@@ -157,7 +157,7 @@ public class HomepageFragment extends Fragment {
 							public void onClick(DialogInterface dialog,
 									int which) {
 								gender = attrvalue;
-								new PutDataTask().execute("gender");
+								new PutDataTask().execute("u_gender");
 							}
 						});
 				builder.setNegativeButton(getString(R.string.cancel), null);
@@ -199,7 +199,7 @@ public class HomepageFragment extends Fragment {
 								index = position;
 								attrvalue = et.getText().toString();
 								location = attrvalue;
-								new PutDataTask().execute("current_location");
+								new PutDataTask().execute("u_current_location");
 							}
 						});
 				builder.show();
@@ -216,7 +216,7 @@ public class HomepageFragment extends Fragment {
 								index = position;
 								attrvalue = et.getText().toString();
 								interesting = attrvalue;
-								new PutDataTask().execute("interest");
+								new PutDataTask().execute("u_interest");
 							}
 						});
 				builder.show();
@@ -248,7 +248,7 @@ public class HomepageFragment extends Fragment {
 				int dayOfMonth) {
 			attrvalue = year + "-" + (monthOfYear + 1) + "-" + dayOfMonth;
 			birthday = attrvalue;
-			new PutDataTask().execute("birthday");
+			new PutDataTask().execute("u_birthday");
 		}
 	};
 
@@ -304,24 +304,24 @@ public class HomepageFragment extends Fragment {
 				}
 
 				JSONObject jo = new JSONObject(result);
-				if (!jo.isNull("gender")) {
-					if (jo.getBoolean("gender")) {
+				if (!jo.isNull("-u_gender")) {
+					if (jo.getBoolean("-u_gender")) {
 						gender = getString(R.string.Male);
 					} else {
 						gender = getString(R.string.Female);
 					}
 				}
-				if (!jo.isNull("birthday")) {
+				if (!jo.isNull("-u_birthday")) {
 					birthday = StringUtil.removeSpecialChar(jo
-							.getString("birthday"));
+							.getString("-u_birthday"));
 				}
-				if (!jo.isNull("current_location")) {
+				if (!jo.isNull("-u_current_location")) {
 					location = StringUtil.removeSpecialChar(jo
-							.getString("current_location"));
+							.getString("-u_current_location"));
 				}
-				if (!jo.isNull("interesting")) {
+				if (!jo.isNull("-u_interest")) {
 					interesting = StringUtil.removeSpecialChar(jo
-							.getString("interesting"));
+							.getString("-u_interest"));
 				}
 				Log.e("data", gender + "-" + birthday + "-" + location + "-"
 						+ interesting);

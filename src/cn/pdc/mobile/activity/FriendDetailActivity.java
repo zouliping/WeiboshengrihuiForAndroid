@@ -120,12 +120,13 @@ public class FriendDetailActivity extends Activity {
 				int year = Calendar.getInstance().get(Calendar.YEAR);
 				JSONObject jo = new JSONObject();
 				try {
-					jo.put("title", "To celebrate " + nickname + "'s birthday");
-					jo.put("start", year + tmp);
-					jo.put("end", year + tmp);
-					jo.put("description", "To celebrate " + nickname
+					jo.put("a_title", "To celebrate " + nickname
 							+ "'s birthday");
-					jo.put("location", location);
+					jo.put("a_start", year + tmp);
+					jo.put("a_end", year + tmp);
+					jo.put("a_description", "To celebrate " + nickname
+							+ "'s birthday");
+					jo.put("a_location", location);
 				} catch (JSONException e) {
 					e.printStackTrace();
 				}
@@ -150,15 +151,16 @@ public class FriendDetailActivity extends Activity {
 			case 5:
 				Intent intent = new Intent(mContext,
 						ProductionDetailActivity.class);
-				intent.putExtra("uid", nickname);
+				intent.putExtra("uname", nickname);
 				intent.putExtra("item", "WishItem");
 				startActivity(intent);
 				break;
 			case 6:
 				Intent intent2 = new Intent(mContext,
 						ProductionDetailActivity.class);
-				intent2.putExtra("uid", nickname);
+				intent2.putExtra("uname", nickname);
 				intent2.putExtra("item", "Goods");
+				intent2.putExtra("isMe", false);
 				startActivity(intent2);
 				break;
 			default:

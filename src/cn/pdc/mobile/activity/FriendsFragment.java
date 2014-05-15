@@ -221,32 +221,32 @@ public class FriendsFragment extends Fragment {
 				for (Iterator<?> i = jo.keys(); i.hasNext();) {
 					String key = (String) i.next();
 					JSONObject user = jo.getJSONObject(key);
-					if (!user.isNull("nick")) {
+					if (!user.isNull("-u_nick")) {
 						nickname = StringUtil.removeSpecialChar(user
-								.getString("nick"));
+								.getString("-u_nick"));
 					} else {
 						nickname = getString(R.string.undefined);
 					}
-					if (!user.isNull("gender")) {
-						gender = user.getBoolean("gender");
+					if (!user.isNull("-u_gender")) {
+						gender = user.getBoolean("-u_gender");
 					} else {
 						gender = true;
 					}
-					if (!user.isNull("birthday")) {
+					if (!user.isNull("-u_birthday")) {
 						birthday = StringUtil.removeSpecialChar(user
-								.getString("birthday"));
+								.getString("-u_birthday"));
 					} else {
 						birthday = getString(R.string.undefined);
 					}
-					if (!user.isNull("current_location")) {
+					if (!user.isNull("-u_current_location")) {
 						location = StringUtil.removeSpecialChar(user
-								.getString("current_location"));
+								.getString("-u_current_location"));
 					} else {
 						location = getString(R.string.undefined);
 					}
-					if (!user.isNull("interest")) {
+					if (!user.isNull("-u_interest")) {
 						interesting = StringUtil.removeSpecialChar(user
-								.getString("interest"));
+								.getString("-u_interest"));
 					} else {
 						interesting = getString(R.string.undefined);
 					}

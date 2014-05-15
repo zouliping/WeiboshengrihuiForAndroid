@@ -28,7 +28,7 @@ public class SplashScreen extends Activity {
 		new Handler().postDelayed(new Runnable() {
 			@Override
 			public void run() {
-				SharedPreferences data = getSharedPreferences("data", 0);
+				SharedPreferences data = getSharedPreferences("wdata", 0);
 				Intent intent = null;
 				String uname = data.getString("uname", null);
 				String uid = data.getString("uid", null);
