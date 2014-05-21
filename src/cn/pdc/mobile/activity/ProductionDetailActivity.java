@@ -111,6 +111,8 @@ public class ProductionDetailActivity extends Activity {
 			btn_tao.setVisibility(View.VISIBLE);
 			if (isMe) {
 				lv_production.setOnItemClickListener(itemClickListener);
+			} else {
+				btn_tao.setVisibility(View.GONE);
 			}
 		} else if ("WishItem".equals(title_activity)) {
 			tv_title.setText(getString(R.string.Want));
@@ -274,15 +276,17 @@ public class ProductionDetailActivity extends Activity {
 
 		@Override
 		protected String doInBackground(String... params) {
-
-			List<NameValuePair> list_params = new LinkedList<NameValuePair>();
-			list_params.add(new BasicNameValuePair("classname", "User"));
-			list_params.add(new BasicNameValuePair("uid", Config.uid));
-			list_params.add(new BasicNameValuePair("uname", Config.uname));
-			list_params.add(new BasicNameValuePair("sid", Config.sid));
-			String query = URLEncodedUtils.format(list_params, "utf-8");
-
-			return HttpUtil.doGet(Config.GET_FRIENDS_LIST + query);
+			//
+			// List<NameValuePair> list_params = new
+			// LinkedList<NameValuePair>();
+			// list_params.add(new BasicNameValuePair("classname", "User"));
+			// list_params.add(new BasicNameValuePair("uid", Config.uid));
+			// list_params.add(new BasicNameValuePair("uname", Config.uname));
+			// list_params.add(new BasicNameValuePair("sid", Config.sid));
+			// String query = URLEncodedUtils.format(list_params, "utf-8");
+			//
+			// return HttpUtil.doGet(Config.GET_FRIENDS_LIST + query);
+			return HttpUtil.doGet(Config.GET_FRIENDS_LIST + Config.uid);
 		}
 
 		@Override
@@ -321,15 +325,22 @@ public class ProductionDetailActivity extends Activity {
 		@Override
 		protected String doInBackground(String... params) {
 
+			// List<NameValuePair> list_params = new
+			// LinkedList<NameValuePair>();
+			// list_params
+			// .add(new BasicNameValuePair("classname", title_activity));
+			// list_params.add(new BasicNameValuePair("uid", Config.uid));
+			// list_params.add(new BasicNameValuePair("uname", uname));
+			// list_params.add(new BasicNameValuePair("sid", Config.sid));
+			// String query = URLEncodedUtils.format(list_params, "utf-8");
+			//
+			// Log.e("get production url", Config.GET_PROPERTITY + query);
+			// return HttpUtil.doGet(Config.GET_PROPERTITY + query);
 			List<NameValuePair> list_params = new LinkedList<NameValuePair>();
-			list_params
-					.add(new BasicNameValuePair("classname", title_activity));
-			list_params.add(new BasicNameValuePair("uid", Config.uid));
-			list_params.add(new BasicNameValuePair("uname", uname));
-			list_params.add(new BasicNameValuePair("sid", Config.sid));
+			list_params.add(new BasicNameValuePair("type", title_activity));
+			list_params.add(new BasicNameValuePair("uid", SHA1
+					.getSHA1String(uname)));
 			String query = URLEncodedUtils.format(list_params, "utf-8");
-
-			Log.e("get production url", Config.GET_PROPERTITY + query);
 			return HttpUtil.doGet(Config.GET_PROPERTITY + query);
 		}
 

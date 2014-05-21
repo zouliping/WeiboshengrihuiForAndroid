@@ -67,7 +67,7 @@ public class AppUtil {
 		} catch (NameNotFoundException e) {
 			e.printStackTrace();
 			ToastUtil.showShortToast(mContext,
-					"You have not installed this app");
+					"You have not installed TaoBao APP");
 		}
 	}
 
@@ -80,11 +80,17 @@ public class AppUtil {
 	 */
 	public static void openActivity(Context mContext, String packagename,
 			String activityname, String info) {
-		ComponentName name = new ComponentName(packagename, activityname);
-		Intent i = new Intent();
-		i.putExtra("info", info);
-		i.setComponent(name);
-		mContext.startActivity(i);
+		try {
+			ComponentName name = new ComponentName(packagename, activityname);
+			Intent i = new Intent();
+			i.putExtra("info", info);
+			i.setComponent(name);
+			mContext.startActivity(i);
+		} catch (Exception e) {
+			e.printStackTrace();
+			ToastUtil.showShortToast(mContext,
+					"You have not installed SimpleCalendar APP");
+		}
 	}
 
 	/**
@@ -96,11 +102,17 @@ public class AppUtil {
 	 */
 	public static void openWeiciyuanActivity(Context mContext,
 			String packagename, String activityname, String info) {
-		ComponentName name = new ComponentName(packagename, activityname);
-		Intent i = new Intent(Intent.ACTION_SEND);
-		i.setType("text/plain");
-		i.putExtra(Intent.EXTRA_TEXT, info);
-		i.setComponent(name);
-		mContext.startActivity(i);
+		try {
+			ComponentName name = new ComponentName(packagename, activityname);
+			Intent i = new Intent(Intent.ACTION_SEND);
+			i.setType("text/plain");
+			i.putExtra(Intent.EXTRA_TEXT, info);
+			i.setComponent(name);
+			mContext.startActivity(i);
+		} catch (Exception e) {
+			e.printStackTrace();
+			ToastUtil.showShortToast(mContext,
+					"You have not installed Weiciyuan APP");
+		}
 	}
 }

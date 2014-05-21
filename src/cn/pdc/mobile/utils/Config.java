@@ -16,29 +16,28 @@ public class Config {
 
 	public static final String URL_GITHUB = "https://github.com/zouliping/WeiboshengrihuiForAndroid";
 
-	public static final String URL = "http://192.168.0.135:6000";
-	public static final String URL_API = "http://192.168.0.135:9000";
+	public static final String URL = "http://172.17.214.12:6000";
+	public static final String URL_API = "http://172.17.214.12:9000";
 
 	// login uri
 	public static final String LOGIN = URL_API + "/user/login";
 
 	// get user detail info uri
-	// public static final String GET_USER_INFO = URL + "/user/get?name=";
-	public static final String GET_USER_INFO = URL_API + "/indiv/get_pro?";
+	public static final String GET_USER_INFO = URL + "/user/get?name=";
+	// public static final String GET_USER_INFO = URL_API + "/indiv/get_pro?";
 
 	// update the user info uri
 	public static final String UPDATE_INFO = URL + "/user/update";
 	public static final String UPDATE_INFO_API = URL_API + "/indiv/update";
 
 	// get friends list uri
-	// public static final String GET_FRIENDS_LIST = URL
-	// + "/user/get_friends?uid=";
-	public static final String GET_FRIENDS_LIST = URL_API + "/indiv/get?";
+	public static final String GET_FRIENDS_LIST = URL
+			+ "/user/get_friends?uid=";
+	// public static final String GET_FRIENDS_LIST = URL_API + "/indiv/get?";
 
 	// get propertities or wish item uri
-	// public static final String GET_PROPERTITY = URL
-	// + "/user/get_production?type=$classname&uid=";
-	public static final String GET_PROPERTITY = URL_API + "/indiv/get?";
+	public static final String GET_PROPERTITY = URL + "/user/get_production?";
+	// public static final String GET_PROPERTITY = URL_API + "/indiv/get?";
 
 	// remove goods
 	public static final String REMOVE_URL_API = URL_API + "/indiv/remove";

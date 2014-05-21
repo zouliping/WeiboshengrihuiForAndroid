@@ -37,6 +37,8 @@ public class BaseActivity extends SlidingFragmentActivity {
 		sm.setFadeDegree(0.35f);
 
 		getActionBar().setDisplayHomeAsUpEnabled(true);
+		// set android icon to null
+		getActionBar().setIcon(android.R.color.transparent);
 	}
 
 	@Override

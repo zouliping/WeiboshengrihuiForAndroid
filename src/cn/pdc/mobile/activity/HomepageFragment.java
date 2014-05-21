@@ -2,12 +2,8 @@ package cn.pdc.mobile.activity;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.LinkedList;
 import java.util.List;
 
-import org.apache.http.NameValuePair;
-import org.apache.http.client.utils.URLEncodedUtils;
-import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -280,18 +276,18 @@ public class HomepageFragment extends Fragment {
 	private class getBasicInfoTask extends AsyncTask<String, String, String> {
 		@Override
 		protected String doInBackground(String... params) {
-			// Log.e("get basic", Config.GET_USER_INFO + Config.uid);
-			// return HttpUtil.doGet(Config.GET_USER_INFO + Config.uid);
-			List<NameValuePair> list_params = new LinkedList<NameValuePair>();
-			list_params.add(new BasicNameValuePair("classname", "User"));
-			list_params.add(new BasicNameValuePair("indivname", Config.uid));
-			list_params.add(new BasicNameValuePair("uid", Config.uid));
-			list_params.add(new BasicNameValuePair("uname", Config.uname));
-			list_params.add(new BasicNameValuePair("sid", Config.sid));
-			String query = URLEncodedUtils.format(list_params, "utf-8");
-
-			Log.e("get user info", Config.GET_USER_INFO + query);
-			return HttpUtil.doGet(Config.GET_USER_INFO + query);
+			// List<NameValuePair> list_params = new
+			// LinkedList<NameValuePair>();
+			// // list_params.add(new BasicNameValuePair("classname", "User"));
+			// list_params.add(new BasicNameValuePair("indivname", Config.uid));
+			// list_params.add(new BasicNameValuePair("uid", Config.uid));
+			// list_params.add(new BasicNameValuePair("uname", Config.uname));
+			// list_params.add(new BasicNameValuePair("sid", Config.sid));
+			// String query = URLEncodedUtils.format(list_params, "utf-8");
+			//
+			// Log.e("get user info", Config.GET_USER_INFO + query);
+			// return HttpUtil.doGet(Config.GET_USER_INFO + query);
+			return HttpUtil.doGet(Config.GET_USER_INFO + Config.uid);
 		}
 
 		@Override

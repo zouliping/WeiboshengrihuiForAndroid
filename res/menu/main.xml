@@ -3,7 +3,6 @@
 
     <item
         android:id="@+id/accounts"
-        android:icon="@drawable/ic_launcher"
         android:showAsAction="always"
         android:title="@string/default_name"
         android:titleCondensed="@string/default_name"
