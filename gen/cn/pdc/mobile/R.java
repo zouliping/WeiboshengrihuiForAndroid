@@ -659,10 +659,11 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int tao=0x7f020030;
     }
     public static final class id {
-        public static final int accounts=0x7f05002f;
+        public static final int accounts=0x7f050031;
         public static final int avatar_menu=0x7f050008;
         public static final int back_btn=0x7f050005;
         public static final int back_calendar=0x7f050006;
+        public static final int btn_load_more=0x7f05002e;
         public static final int card_avatar=0x7f050025;
         public static final int card_birthday=0x7f050027;
         public static final int card_location=0x7f050028;
@@ -685,6 +686,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int main_menu=0x7f05001b;
         public static final int margin=0x7f050002;
         public static final int menu_frame=0x7f050022;
+        public static final int pb_load=0x7f05002f;
         public static final int privacy_class_title_bar=0x7f05000c;
         public static final int privacy_pro_title_bar=0x7f05000e;
         public static final int privacy_title_bar=0x7f050011;
@@ -703,7 +705,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int send_btn=0x7f05000f;
         public static final int setting_list=0x7f05001f;
         public static final int settings_menu=0x7f05001e;
-        public static final int slidingmenumain=0x7f05002e;
+        public static final int slidingmenumain=0x7f050030;
         public static final int tao_btn=0x7f050016;
         public static final int title=0x7f050029;
         public static final int username_menu=0x7f05001a;
@@ -733,7 +735,8 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int list_item_privacy_property=0x7f030012;
         public static final int list_item_production_detail=0x7f030013;
         public static final int list_item_user_detail=0x7f030014;
-        public static final int slidingmenu=0x7f030015;
+        public static final int load_more=0x7f030015;
+        public static final int slidingmenu=0x7f030016;
     }
     public static final class menu {
         public static final int main=0x7f0c0000;
@@ -741,57 +744,58 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
     public static final class string {
         /**  for homepage 
          */
-        public static final int Birthday=0x7f0a0008;
-        public static final int Description=0x7f0a0026;
-        public static final int Female=0x7f0a000f;
+        public static final int Birthday=0x7f0a0009;
+        public static final int Description=0x7f0a0027;
+        public static final int Female=0x7f0a0010;
         public static final int Friends=0x7f0a0002;
-        public static final int Gender=0x7f0a000c;
-        public static final int Have=0x7f0a000e;
+        public static final int Gender=0x7f0a000d;
+        public static final int Have=0x7f0a000f;
         public static final int Homepage=0x7f0a0001;
-        public static final int Interesting=0x7f0a000b;
-        public static final int Location=0x7f0a0009;
-        public static final int Male=0x7f0a0010;
-        public static final int Nickname=0x7f0a000a;
+        public static final int Interesting=0x7f0a000c;
+        public static final int Location=0x7f0a000a;
+        public static final int Male=0x7f0a0011;
+        public static final int Nickname=0x7f0a000b;
         public static final int Settings=0x7f0a0003;
         /**  for production 
          */
-        public static final int Title=0x7f0a0024;
-        public static final int Type=0x7f0a0025;
-        public static final int Want=0x7f0a000d;
-        public static final int about=0x7f0a0018;
+        public static final int Title=0x7f0a0025;
+        public static final int Type=0x7f0a0026;
+        public static final int Want=0x7f0a000e;
+        public static final int about=0x7f0a0019;
         /**  for basic 
          */
         public static final int app_name=0x7f0a0000;
         public static final int cancel=0x7f0a0007;
-        public static final int clear_cache=0x7f0a0017;
+        public static final int clear_cache=0x7f0a0018;
         public static final int default_name=0x7f0a0004;
-        public static final int developer=0x7f0a001a;
-        public static final int feedback=0x7f0a001c;
-        public static final int friends_visible=0x7f0a001e;
-        public static final int github=0x7f0a001b;
-        public static final int login_text=0x7f0a0013;
-        public static final int logout=0x7f0a0019;
+        public static final int developer=0x7f0a001b;
+        public static final int feedback=0x7f0a001d;
+        public static final int friends_visible=0x7f0a001f;
+        public static final int github=0x7f0a001c;
+        public static final int login_text=0x7f0a0014;
+        public static final int logout=0x7f0a001a;
+        public static final int more=0x7f0a0008;
         /**  for settings 
          */
-        public static final int pdc_setting=0x7f0a0015;
-        public static final int privacy=0x7f0a0016;
-        public static final int privacy_class_title=0x7f0a0021;
-        public static final int privacy_pro_map_key=0x7f0a0023;
-        public static final int privacy_pro_title=0x7f0a0022;
-        public static final int privacy_type_title=0x7f0a0020;
-        public static final int public_visible=0x7f0a001d;
-        public static final int rights_text=0x7f0a0014;
-        public static final int sendTo=0x7f0a0027;
-        public static final int service_visible=0x7f0a001f;
+        public static final int pdc_setting=0x7f0a0016;
+        public static final int privacy=0x7f0a0017;
+        public static final int privacy_class_title=0x7f0a0022;
+        public static final int privacy_pro_map_key=0x7f0a0024;
+        public static final int privacy_pro_title=0x7f0a0023;
+        public static final int privacy_type_title=0x7f0a0021;
+        public static final int public_visible=0x7f0a001e;
+        public static final int rights_text=0x7f0a0015;
+        public static final int sendTo=0x7f0a0028;
+        public static final int service_visible=0x7f0a0020;
         /**  for titile 
          */
-        public static final int title_friend_detail=0x7f0a0028;
-        public static final int title_production_detail=0x7f0a0029;
+        public static final int title_friend_detail=0x7f0a0029;
+        public static final int title_production_detail=0x7f0a002a;
         /**  for login 
          */
-        public static final int uname=0x7f0a0011;
+        public static final int uname=0x7f0a0012;
         public static final int undefined=0x7f0a0005;
-        public static final int upwd=0x7f0a0012;
+        public static final int upwd=0x7f0a0013;
         public static final int yes=0x7f0a0006;
     }
     public static final class style {

@@ -16,8 +16,8 @@ public class Config {
 
 	public static final String URL_GITHUB = "https://github.com/zouliping/WeiboshengrihuiForAndroid";
 
-	public static final String URL = "http://172.17.214.12:6000";
-	public static final String URL_API = "http://172.17.214.12:9000";
+	public static final String URL = "http://192.168.0.109:9001";
+	public static final String URL_API = "http://192.168.0.109:9000";
 
 	// login uri
 	public static final String LOGIN = URL_API + "/user/login";
@@ -31,8 +31,7 @@ public class Config {
 	public static final String UPDATE_INFO_API = URL_API + "/indiv/update";
 
 	// get friends list uri
-	public static final String GET_FRIENDS_LIST = URL
-			+ "/user/get_friends?uid=";
+	public static final String GET_FRIENDS_LIST = URL + "/user/get_friends?";
 	// public static final String GET_FRIENDS_LIST = URL_API + "/indiv/get?";
 
 	// get propertities or wish item uri

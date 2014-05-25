@@ -25,8 +25,10 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.ViewSwitcher;
 import cn.pdc.mobile.R;
@@ -48,6 +50,7 @@ import cn.pdc.mobile.utils.ToastUtil;
 public class ProductionDetailActivity extends Activity {
 
 	private Context mContext = ProductionDetailActivity.this;
+
 	private List<Production> list_production;
 	private Production production;
 	private List<String> list_friends;
@@ -60,6 +63,10 @@ public class ProductionDetailActivity extends Activity {
 	private ImageView btn_back;
 	private ImageView btn_tao;
 	private TextView tv_title;
+	private View v_more;
+
+	private Button btn_more;
+	private ProgressBar pb_load;
 
 	private String title_activity;
 	private String uname;
@@ -67,7 +74,10 @@ public class ProductionDetailActivity extends Activity {
 	private String type;
 	private String description;
 
+	private Integer page = 0;
+	private Integer num = 2;
 	private Integer sendToIndex = 0;
+
 	private Boolean isMe = true;
 
 	@Override
@@ -79,11 +89,13 @@ public class ProductionDetailActivity extends Activity {
 		initData();
 		initViews();
 
-		new getBasicInfoTask().execute("");
+		new getBasicInfoTask().execute(page, num);
 
 	}
 
 	private void initViews() {
+		v_more = getLayoutInflater().inflate(R.layout.load_more, null);
+
 		vs_production = (ViewSwitcher) findViewById(R.id.production_vs);
 		lv_production = new ListView(mContext);
 		lv_production.setCacheColorHint(Color.argb(0, 0, 0, 0));
@@ -91,6 +103,7 @@ public class ProductionDetailActivity extends Activity {
 				R.drawable.list_divider_line));
 		lv_production.setDividerHeight(1);
 		lv_production.setSelector(R.drawable.list_item_selector);
+		lv_production.addFooterView(v_more);
 
 		adapter = new ProductionAdapter(mContext);
 		lv_production.setAdapter(adapter);
@@ -102,8 +115,12 @@ public class ProductionDetailActivity extends Activity {
 
 		btn_back = (ImageView) findViewById(R.id.back_btn);
 		btn_tao = (ImageView) findViewById(R.id.tao_btn);
+		btn_more = (Button) v_more.findViewById(R.id.btn_load_more);
 		btn_back.setOnClickListener(listener);
 		btn_tao.setOnClickListener(listener);
+		btn_more.setOnClickListener(listener);
+
+		pb_load = (ProgressBar) v_more.findViewById(R.id.pb_load);
 
 		tv_title = (TextView) findViewById(R.id.production_title);
 		if ("Goods".equals(title_activity)) {
@@ -125,6 +142,9 @@ public class ProductionDetailActivity extends Activity {
 		uname = intent.getStringExtra("uname");
 		title_activity = intent.getStringExtra("item");
 		isMe = intent.getBooleanExtra("isMe", true);
+
+		list_production = new ArrayList<Production>();
+		list_production_name = new ArrayList<String>();
 
 		if ("Goods".equals(title_activity) && isMe) {
 			new getFriendsInfoTask().execute("");
@@ -174,6 +194,14 @@ public class ProductionDetailActivity extends Activity {
 				break;
 			case R.id.tao_btn:
 				AppUtil.openApp(mContext, Config.TAOBAO_PACKAGE_NAME);
+				break;
+			case R.id.btn_load_more:
+				btn_more.setVisibility(View.GONE);
+				pb_load.setVisibility(View.VISIBLE);
+
+				page++;
+
+				new getBasicInfoTask().execute(page, num);
 				break;
 			default:
 				break;
@@ -321,9 +349,9 @@ public class ProductionDetailActivity extends Activity {
 	 * @author zouliping
 	 * 
 	 */
-	private class getBasicInfoTask extends AsyncTask<String, String, String> {
+	private class getBasicInfoTask extends AsyncTask<Integer, String, String> {
 		@Override
-		protected String doInBackground(String... params) {
+		protected String doInBackground(Integer... params) {
 
 			// List<NameValuePair> list_params = new
 			// LinkedList<NameValuePair>();
@@ -336,10 +364,16 @@ public class ProductionDetailActivity extends Activity {
 			//
 			// Log.e("get production url", Config.GET_PROPERTITY + query);
 			// return HttpUtil.doGet(Config.GET_PROPERTITY + query);
+
+			Integer page = params[0];
+			Integer num = params[1];
+
 			List<NameValuePair> list_params = new LinkedList<NameValuePair>();
 			list_params.add(new BasicNameValuePair("type", title_activity));
 			list_params.add(new BasicNameValuePair("uid", SHA1
 					.getSHA1String(uname)));
+			list_params.add(new BasicNameValuePair("page", page + ""));
+			list_params.add(new BasicNameValuePair("num", num + ""));
 			String query = URLEncodedUtils.format(list_params, "utf-8");
 			return HttpUtil.doGet(Config.GET_PROPERTITY + query);
 		}
@@ -353,9 +387,13 @@ public class ProductionDetailActivity extends Activity {
 					return;
 				}
 
-				list_production = new ArrayList<Production>();
-				list_production_name = new ArrayList<String>();
+				if (result.equals("{}")) {
+					ToastUtil.showShortToast(mContext, "no more data");
+					btn_more.setEnabled(false);
+				}
+
 				JSONObject jo = new JSONObject(result);
+
 				for (Iterator<?> i = jo.keys(); i.hasNext();) {
 					String key = (String) i.next();
 					list_production_name.add(key);
@@ -395,6 +433,8 @@ public class ProductionDetailActivity extends Activity {
 				adapter.setProductionList(list_production);
 				adapter.notifyDataSetChanged();
 				vs_production.setDisplayedChild(0);
+				btn_more.setVisibility(View.VISIBLE);
+				pb_load.setVisibility(View.GONE);
 			}
 		}
 	}

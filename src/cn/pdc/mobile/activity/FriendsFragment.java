@@ -2,8 +2,12 @@ package cn.pdc.mobile.activity;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 
+import org.apache.http.NameValuePair;
+import org.apache.http.client.utils.URLEncodedUtils;
+import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -18,11 +22,14 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemLongClickListener;
+import android.widget.Button;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.ViewSwitcher;
 import cn.pdc.mobile.R;
 import cn.pdc.mobile.adapter.FriendAdapter;
@@ -47,6 +54,10 @@ public class FriendsFragment extends Fragment {
 	private ListView lv_friend;
 	private FriendAdapter adapter;
 
+	private View v_more;
+	private Button btn_more;
+	private ProgressBar pb_load;
+
 	private List<User> list_friend;
 
 	private String nickname;
@@ -55,16 +66,25 @@ public class FriendsFragment extends Fragment {
 	private String interesting;
 	private Boolean gender;
 
+	private Integer page = 0;
+	private Integer num = 2;
+
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		mainView = inflater.inflate(R.layout.fragment_friends, null);
+		v_more = inflater.inflate(R.layout.load_more, null);
 		mContext = getActivity();
 
+		initData();
 		initViews();
-		new getBasicInfoTask().execute("");
+		new getBasicInfoTask().execute(page, num);
 
 		return mainView;
+	}
+
+	private void initData() {
+		list_friend = new ArrayList<User>();
 	}
 
 	private void initViews() {
@@ -77,6 +97,7 @@ public class FriendsFragment extends Fragment {
 		lv_friend.setSelector(R.drawable.list_item_selector);
 		lv_friend.setOnItemClickListener(listener);
 		lv_friend.setOnItemLongClickListener(longClickListener);
+		lv_friend.addFooterView(v_more);
 
 		adapter = new FriendAdapter(mContext);
 		lv_friend.setAdapter(adapter);
@@ -87,7 +108,32 @@ public class FriendsFragment extends Fragment {
 				R.layout.layout_progress_page, null));
 
 		vs_friend.showNext();
+
+		btn_more = (Button) v_more.findViewById(R.id.btn_load_more);
+		btn_more.setOnClickListener(btnClickListener);
+		pb_load = (ProgressBar) v_more.findViewById(R.id.pb_load);
 	}
+
+	private OnClickListener btnClickListener = new OnClickListener() {
+
+		@Override
+		public void onClick(View v) {
+			switch (v.getId()) {
+			case R.id.btn_load_more:
+				btn_more.setVisibility(View.GONE);
+				pb_load.setVisibility(View.VISIBLE);
+
+				page++;
+
+				new getBasicInfoTask().execute(page, num);
+
+				break;
+			default:
+				break;
+			}
+		}
+
+	};
 
 	private OnItemClickListener listener = new OnItemClickListener() {
 
@@ -183,16 +229,16 @@ public class FriendsFragment extends Fragment {
 			} else {
 				ToastUtil.showShortToast(mContext, "Success");
 				vs_friend.setDisplayedChild(1);
-				new getBasicInfoTask().execute("");
+				new getBasicInfoTask().execute(0, num);
 			}
 		}
 
 	}
 
-	private class getBasicInfoTask extends AsyncTask<String, String, String> {
+	private class getBasicInfoTask extends AsyncTask<Integer, String, String> {
 
 		@Override
-		protected String doInBackground(String... params) {
+		protected String doInBackground(Integer... params) {
 
 			// List<NameValuePair> list_params = new
 			// LinkedList<NameValuePair>();
@@ -202,7 +248,16 @@ public class FriendsFragment extends Fragment {
 			// list_params.add(new BasicNameValuePair("sid", Config.sid));
 			// String query = URLEncodedUtils.format(list_params, "utf-8");
 			// return HttpUtil.doGet(Config.GET_FRIENDS_LIST + query);
-			return HttpUtil.doGet(Config.GET_FRIENDS_LIST + Config.uid);
+
+			Integer page = params[0];
+			Integer num = params[1];
+			List<NameValuePair> list_params = new LinkedList<NameValuePair>();
+			list_params.add(new BasicNameValuePair("page", page + ""));
+			list_params.add(new BasicNameValuePair("num", num + ""));
+			list_params.add(new BasicNameValuePair("uid", Config.uid));
+			String query = URLEncodedUtils.format(list_params, "utf-8");
+
+			return HttpUtil.doGet(Config.GET_FRIENDS_LIST + query);
 		}
 
 		@Override
@@ -213,9 +268,13 @@ public class FriendsFragment extends Fragment {
 				if (result == null) {
 					return;
 				}
-				list_friend = new ArrayList<User>();
+
+				if (result.equals("{}")) {
+					ToastUtil.showShortToast(mContext, "no more data");
+					btn_more.setEnabled(false);
+				}
+
 				JSONObject jo = new JSONObject(result);
-				list_friend = new ArrayList<User>();
 				for (Iterator<?> i = jo.keys(); i.hasNext();) {
 					String key = (String) i.next();
 					JSONObject user = jo.getJSONObject(key);
@@ -259,6 +318,8 @@ public class FriendsFragment extends Fragment {
 				adapter.setFriendsList(list_friend);
 				adapter.notifyDataSetChanged();
 				vs_friend.setDisplayedChild(0);
+				btn_more.setVisibility(View.VISIBLE);
+				pb_load.setVisibility(View.GONE);
 			}
 		}
 	}
