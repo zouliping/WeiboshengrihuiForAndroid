@@ -47,6 +47,12 @@ public class PrivacyClassSettingActivity extends Activity {
 		initViews();
 	}
 
+	@Override
+	public void onPause() {
+		super.onPause();
+		finish();
+	}
+
 	private void initViews() {
 		vs_class = (ViewSwitcher) findViewById(R.id.class_vs);
 		lv_class = new ListView(mContext);

@@ -82,7 +82,7 @@ public class SettingsFragement extends Fragment {
 		public void onClick(View v) {
 			switch (v.getId()) {
 			case R.id.logout_btn:
-				SharedPreferences data = mContext.getSharedPreferences("data",
+				SharedPreferences data = mContext.getSharedPreferences("wdata",
 						0);
 				Editor editor = data.edit();
 				editor.clear();

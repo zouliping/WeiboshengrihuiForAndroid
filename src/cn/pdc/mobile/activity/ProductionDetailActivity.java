@@ -314,7 +314,13 @@ public class ProductionDetailActivity extends Activity {
 			// String query = URLEncodedUtils.format(list_params, "utf-8");
 			//
 			// return HttpUtil.doGet(Config.GET_FRIENDS_LIST + query);
-			return HttpUtil.doGet(Config.GET_FRIENDS_LIST + Config.uid);
+			List<NameValuePair> list_params = new LinkedList<NameValuePair>();
+			list_params.add(new BasicNameValuePair("page", 0 + ""));
+			list_params.add(new BasicNameValuePair("num", 10 + ""));
+			list_params.add(new BasicNameValuePair("uid", Config.uid));
+			String query = URLEncodedUtils.format(list_params, "utf-8");
+
+			return HttpUtil.doGet(Config.GET_FRIENDS_LIST + query);
 		}
 
 		@Override

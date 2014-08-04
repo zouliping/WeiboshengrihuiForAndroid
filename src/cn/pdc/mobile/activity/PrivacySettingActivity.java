@@ -52,6 +52,12 @@ public class PrivacySettingActivity extends Activity {
 		initViews();
 	}
 
+	@Override
+	public void onPause() {
+		super.onPause();
+		finish();
+	}
+
 	private void initViews() {
 		lv_corner = (CornerListView) findViewById(R.id.privacy_type_list);
 		lv_corner.setOnItemClickListener(itemClickListener);

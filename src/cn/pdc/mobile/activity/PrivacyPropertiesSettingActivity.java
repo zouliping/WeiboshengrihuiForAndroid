@@ -237,9 +237,7 @@ public class PrivacyPropertiesSettingActivity extends Activity {
 				ToastUtil.showShortToast(mContext, "Failed");
 			} else if (result == true) {
 				ToastUtil.showShortToast(mContext, "Success");
-				Intent intent = new Intent(mContext,
-						PrivacySettingActivity.class);
-				startActivity(intent);
+				finish();
 			}
 		}
 	}

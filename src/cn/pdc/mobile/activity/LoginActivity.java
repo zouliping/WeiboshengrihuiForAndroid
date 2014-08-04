@@ -133,7 +133,7 @@ public class LoginActivity extends Activity {
 		protected void onPostExecute(String result) {
 			dlg.dismiss();
 			Log.e("login result", result + "");
-			if ("false".equals(result)) {
+			if ("1001".equals(result)) {
 				ToastUtil.showShortToast(mContext,
 						"Login failed! Please try again");
 			} else {

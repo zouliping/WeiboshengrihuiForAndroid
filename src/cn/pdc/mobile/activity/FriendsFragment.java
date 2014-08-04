@@ -162,7 +162,7 @@ public class FriendsFragment extends Fragment {
 			AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
 			builder.setTitle("Delete Friend");
 			builder.setMessage("Are you sure to delete "
-					+ list_friend.get(position).getUid() + "?");
+					+ list_friend.get(position).getNickname() + "?");
 			builder.setPositiveButton(getString(R.string.yes),
 					new DialogInterface.OnClickListener() {
 
@@ -204,8 +204,8 @@ public class FriendsFragment extends Fragment {
 			String friend = params[0];
 			JSONObject jo = new JSONObject();
 			try {
-				jo.put("indivi1", Config.uid);
-				jo.put("indivi2", friend);
+				jo.put("indiv1", Config.uid);
+				jo.put("indiv2", friend);
 				jo.put("relation", "follow");
 				jo.put("uid", Config.uid);
 
@@ -229,6 +229,7 @@ public class FriendsFragment extends Fragment {
 			} else {
 				ToastUtil.showShortToast(mContext, "Success");
 				vs_friend.setDisplayedChild(1);
+				list_friend = new ArrayList<User>();
 				new getBasicInfoTask().execute(0, num);
 			}
 		}
